@@ -11,6 +11,15 @@ public class Data_dict {
 
     private String dict_value;
 
+    public Data_dict(){}
+
+    public Data_dict(Integer dict_parent_id,Integer dict_index,String dict_name,String dict_value){
+        this.dict_parent_id = dict_parent_id;
+        this.dict_index = dict_index;
+        this.dict_name = dict_name;
+        this.dict_value = dict_value;
+    }
+
     public Integer getDict_id() {
         return dict_id;
     }
