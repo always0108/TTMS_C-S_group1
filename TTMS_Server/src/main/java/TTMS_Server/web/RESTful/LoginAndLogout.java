@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/rest")
 public class LoginAndLogout {
     @Autowired
     private EmployeeService employeeService;

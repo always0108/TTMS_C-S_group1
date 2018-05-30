@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class Httpclient {
 
-    private static  String server_addr = "http://localhost:8080";
+    private static  String server_addr = "http://localhost:8080/rest";
     private static final String DEFALUT_ENCODE = "UTF-8";
     public static CloseableHttpClient httpClient = null;
     public static HttpClientContext context = null;
