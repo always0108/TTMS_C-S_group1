@@ -1,0 +1,128 @@
+/*设置表格头靠左、字体大小，字体颜色*/
+.column-header{
+    -fx-alignment: center;
+    -fx-text-fill: rgba(68,68,68,0.96);
+    -fx-font-size: 16px;
+}
+
+.table-view{
+    -fx-opacity: 0.75;
+    -fx-background-insets: 0;
+    -fx-alignment: center;
+    -fx-text-fill: rgba(68,68,68,0.96);
+    -fx-font-size: 14px;
+}
+
+/*设置表格头高度*/
+.table-view .column-header-background{
+    -fx-pref-height: 40;
+}
+
+/*设置每一行内容居中，每一行高度*/
+.table-row-cell{
+    -fx-background-insets: 0;
+    -fx-cell-size: 40px;
+    -fx-alignment: center;
+}
+
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+}
+
+
+.table-column{
+    -fx-alignment: center-left;
+}
+
+.titledPane{
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+}
+/*
+*  左栏一级菜单面板的样式
+play.getStyleClass().add("firstMenu");
+*/
+.firstMenu{
+    -fx-width:80px;
+    -fx-background-color: #F0DEB9;
+}
+
+/* 左栏二级菜单按钮的样式
+modify.getStyleClass().add("secondMenu");
+*/
+.secondMenu{
+    -fx-width: 100px;
+    -fx-height: 50px;
+    -fx-background-color: #F2E0AA;
+    -fx-text-fill: black;
+    -fx-text-font: bolder 25px serif;
+    }
+#welcome-words{
+    -fx-font-size: 50px;
+    -fx-text-fill: coral;
+    -fx-alignment: inherit;
+}
+
+#welcome{
+    -fx-margin-bottom: 50px;
+    -fx-font: bolder 35px serif;
+    -fx-alignment: inherit;
+    -fx-opacity: 1;
+    -fx-text-fill: #B8850A;/*设置标签内容的文本字体颜色*/
+   }
+
+.note{
+    -fx-font: bolder 25px serif;
+    -fx-margin: 30px 0 30px 0;
+}
+
+.conection{
+    -fx-font: italic 20px serif;
+    -fx-text-fill: blue;
+}
+
+.accordion{
+    -fx-font-size: 20px;
+    -fx-font-style: italic;
+    -fx-opacity: 0.75;
+}
+
+.button{
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-opacity: 0.8;
+}
+
+.label{
+    -fx-font-size:18px;
+    -fx-font-family:Cursive;
+}
+
+.radio-button{
+    -fx-font:italic 20px TimesNR;
+}
+
+.funButton{
+    -fx-width: 80px;/* 宽高没有起作用 */
+    -fx-height: 30px;
+    -fx-font: bolder 18px Georgia;
+    -fx-color: #245881;
+    -fx-background-color: #6C9BBF;
+    }
+
+.funText{
+     -fx-margin: 25px 0 50px 0px;
+     -fx-font-size:40px;
+     -fx-font-family:Cursive;
+}
+
+.textField{
+    -fx-width: 150px;
+    -fx-height: 45px;
+    -fx-font-size: 16px;
+    -fx-background-color: #F0BC9D;
+}
+
+
+
+

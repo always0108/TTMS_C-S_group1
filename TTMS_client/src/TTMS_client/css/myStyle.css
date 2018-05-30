@@ -1,0 +1,83 @@
+/* 大的面板样式 */
+#pane{
+     /*-fx-background-image:url("bgimg5.jpg");*/
+}
+/* 内嵌的borderPane 面板的样式 */
+#bpane{
+    -fx-width:800px;
+    -fx-height:600px;
+    -fx-background-color:white;
+    -fx-opacity:0.5;
+}
+/* 大的欢迎语的样式
+ welcome.setId("welcome-words");
+ */
+#welcome-words{
+    -fx-margin-bottom: 25px;
+    -fx-font: bolder 30px serif;
+    -fx-alignment: center;
+    -fx-text-fill: black;/*设置标签内容的文本字体颜色*/
+   }
+/*  左栏一级菜单面板的样式
+play.getStyleClass().add("firstMenu");
+*/
+.firstMenu{
+    -fx-width:80px;
+    -fx-background-color:#6B0103;
+}
+
+/* 左栏二级菜单按钮的样式
+modify.getStyleClass().add("secondMenu");
+*/
+.secondMenu{
+    -fx-width: 80px;
+    -fx-height: 50px;
+    -fx-background-color: #932C2E;
+    -fx-text-fill: white;
+    -fx-text-font: bolder 25px serif;
+    }
+/*
+btAdd.getStyleClass().add("funButton");
+*/
+.funButton{
+    -fx-width: 50px;
+    -fx-height: 30px;
+    -fx-background-color: #8CD3EC;
+    }
+
+/*
+ TextField tf4 = new TextField();
+ tf4.getStyleClass().add("textField");
+ */
+.textField{
+    -fx-width: 200px;
+    -fx-height: 40px;
+    -fx-background-color: #D4D4D4;
+}
+/*
+Label date = new Label("演出日期");
+date.getStyleClass().add("label");
+*/
+.label{
+    -fx-font-size:25px;
+    -fx-font-family:Cursive;
+}
+
+.title{
+    -fx-font-size:20px;
+    -fx-font-family:Serif;
+}
+
+/*
+-fx-width:60px;
+-fx-height:45px;
+-fx-font-family: Times, TimesNR, 'New Century Schoolbook',Georgia, 'New York', serif;
+-fx-border-style:none;
+-fx-opacity:0.5;设置元素透明度
+.button{
+    -fx-background-color:;
+    -fx-width:60px;
+    -fx-height:30px;
+}
+*/
+
