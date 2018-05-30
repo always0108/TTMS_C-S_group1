@@ -1,7 +1,7 @@
 package TTMS_Server.serviceimpl;
 
 
-import TTMS_Server.dao.EmployeeMapper;
+import TTMS_Server.dao.EmployeeDAO;
 import TTMS_Server.model.Employee;
 import TTMS_Server.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,33 +13,33 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private EmployeeDAO employeeDAO;
 
     @Override
     public Employee getEmployeeByName(String name){
-        return employeeMapper.selectByName(name);
+        return employeeDAO.selectByName(name);
     }
 
     @Override
     public List<Employee> getAllEmployeeByName(){
-        return employeeMapper.getAllEmployeeByName();
+        return employeeDAO.getAllEmployeeByName();
     }
 
     @Override
     public List<Employee> getAllEmployeeByPartName(String name){
-        return employeeMapper.getAllEmployeeByPartName("%"+name+"%");
+        return employeeDAO.getAllEmployeeByPartName("%"+name+"%");
     }
 
     @Override
     public boolean addEmployee(Employee emp){
-        if (employeeMapper.selectByName(emp.getEmp_name()) == null){
-            employeeMapper.addEmployee(emp);
+        if (employeeDAO.selectByName(emp.getEmp_name()) == null){
+            employeeDAO.addEmployee(emp);
             return true;
         }
         return false;
     }
 
     @Override
-    public String getPasswordByName(String name) {return employeeMapper.getPasswordByName(name);}
+    public String getPasswordByName(String name) {return employeeDAO.getPasswordByName(name);}
 
 }

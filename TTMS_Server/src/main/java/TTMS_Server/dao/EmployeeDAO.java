@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface EmployeeMapper {
+public interface EmployeeDAO {
 
     @Select("select * from employee where emp_name = #{name}")
     Employee selectByName(String name);

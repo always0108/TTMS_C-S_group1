@@ -7,8 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3b65c17-ddee-48ca-a2ce-660669e6435a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TTMS_Server/dao/EmployeeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TTMS_Server/dao/EmployeeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TTMS_Server/serviceimpl/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TTMS_Server/serviceimpl/EmployeeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TTMS_client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTMS_client/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -99,7 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Data_dict.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Data_dict.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/Data_dict.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="70">
@@ -108,11 +110,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginAndLogout.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/web/RESTful/LoginAndLogout.java">
+      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="875">
+              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmployeeDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/dao/EmployeeDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="24" column="57" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmployeeService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/service/EmployeeService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="12" column="43" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmployeeServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/serviceimpl/EmployeeServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mylog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/Mylog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-140">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generatorConfig.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1659">
+              <caret line="48" column="16" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="48" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -181,7 +228,6 @@
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/web/ExceptionHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/model/Error.java" />
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/model/MyError.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/model/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/model/note.java" />
         <option value="$PROJECT_DIR$/src/test/java/MybatisTest.java" />
@@ -194,6 +240,8 @@
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/web/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/web/RESTful/LoginAndLogout.java" />
         <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/web/RESTful/Employee.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/TTMS_Server/dao/EmployeeDAO.java" />
       </list>
     </option>
   </component>
@@ -264,6 +312,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -301,40 +352,6 @@
               <item name="TTMS_Server" type="b2602c69:ProjectViewProjectNode" />
               <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TTMS_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TTMS_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="RESTful" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TTMS_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TTMS_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TTMS_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -352,9 +369,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -576,7 +590,8 @@
       <workItem from="1527591090702" duration="3032000" />
       <workItem from="1527638332539" duration="1890000" />
       <workItem from="1527642813200" duration="707000" />
-      <workItem from="1527646570136" duration="595000" />
+      <workItem from="1527646570136" duration="710000" />
+      <workItem from="1527647766895" duration="242000" />
     </task>
     <servers />
   </component>
@@ -613,7 +628,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71076000" />
+    <option name="totallyTimeSpent" value="71433000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -628,7 +643,7 @@
     <frame x="0" y="0" width="1920" height="1023" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5005359" side_tool="true" visible="true" weight="0.29579067" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5010718" side_tool="true" visible="true" weight="0.2923777" />
       <window_info anchor="bottom" id="Application Servers" order="14" weight="0.32844242" />
       <window_info anchor="right" id="Maven Projects" order="10" weight="0.329582" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
@@ -645,21 +660,21 @@
       <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.32979852" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994641" weight="0.29345372" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989282" weight="0.2923777" />
       <window_info anchor="right" id="Mybatis datasource" order="9" side_tool="true" weight="0.329582" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32979852" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32979852" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22132905" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22400858" />
       <window_info id="Web" order="6" side_tool="true" />
       <window_info anchor="right" id="Google Cloud Storage" order="8" weight="0.329582" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32844242" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Database Console" order="15" weight="0.32979852" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32844242" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295711" />
     </layout>
@@ -733,13 +748,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/web/ExceptionHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="48" column="16" lean-forward="true" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/note.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0ba71f02-4a62-47b5-976a-5506f1520add/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
@@ -772,13 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/Mylog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/MyError.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/utils/MD5.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -808,27 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/dao/EmployeeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="24" column="57" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/service/EmployeeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="12" column="43" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/web/Test.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/MybatisTest.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -841,13 +821,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/serviceimpl/EmployeeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -883,6 +856,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/Mylog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-140">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1659">
+          <caret line="48" column="16" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="48" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/model/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="875">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/dao/EmployeeDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="24" column="57" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/service/EmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TTMS_Server/serviceimpl/EmployeeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
         </state>
       </provider>
     </entry>
