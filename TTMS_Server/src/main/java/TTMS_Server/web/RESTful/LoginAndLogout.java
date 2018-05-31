@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/rest")
 public class LoginAndLogout {
+
     @Autowired
     private EmployeeService employeeService;
 
+    //登录
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ResponseResult login(HttpServletRequest request, @RequestParam("username") String username,
                                 @RequestParam("password") String password){
@@ -33,6 +35,7 @@ public class LoginAndLogout {
         }
     }
 
+    //注销
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public void logout(HttpServletRequest request){
         if(request.getSession(false) != null) {

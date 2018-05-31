@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("InfoService")
+@Service("EmployeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
@@ -37,6 +37,33 @@ public class EmployeeServiceImpl implements EmployeeService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean deleteEmployeeById(Integer id){
+        if (employeeDAO.selectById(id) != null){
+            employeeDAO.deleteEmployeeById(id);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateEmployeeById(Employee emp){
+        Employee emptemp = employeeDAO.selectById(emp.getEmp_id());
+        //该用户不存在
+        if(emptemp == null){
+            return false;
+        }
+
+        //名称没有改变或者新名称可用
+        if(emptemp.getEmp_name().equals(emp.getEmp_name()) ||
+                employeeDAO.selectByName(emp.getEmp_name()) == null){
+            employeeDAO.updateEmployeeById(emp);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override

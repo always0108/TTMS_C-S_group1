@@ -15,4 +15,8 @@ public interface EmployeeService {
     Employee getEmployeeByName(String name);
 
     boolean addEmployee(Employee emp);
+
+    boolean deleteEmployeeById(Integer id);
+
+    boolean updateEmployeeById(Employee emp);
 }
