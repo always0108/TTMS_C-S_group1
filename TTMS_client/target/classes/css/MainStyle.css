@@ -43,8 +43,12 @@
 play.getStyleClass().add("firstMenu");
 */
 .firstMenu{
-    -fx-width:80px;
-    -fx-background-color: #F0DEB9;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+    /*-fx-background-color: #F0DEB9;*/
+    -fx-background-color: #F2E0AA;
+    -fx-text-fill: black;
+    -fx-text-font: bolder 30px serif;
 }
 
 /* 左栏二级菜单按钮的样式
@@ -57,6 +61,7 @@ modify.getStyleClass().add("secondMenu");
     -fx-text-fill: black;
     -fx-text-font: bolder 25px serif;
     }
+
 #welcome-words{
     -fx-font-size: 50px;
     -fx-text-fill: coral;
@@ -108,7 +113,7 @@ modify.getStyleClass().add("secondMenu");
     -fx-font: bolder 18px Georgia;
     -fx-color: #245881;
     -fx-background-color: #6C9BBF;
-    }
+}
 
 .funText{
      -fx-margin: 25px 0 50px 0px;
@@ -118,7 +123,14 @@ modify.getStyleClass().add("secondMenu");
 
 .textField{
     -fx-width: 150px;
-    -fx-height: 45px;
+    -fx-height: 40px;
+    -fx-font-size: 16px;
+    -fx-background-color: #F0BC9D;
+}
+
+.text-field{
+    -fx-width: 150px;
+    -fx-height: 40px;
     -fx-font-size: 16px;
     -fx-background-color: #F0BC9D;
 }

@@ -12,29 +12,26 @@ import java.util.List;
 
 public class EmployeeSrv {
 
-    public EmployeeSrv(){ }
+    public EmployeeSrv() {}
 
     public ObservableList<EmployeeProperty> list() {
-        String url = "/employee/getAllEmp";
-        String res = Httpclient.get(url);
-        JSONObject jsonObject = JSON.parseObject(res);
-        List<EmployeeProperty> emps = JSONArray.parseArray(jsonObject.getString("content"), EmployeeProperty.class);
-        ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
-        for (int i = 0; i < emps.size(); i++) {
-            employeePropertyObservableList.add(emps.get(i));
-        }
-        return employeePropertyObservableList;
+        return searchByName("");
     }
 
     public ObservableList<EmployeeProperty> searchByName(String name){
         String url = "/employee/getEmpByPartName?name="+name;
         String res = Httpclient.get(url);
         JSONObject jsonObject = JSON.parseObject(res);
-        List<EmployeeProperty> emps = JSONArray.parseArray(jsonObject.getString("content"), EmployeeProperty.class);
-        ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
-        for (int i = 0; i < emps.size(); i++) {
-            employeePropertyObservableList.add(emps.get(i));
-        }
+        if(jsonObject.get("flag").equals(true)) {
+            List<EmployeeProperty> emps = JSONArray.parseArray(jsonObject.getString("content"), EmployeeProperty.class);
+            ObservableList<EmployeeProperty> employeePropertyObservableList = FXCollections.observableArrayList();
+            for (int i = 0; i < emps.size(); i++) {
+                employeePropertyObservableList.add(emps.get(i));
+            }
         return employeePropertyObservableList;
+        }else{
+            System.out.println("网络连接失败");
+            return null;
+        }
     }
 }

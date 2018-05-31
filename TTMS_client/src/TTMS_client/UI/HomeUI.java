@@ -38,6 +38,7 @@ public class HomeUI{
             Httpclient.get(url);
             Main.borderPane.setTop(null);
             Main.borderPane.setLeft(null);
+            Main.borderPane.setBottom(null);
             Main.borderPane.setCenter(LoginUI.init());
         });
         toppane.getChildren().addAll(username,logout);
