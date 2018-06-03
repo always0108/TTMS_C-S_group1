@@ -52,12 +52,12 @@ public class Employee {
     }
 
     //修改用户
-    @RequestMapping(value = "/update",method = RequestMethod.GET)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public ResponseResult update(@ModelAttribute TTMS_Server.model.Employee emp){
         if (employeeService.updateEmployeeById(emp))
             return new ResponseResult(true,"修改成功");
         else{
-            return new ResponseResult(false,"新用户已存在");
+            return new ResponseResult(false,"用户名已存在");
         }
     }
 }
