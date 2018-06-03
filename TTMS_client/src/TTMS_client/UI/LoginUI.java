@@ -10,6 +10,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import node.FunButton;
 import util.Httpclient;
 
 import java.util.HashMap;
@@ -32,49 +33,31 @@ public class LoginUI {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(20);
-        gridPane.setVgap(30);
-        gridPane.setPadding(new Insets(80,25,25,25));
-        Label userName = new Label("用户名:");
-        userName.getStyleClass().add("label");
-        gridPane.add(userName,0,0);
-        TextField userTextField = new TextField();
-        userTextField.getStyleClass().add("textField");
-        gridPane.add(userTextField,1,0);
-        Label pw = new Label("密码:");
-        pw.getStyleClass().add("label");
-        gridPane.add(pw,0,1);
-        PasswordField passwordField = new PasswordField();
-        passwordField.getStyleClass().add("textField");
-        gridPane.add(passwordField,1,1);
-
+        gridPane.setVgap(25);
+        gridPane.setPadding(new Insets(80,20,20,20));
         Label note = new Label();
         note.setStyle("-fx-alignment: center");
-        gridPane.add(note,1,2);
-
-        //登录button
-        HBox footer = new HBox();
-        Button  bt1 = new Button("登录");
+        gridPane.add(note,1,0);
+        Label userName = new Label("用户名:");
+        userName.getStyleClass().add("label");
+        gridPane.add(userName,0,1);
+        TextField userTextField = new TextField();
+        userTextField.getStyleClass().add("textField");
+        gridPane.add(userTextField,1,1);
+        Label pw = new Label("密码:");
+        pw.getStyleClass().add("label");
+        gridPane.add(pw,0,2);
+        PasswordField passwordField = new PasswordField();
+        passwordField.getStyleClass().add("textField");
+        gridPane.add(passwordField,1,2);
+        FunButton bt1 = new FunButton("登录");
         bt1.setDefaultButton(true);
-        bt1.getStyleClass().add("funButton");
-        footer.setPadding(new Insets(20,300,0,0));
-        //FunButton test = new FunButton("确认");
-        footer.getChildren().addAll(bt1/*,test**/);
-        footer.setSpacing(40);
-        footer.setAlignment(Pos.CENTER_RIGHT);
+        bt1.setStyle("-fx-min-width: 200px;-fx-min-height: 40px;");
+        gridPane.add(bt1,1,3);
 
-        pane.getChildren().addAll(header,gridPane,footer);
-
-
-        bt1.addEventFilter(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-            bt1.setEffect(new DropShadow());
-        });
-        bt1.addEventFilter(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
-            bt1.setEffect(null);
-        });
-
+        pane.getChildren().addAll(header,gridPane);
 
         bt1.setOnAction(e->{
-
             bt1.setDisable(true);
             //创建后台获取数据的线程
             Task<JSONObject> task = new Task<JSONObject>() {
@@ -125,7 +108,6 @@ public class LoginUI {
                     updateMessage("Failed!");
                 }
             };
-
             Thread thread = new Thread(task);
             thread.start();
         });

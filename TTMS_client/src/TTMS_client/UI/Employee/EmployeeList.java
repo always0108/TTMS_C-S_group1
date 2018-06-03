@@ -1,55 +1,118 @@
 package UI.Employee;
 
 import Service.EmployeeSrv;
+import UI.HomeUI;
 import UI.Main;
+import com.alibaba.fastjson.JSONObject;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.EmployeeProperty;
 import node.FunButton;
 
-public class EmployeeList extends VBox {
+public class EmployeeList{
 
+    private VBox main = new VBox();
     private EmployeeSrv employeeSrv = new EmployeeSrv();
+    private ProgressIndicator progressIndicator = new ProgressIndicator();
+    private HBox progress;
     private HBox hBox;
-    private Pane pane;
-    private HBox footer;
-    TextField key;
+    private ScrollPane scrollPane;
+    private ObservableList<EmployeeProperty> employeeProperties;
+    private TextField key;
 
     public EmployeeList(){
-        this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
-        this.setPadding(new Insets(20, 20, 20, 20));
+        main.setAlignment(Pos.TOP_CENTER);
+        main.setSpacing(20);
+        main.setPadding(new Insets(60, 20, 20, 20));
+
+        progress = new HBox();
+        progress.setPadding(new Insets(0,50,20,0));
+        progress.setSpacing(30);
+        progress.setAlignment(Pos.CENTER);
 
         hBox = new HBox();
         hBox.setSpacing(30);
         hBox.setAlignment(Pos.CENTER);
         Label note = new Label("关键字:");
         key = new TextField();
-        Button find = new Button("查询");
-        hBox.getChildren().addAll(note,key,find);
-        pane = new EmployeeTable(employeeSrv.list());
-
-        footer = new HBox();
-        footer.setAlignment(Pos.CENTER_RIGHT);
-        footer.setPadding(new Insets(20,150,20,20));
+        FunButton find = new FunButton("查询");
+        find.setDefaultButton(true);
         FunButton add = new FunButton("添加用户");
         add.setOnAction(e->{
             Main.borderPane.setCenter(new EmployeeAdd());
         });
-        footer.getChildren().add(add);
+        hBox.getChildren().addAll(note,key,find,add);
+
+        scrollPane = new ScrollPane();
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setStyle("-fx-padding: 0;-fx-opacity: 0.75;-fx-background-color: gray");
+        main.getChildren().addAll(hBox,scrollPane);
+
+        Task<JSONObject> task = new Task<JSONObject>() {
+            @Override
+            protected JSONObject call() throws Exception {
+                employeeProperties = employeeSrv.list();
+                Thread.sleep(1000);
+                return null;
+            }
+
+            @Override
+            protected void running() {
+                progressIndicator.setMinSize(100,100);
+                progressIndicator.progressProperty().bind(this.progressProperty());
+                progress.getChildren().add(progressIndicator);
+                HomeUI.setCenter(progress);
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                scrollPane.setContent(new EmployeeTable(employeeProperties));
+                HomeUI.setCenter(main);
+                updateMessage("Done!");
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
 
         find.setOnAction(e->{
-            this.getChildren().removeAll(pane,footer);
-            pane = new EmployeeTable(employeeSrv.searchByName(key.getText()));
-            this.getChildren().addAll(pane,footer);
+            find.setDisable(true);
+
+            Task<JSONObject> searchtask = new Task<JSONObject>() {
+                @Override
+                protected JSONObject call() throws Exception {
+                    employeeProperties = employeeSrv.searchByName(key.getText());
+                    Thread.sleep(500);
+                    return null;
+                }
+
+                @Override
+                protected void running() {
+                    main.getChildren().remove(scrollPane);
+                    progressIndicator.setMinSize(100,100);
+                    progressIndicator.progressProperty().bind(this.progressProperty());
+                    main.getChildren().add(progress);
+                }
+
+                @Override
+                protected void succeeded() {
+                    super.succeeded();
+                    scrollPane.setContent(new EmployeeTable(employeeProperties));
+                    main.getChildren().remove(progress);
+                    main.getChildren().add(scrollPane);
+                    find.setDisable(false);
+                    updateMessage("Done!");
+                }
+            };
+            Thread search = new Thread(searchtask);
+            search.start();
         });
-
-        this.getChildren().addAll(hBox,pane,footer);
-
     }
 }

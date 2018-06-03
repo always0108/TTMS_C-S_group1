@@ -1,6 +1,6 @@
 package UI;
 
-import UI.Employee.EmployeeMenu;
+import UI.Navigation.EmployeeMenu;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Accordion;
@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import node.MessageBar;
+import node.NavigationBar;
 import util.Httpclient;
 
 public class HomeUI{
@@ -70,8 +71,12 @@ public class HomeUI{
     public void ManagerUI(String name){
         Main.borderPane.setTop(top(name));
         Main.borderPane.setCenter(center());
-        Main.borderPane.setLeft(functionmenu());
+        Main.borderPane.setLeft(new NavigationBar().getManagerBar());
         MessageBar.showMessageBar("欢迎登录！");
+    }
+
+    public static void setCenter(Pane pane){
+        Main.borderPane.setCenter(pane);
     }
 
 

@@ -1,4 +1,4 @@
-package UI.Employee;
+package UI.Navigation;
 
 import UI.Employee.EmployeeAdd;
 import UI.Employee.EmployeeList;
@@ -18,7 +18,7 @@ public class EmployeeMenu extends TitledPane{
         Button add = new Button("添加用户");
         add.getStyleClass().add("secondMenu");
         list.setOnAction(e -> {
-            Main.borderPane.setCenter(new EmployeeList());
+            new EmployeeList();
         });
         add.setOnAction(e -> {
             Main.borderPane.setCenter(new EmployeeAdd());

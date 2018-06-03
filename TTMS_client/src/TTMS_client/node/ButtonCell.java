@@ -1,5 +1,7 @@
 package node;
 
+import UI.Employee.EmployeeDetail;
+import UI.Main;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import model.EmployeeProperty;
@@ -12,8 +14,8 @@ public class ButtonCell extends TableCell<EmployeeProperty, Boolean> {
         //Action when the button is pressed
         cellButton.setOnAction(e->{
                 // get Selected Item
-                EmployeeProperty currentPerson = (EmployeeProperty) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
-                currentPerson.print();
+                EmployeeProperty currentEmp = (EmployeeProperty) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                Main.borderPane.setCenter(new EmployeeDetail(currentEmp));
         });
     }
 
