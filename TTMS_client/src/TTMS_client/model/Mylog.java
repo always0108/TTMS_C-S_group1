@@ -7,6 +7,12 @@ public class Mylog {
 
     private String log_content;
 
+    public Mylog(){}
+
+    public Mylog(String log_time,String log_content){
+        this.log_time = log_time;
+        this.log_content = log_content;
+    }
     public Integer getLog_id() {
         return log_id;
     }

@@ -11,6 +11,14 @@ public class Sale_item {
 
     private BigDecimal sale_item_price;
 
+    public Sale_item(){}
+
+    public Sale_item(Long ticket_id,Long sale_ID,BigDecimal sale_item_price){
+        this.ticket_id = ticket_id;
+        this.sale_ID = sale_ID;
+        this.sale_item_price =sale_item_price;
+    }
+
     public Long getSale_item_id() {
         return sale_item_id;
     }

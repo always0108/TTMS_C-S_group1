@@ -18,6 +18,17 @@ public class Sale {
 
     private Short sale_status;
 
+    public Sale(){}
+
+    public Sale(Integer emp_id,Date sale_time,BigDecimal sale_payment,BigDecimal sale_change,Short sale_type,Short sale_status){
+        this.emp_id = emp_id;
+        this.sale_time = sale_time;
+        this.sale_payment = sale_payment;
+        this.sale_change = sale_change;
+        this.sale_type = sale_type;
+        this.sale_status =sale_status;
+    }
+
     public Long getSale_ID() {
         return sale_ID;
     }

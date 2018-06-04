@@ -11,6 +11,15 @@ public class Seat {
 
     private Short seat_status;
 
+    public Seat() { }
+
+    public Seat(Integer studio_id,Integer seat_row,Integer seat_column,Short seat_status) {
+        this.studio_id = studio_id;
+        this.seat_row = seat_row;
+        this.seat_column = seat_column;
+        this.seat_status = seat_status;
+    }
+
     public Integer getSeat_id() {
         return seat_id;
     }

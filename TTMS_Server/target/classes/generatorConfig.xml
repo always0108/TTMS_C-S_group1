@@ -54,7 +54,7 @@
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
 
-        <!--<table schema="general" tableName="play" domainObjectName="Play"-->
+        <!--<table schema="general" tableName="play" domainObjectName="PlayDAO"-->
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false" >-->
             <!--<property name="useActualColumnNames" value="true"/>-->

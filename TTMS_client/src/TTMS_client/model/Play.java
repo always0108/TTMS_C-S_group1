@@ -21,6 +21,19 @@ public class Play {
 
     private byte[] play_image;
 
+    public Play(Integer play_type_id,Integer play_lang_id,String play_name,String play_introduction,Integer play_length,BigDecimal play_ticket_price,Short play_status,byte[] play_image){
+        this.play_type_id = play_type_id;
+        this.play_lang_id = play_lang_id;
+        this.play_name = play_name;
+        this.play_introduction = play_introduction;
+        this.play_length = play_length;
+        this.play_ticket_price = play_ticket_price;
+        this.play_status = play_status;
+        this.play_image = play_image;
+    }
+
+    public Play(){}
+
     public Integer getPlay_id() {
         return play_id;
     }
