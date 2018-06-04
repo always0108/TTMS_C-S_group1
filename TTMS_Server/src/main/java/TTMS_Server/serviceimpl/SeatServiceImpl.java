@@ -8,6 +8,8 @@ import TTMS_Server.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("SeatService")
 public class SeatServiceImpl implements SeatService {
 
@@ -23,7 +25,7 @@ public class SeatServiceImpl implements SeatService {
     }
 
     //根据演出厅ID获取演出厅内所有座位信息
-    public Seat selectStudioSeatsByStudioId(Integer id){
+    public List<Seat> selectStudioSeatsByStudioId(Integer id){
         return seatDAO.selectStudioSeatsByStudioId(id);
     }
 

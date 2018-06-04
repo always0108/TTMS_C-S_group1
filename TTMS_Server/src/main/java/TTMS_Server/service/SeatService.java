@@ -2,13 +2,15 @@ package TTMS_Server.service;
 
 import TTMS_Server.model.Seat;
 
+import java.util.List;
+
 public interface SeatService {
 
     //根据id获取座位信息
     Seat selectSeatById(Integer id);
 
     //根据演出厅ID获取演出厅内所有座位信息
-    Seat selectStudioSeatsByStudioId(Integer id);
+    List<Seat> selectStudioSeatsByStudioId(Integer id);
 
     //新增座位
     boolean addSeat(Seat seat);

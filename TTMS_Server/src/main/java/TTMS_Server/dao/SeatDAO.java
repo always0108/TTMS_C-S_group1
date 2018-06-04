@@ -4,6 +4,8 @@ import TTMS_Server.model.Seat;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface SeatDAO {
@@ -14,7 +16,7 @@ public interface SeatDAO {
 
     //根据演出厅ID获取演出厅内所有座位信息
     @Select("select * from seat where studio_id = #{id}")
-    Seat selectStudioSeatsByStudioId(Integer id);
+    List<Seat> selectStudioSeatsByStudioId(Integer id);
 
     //新增座位
     @Insert("insert into seat(studio_id,seat_row,seat_column,seat_status) values" +
