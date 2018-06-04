@@ -46,27 +46,27 @@ public void after() throws Exception {
 
     @Test
     public void test(){
-//       //增加
-//        Employee emp = new Employee("04163164",1,"limeng","123456",
-//                "17691169108","西安","ldx19980108@gmail.com");
-//        if (employeeService.addEmployee(emp))
-//           System.out.println("添加成功");
-//        else
-//           System.out.println("该用户已存在");
+       //增加
+        Employee emp = new Employee("04163164",1,"limeng","123456",
+                "17691169108","西安","ldx19980108@gmail.com");
+        if (employeeService.addEmployee(emp))
+           System.out.println("添加成功");
+        else
+           System.out.println("该用户已存在");
 //        //删除
 //        if (employeeService.deleteEmployeeById(3))
 //           System.out.println("删除成功");
 //        else
 //           System.out.println("该用户不存在");
 //
-        //修改
-        Employee emp = new Employee("04163164",1,"limeng","123456",
-                "17691169108","西安","test@gmail.com");
-        emp.setEmp_id(3);
-        if (employeeService.updateEmployeeById(emp))
-            System.out.println("更新成功");
-        else
-            System.out.println("该用户名已存在");
+//        //修改
+//        Employee emp = new Employee("04163164",1,"limeng","123456",
+//                "17691169108","西安","test@gmail.com");
+//        emp.setEmp_id(3);
+//        if (employeeService.updateEmployeeById(emp))
+//            System.out.println("更新成功");
+//        else
+//            System.out.println("该用户名已存在");
   }
 
 

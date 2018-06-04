@@ -1,6 +1,7 @@
 package TTMS_Server.web.RESTful;
 
 
+import TTMS_Server.model.Employee;
 import TTMS_Server.model.ResponseResult;
 import TTMS_Server.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("rest/employee")
-public class Employee {
+public class EmployeeRestController {
 
     @Autowired
     private EmployeeService employeeService;
@@ -23,7 +24,7 @@ public class Employee {
     //根据关键字查询用户
     @RequestMapping(value = "/getEmpByPartName",method = RequestMethod.GET)
     public ResponseResult getEmpByName(@RequestParam("name") String name){
-        List<TTMS_Server.model.Employee> emps = employeeService.getAllEmployeeByPartName(name);
+        List<Employee> emps = employeeService.getAllEmployeeByPartName(name);
         if(emps == null){
             return new ResponseResult(false,"该用户不存在");
         }else{
@@ -33,7 +34,7 @@ public class Employee {
 
     //添加用户
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseResult add(@ModelAttribute TTMS_Server.model.Employee emp){
+    public ResponseResult add(@ModelAttribute Employee emp){
         if (employeeService.addEmployee(emp))
             return new ResponseResult(true,"添加成功");
         else{
@@ -53,7 +54,7 @@ public class Employee {
 
     //修改用户
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public ResponseResult update(@ModelAttribute TTMS_Server.model.Employee emp){
+    public ResponseResult update(@ModelAttribute Employee emp){
         if (employeeService.updateEmployeeById(emp))
             return new ResponseResult(true,"修改成功");
         else{

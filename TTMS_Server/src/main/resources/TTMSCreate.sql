@@ -45,7 +45,7 @@ create table play
    play_id              int not null auto_increment,
    play_type_id         int,
    play_lang_id         int,
-   play_name            varchar(200),
+   play_name            varchar(200) binary unique,
    play_introduction    varchar(2000),
    play_image           longblob,
    play_length          int,
@@ -124,7 +124,7 @@ create table seat
 Create table studio
 (
     studio_id int NOT NULL AUTO_INCREMENT,
-    studio_name VARCHAR(100) NOT NULL,
+    studio_name VARCHAR(100) binary unique NOT NULL,
     studio_row_count     int,
     studio_col_count     int,
     studio_seat_count    int,

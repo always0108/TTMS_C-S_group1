@@ -17,6 +17,9 @@ import org.junit.Test;
         import org.springframework.test.context.ContextConfiguration;
         import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {RootConfig.class,WebConfig.class,WebInit.class,MyBatis.class,DbConfig.class})
@@ -37,8 +40,8 @@ public class StudioTest {
 
     @Test
     public void test(){
-//        //增加
-//        Studio studio = new Studio("万达",4,5,"测试",1);
+        //增加
+//        Studio studio = new Studio("万达",8,6,"测试",0);
 //        if (studioService.addStudio(studio))
 //           System.out.println("添加成功");
 //        else
@@ -49,13 +52,19 @@ public class StudioTest {
 //        else
 //           System.out.println("该演出厅不存在");
 //
-        //修改
-        Studio studio_new = new Studio("万达",5,5,"修改",1);
-        studio_new.setStudio_id(2);
-        if (studioService.updateStudioById(studio_new))
-            System.out.println("更新成功");
-        else
-            System.out.println("该演出厅已存在");
+//        //修改
+//        Studio studio_new = new Studio("万达",5,5,"修改",1);
+//        studio_new.setStudio_id(2);
+//        if (studioService.updateStudioById(studio_new))
+//            System.out.println("更新成功");
+//        else
+//            System.out.println("该演出厅已存在");
+        List<Studio> studios = studioService.getAllStudioByPartName("");
+        for(int i=0;i<studios.size();i++){
+            System.out.println(studios.get(i).getStudio_name());
+            System.out.println(studios.get(i).getStudio_introduction());
+        }
+
     }
 
 
