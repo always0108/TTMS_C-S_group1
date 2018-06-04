@@ -13,7 +13,18 @@ public class Studio {
 
     private String studio_introduction;
 
-    private Short studio_flag;
+    private Integer studio_flag;
+
+    public Studio() {}
+
+    public Studio(String studio_name, Integer studio_row_count, Integer studio_col_count, String studio_introduction, Integer studio_flag) {
+        this.studio_name = studio_name;
+        this.studio_row_count = studio_row_count;
+        this.studio_col_count = studio_col_count;
+        this.studio_seat_count = studio_row_count * studio_col_count;
+        this.studio_introduction = studio_introduction;
+        this.studio_flag = studio_flag;
+    }
 
     public Integer getStudio_id() {
         return studio_id;
@@ -63,11 +74,11 @@ public class Studio {
         this.studio_introduction = studio_introduction == null ? null : studio_introduction.trim();
     }
 
-    public Short getStudio_flag() {
+    public Integer getStudio_flag() {
         return studio_flag;
     }
 
-    public void setStudio_flag(Short studio_flag) {
+    public void setStudio_flag(Integer studio_flag) {
         this.studio_flag = studio_flag;
     }
 }

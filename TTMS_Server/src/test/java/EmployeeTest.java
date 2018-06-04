@@ -1,5 +1,3 @@
-
-
 import TTMS_Server.config.database.DbConfig;
 import TTMS_Server.config.database.MyBatis;
 import TTMS_Server.config.spring.RootConfig;
@@ -17,19 +15,18 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {RootConfig.class,WebConfig.class,WebInit.class,MyBatis.class,DbConfig.class})
 @WebAppConfiguration("src/main/resources") //1 此注解指定web资源的位置，默认为src/main/webapp
 /** 
-* MybatisTest Tester. 
+* EmployeeTest Tester.
 * 
 * @author <Authors name> 
 * @since <pre>五月 24, 2018</pre> 
 * @version 1.0 
 */ 
-public class MybatisTest {
+public class EmployeeTest {
 
 @Before
 public void before() throws Exception { 
