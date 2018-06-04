@@ -1,7 +1,5 @@
 package UI.Employee;
 
-import UI.HomeUI;
-import UI.Main;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;

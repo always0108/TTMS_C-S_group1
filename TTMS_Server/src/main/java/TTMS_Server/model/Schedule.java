@@ -14,6 +14,15 @@ public class Schedule {
 
     private BigDecimal sched_ticket_price;
 
+    public Schedule(){}
+
+    public Schedule(Integer studio_id,Integer play_id,Date sched_time,BigDecimal sched_ticket_price){
+        this.studio_id = studio_id;
+        this.play_id = play_id;
+        this.sched_time = sched_time;
+        this.sched_ticket_price = sched_ticket_price;
+    }
+
     public Integer getSched_id() {
         return sched_id;
     }
