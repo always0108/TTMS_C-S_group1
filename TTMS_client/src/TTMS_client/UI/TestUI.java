@@ -1,28 +1,32 @@
 package UI;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+
+import UI.Seat.SeatTable;
+import UI.Studio.StudioAdd;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import javafx.scene.layout.Pane;
-import node.FunButton;
-import node.NavigationButton;
+import model.Seat;
+import org.apache.http.impl.client.HttpClients;
+import util.Httpclient;
+
+import java.util.List;
 
 public class TestUI {
+
     public static Pane getTestUI(){
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setPadding(new Insets(20,20,20,20));
-
-        FunButton funButton = new FunButton("功能按钮");
-        NavigationButton navigationButton = new NavigationButton("导航按钮");
-        TextField textField = new TextField();
-
-        gridPane.addColumn(1,funButton,navigationButton,textField);
-
-        return gridPane;
+//        List<Seat> seats = null;
+//        String url = "/seat/getStudioSeats?id=3";
+//        String res = Httpclient.get(url);
+//      JSONObject jsonObject = JSON.parseObject(res);
+//        if(jsonObject.get("flag").equals(true)) {
+//            seats = JSONArray.parseArray(jsonObject.getString("content"), Seat.class);
+//        }else{
+//            System.out.println("网络连接失败");
+//        }
+//        return new SeatTable(seats);
+        return new StudioAdd();
     }
 
 }
