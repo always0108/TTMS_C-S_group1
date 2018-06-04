@@ -41,11 +41,11 @@ public class StudioTest {
     @Test
     public void test(){
         //增加
-//        Studio studio = new Studio("万达",8,6,"测试",0);
-//        if (studioService.addStudio(studio))
-//           System.out.println("添加成功");
-//        else
-//           System.out.println("该演出厅已存在");
+        Studio studio = new Studio("奥斯卡",4,4,"vip厅",0);
+        if (studioService.addStudio(studio))
+           System.out.println("添加成功");
+        else
+           System.out.println("该演出厅已存在");
         //删除
 //        if (studioService.deleteStudioById(1))
 //           System.out.println("删除成功");
@@ -59,11 +59,6 @@ public class StudioTest {
 //            System.out.println("更新成功");
 //        else
 //            System.out.println("该演出厅已存在");
-        List<Studio> studios = studioService.getAllStudioByPartName("");
-        for(int i=0;i<studios.size();i++){
-            System.out.println(studios.get(i).getStudio_name());
-            System.out.println(studios.get(i).getStudio_introduction());
-        }
 
     }
 
