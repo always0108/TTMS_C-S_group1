@@ -21,7 +21,7 @@ public class EmployeeTable extends GridPane {
         this.setVgap(20);
         this.setHgap(40);
 
-        if(employeePropertyObservableList.size() == 0){
+        if(employeePropertyObservableList.size() == 0 || employeePropertyObservableList == null){
             Label note = new Label("没有符合条件的结果");
             note.setStyle("-fx-font-size: 20px");
             this.add(note,0,0);

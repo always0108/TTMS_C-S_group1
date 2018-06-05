@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.Studio;
+import node.FunButton;
 import node.MessageBar;
 import util.Httpclient;
 
@@ -66,10 +67,8 @@ public class StudioModify extends VBox {
         gridPane.addColumn(0, name, row, col, introduction,flag);
         gridPane.addColumn(1, studio_name,studio_row,studio_col,studio_introduction,studio_flag);
 
-        Button btok = new Button("确定");
-        btok.getStyleClass().add("funButton");
-        Button btret = new Button("返回");
-        btret.getStyleClass().add("funButton");
+        FunButton btok = new FunButton("确定");
+        FunButton btret = new FunButton("返回");
 
         //确认添加
         btok.setOnAction(e -> {

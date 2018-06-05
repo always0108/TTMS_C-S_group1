@@ -58,7 +58,7 @@ public class EmployeeList{
             @Override
             protected JSONObject call() throws Exception {
                 employeeProperties = employeeSrv.list();
-                Thread.sleep(1000);
+                Thread.sleep(200);
                 return null;
             }
 
@@ -89,7 +89,7 @@ public class EmployeeList{
                 @Override
                 protected JSONObject call() throws Exception {
                     employeeProperties = employeeSrv.searchByName(key.getText());
-                    Thread.sleep(500);
+                    Thread.sleep(200);
                     return null;
                 }
 

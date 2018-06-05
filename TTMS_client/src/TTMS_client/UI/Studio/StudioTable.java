@@ -20,7 +20,7 @@ public class StudioTable extends GridPane {
         this.setVgap(20);
         this.setAlignment(Pos.CENTER);
 
-        if(studios == null){
+        if(studios == null || studios.size() == 0){
             Label note = new Label("没有找到相应的演出厅");
             note.setStyle("-fx-font-size: 20px;-fx-text-alignment: center");
             this.add(note,0,0);

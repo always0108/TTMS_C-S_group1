@@ -25,6 +25,7 @@ public class StudioList{
     private HBox top;
     private ScrollPane scrollPane;
     private HBox bottom;
+    TextField key;
     private ProgressIndicator progressIndicator = new ProgressIndicator();
     private HBox progress;
 
@@ -46,7 +47,7 @@ public class StudioList{
         top.setPadding(new Insets(20,20,20,20));
         top.setSpacing(30);
         Label note = new Label("演出厅名称：");
-        TextField key = new TextField();
+        key = new TextField();
         FunButton find = new FunButton("查询");
         find.setDefaultButton(true);
         top.getChildren().addAll(note,key,find);
@@ -55,7 +56,7 @@ public class StudioList{
             @Override
             protected JSONObject call() throws Exception {
                 studios = studioSrv.getAllStudio();
-                Thread.sleep(300);
+                Thread.sleep(200);
                 return null;
             }
 
@@ -82,12 +83,11 @@ public class StudioList{
         find.setOnAction(e->{
             find.setDisable(true);
 
-            Task<JSONObject> searchtask = new Task<JSONObject>() {
+            Task<List<Studio>> searchtask = new Task<List<Studio>>() {
                 @Override
-                protected JSONObject call() throws Exception {
-                    studios = studioSrv.searchStudioByName(key.getText());
-                    Thread.sleep(300);
-                    return null;
+                protected List<Studio> call() throws Exception {
+                    Thread.sleep(200);
+                    return studioSrv.searchStudioByName(key.getText());
                 }
 
                 @Override
@@ -102,7 +102,7 @@ public class StudioList{
                 protected void succeeded() {
                     super.succeeded();
                     main.getChildren().remove(progress);
-                    scrollPane.setContent(new StudioTable(studios));
+                    scrollPane.setContent(new StudioTable(this.getValue()));
                     main.getChildren().addAll(scrollPane,bottom);
                     find.setDisable(false);
                     updateMessage("Done!");

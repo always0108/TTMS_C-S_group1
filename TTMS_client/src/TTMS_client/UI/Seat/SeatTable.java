@@ -1,5 +1,9 @@
 package UI.Seat;
 
+import Service.SeatSrv;
+import UI.HomeUI;
+import UI.Studio.StudioDetail;
+import UI.Studio.StudioList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
@@ -19,23 +23,18 @@ import java.util.Map;
 public class SeatTable extends VBox {
 
     public static Map<Integer,Integer> seats = new HashMap<>();
+    private SeatSrv seatSrv = new SeatSrv();
     private HBox top;
     private Text center;
     private GridPane seatsTable;
     private HBox btGroup;
     public SeatTable() {}
 
-    public SeatTable(List<Seat> seatsData){
+    public SeatTable(Integer studio_id){
+        List<Seat> seatsData = seatSrv.getAllSeatByStudioID(studio_id);
         this.setPadding(new Insets(20,20,20,20));
         this.setSpacing(20);
         this.setAlignment(Pos.TOP_CENTER);
-
-        //标题
-        top = new HBox();
-        top.setAlignment(Pos.CENTER_LEFT);
-        Text text = new Text("设置座位");
-        text.setStyle("-fx-font-size: 40px");
-        top.getChildren().add(text);
 
         center = new Text("屏幕中央");
         center.setFont(Font.font(20));
@@ -61,18 +60,16 @@ public class SeatTable extends VBox {
         btGroup.getChildren().addAll(btok,btret);
 
         btok.setOnAction(e->{
+            //根据演出厅id批量更新座位的状态
             for(Map.Entry<Integer,Integer> entry:seats.entrySet()){
                 System.out.println(entry.getKey()+" : "+entry.getValue());
             }
         });
 
         btret.setOnAction(e->{
-
+            new StudioList();
         });
 
-        this.getChildren().addAll(top,center,seatsTable,btGroup);
-
-
-
+        this.getChildren().addAll(center,seatsTable,btGroup);
     }
 }
