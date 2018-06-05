@@ -1,7 +1,5 @@
 package UI.Studio;
 
-import UI.Employee.EmployeeList;
-import UI.HomeUI;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
@@ -25,7 +23,7 @@ public class StudioDelete extends VBox {
 
         HBox mes = new HBox();
         mes.setAlignment(Pos.CENTER);
-        Label note = new Label("确定要删除"+studio.getStudio_name()+"用户?");
+        Label note = new Label("确定要删除"+studio.getStudio_name()+"演出厅?");
         mes.getChildren().add(note);
 
         HBox btGroup = new HBox();
@@ -60,11 +58,10 @@ public class StudioDelete extends VBox {
                     JSONObject jsonObject = getValue();
                     if (jsonObject.get("flag").equals(true)) {
                         MessageBar.showMessageBar("删除成功");
-                        //new EmployeeList();
                     } else {
                         MessageBar.showMessageBar("删除失败");
-                        //HomeUI.setCenter(new EmployeeDetail(emp));
                     }
+                    new StudioList();
                     updateMessage("Done!");
                 }
 
@@ -87,7 +84,7 @@ public class StudioDelete extends VBox {
         });
 
         btCancel.setOnAction(e->{
-            //HomeUI.setCenter(new EmployeeDetail(emp));
+            new StudioList();
         });
 
     }

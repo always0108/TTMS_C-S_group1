@@ -6,7 +6,6 @@ import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -95,7 +94,7 @@ public class StudioAdd extends VBox {
                     JSONObject jsonObject = getValue();
                     if (jsonObject.get("flag").equals(true)) {
                         MessageBar.showMessageBar("添加成功！");
-//                        new EmployeeList();
+                        new StudioList();
                     } else {
                         MessageBar.showMessageBar(jsonObject.get("content").toString());
                     }
@@ -120,7 +119,7 @@ public class StudioAdd extends VBox {
         });
 
         btret.setOnAction(e -> {
-//            new EmployeeList();
+            new StudioList();
         });
 
         gridPane.add(btok, 1, 4);

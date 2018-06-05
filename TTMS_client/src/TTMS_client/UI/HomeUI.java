@@ -1,9 +1,7 @@
 package UI;
 
-import UI.Navigation.EmployeeMenu;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -14,14 +12,6 @@ import node.NavigationBar;
 import util.Httpclient;
 
 public class HomeUI{
-
-    public Accordion functionmenu(){
-        Accordion functionmenu = new Accordion();
-        functionmenu.getPanes().addAll(new EmployeeMenu());
-//          ,StudioUI.studiomenu(),PlayUI.playmenu(),ScheduleUI.playmenu());
-        functionmenu.setPadding(new Insets(30,30,30,50));
-        return functionmenu;
-    }
 
     public HBox top(String name){
         HBox toppane = new HBox();
@@ -79,5 +69,7 @@ public class HomeUI{
         Main.borderPane.setCenter(pane);
     }
 
-
+    public static void showNote(){
+        Main.borderPane.setCenter(new HomeUI().center());
+    }
 }
