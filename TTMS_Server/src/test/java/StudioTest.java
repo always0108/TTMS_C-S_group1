@@ -41,7 +41,7 @@ public class StudioTest {
     @Test
     public void test(){
         //增加
-        Studio studio = new Studio("奥斯卡",4,4,"vip厅",0);
+        Studio studio = new Studio("万达",8,6,"测试",0);
         if (studioService.addStudio(studio))
            System.out.println("添加成功");
         else

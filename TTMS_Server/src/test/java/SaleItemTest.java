@@ -1,18 +1,13 @@
-
 import TTMS_Server.config.database.DbConfig;
 import TTMS_Server.config.database.MyBatis;
 import TTMS_Server.config.spring.RootConfig;
 import TTMS_Server.config.spring.WebConfig;
 import TTMS_Server.config.spring.WebInit;
-import TTMS_Server.model.Employee;
-import TTMS_Server.model.Play;
-import TTMS_Server.model.Studio;
-import TTMS_Server.service.EmployeeService;
-import TTMS_Server.service.PlayService;
-import TTMS_Server.service.StudioService;
-import org.junit.Test;
-import org.junit.Before;
+import TTMS_Server.model.Sale_item;
+import TTMS_Server.service.SaleItemService;
 import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -26,8 +21,7 @@ import java.math.BigDecimal;
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {RootConfig.class,WebConfig.class,WebInit.class,MyBatis.class,DbConfig.class})
 @WebAppConfiguration("src/main/resources") //1 此注解指定web资源的位置，默认为src/main/webapp
-public class PlayTest {
-
+public class SaleItemTest {
 
     @Before
     public void before() throws Exception {
@@ -38,29 +32,35 @@ public class PlayTest {
     }
 
     @Autowired
-    private PlayService playService;
+    private SaleItemService saleItemService;
 
     @Test
-    public void test() {
+    public void Text(){
         //增加
-        Play play = new Play(1,1,"速度与激情",
-                "测试",120,new BigDecimal("60"),Short.parseShort("1"));
-        if (playService.addPlay(play))
-           System.out.println("添加成功");
-        else
-           System.out.println("该剧目已存在");
+        Sale_item  sale_item = new Sale_item(new Long(1),new Long(1),new BigDecimal(59));
+        if(saleItemService.addSaleItem(sale_item)){
+            System.out.println("添加成功");
+        }
+        else {
+            System.out.println("已存在");
+        }
+
         //删除
-//        if (playService.deletePlayById(3))
+//        if(saleItemService.deleteSaleItemById(new Long(1))){
 //            System.out.println("删除成功");
-//        else
-//            System.out.println("该演出厅不存在");
-//
-        //修改
-//        Play play_new = new Play(1,1,"速度与激情","测试2",120,new BigDecimal("60"),Short.parseShort("1"));
-//        play_new.setPlay_id(3);
-//        if (playService.updatePlayById(play_new))
+//        }
+//        else{
+//            System.out.println("不存在");
+//        }
+
+        //更新
+//        Sale_item sale_item_new = new Sale_item();
+//        sale_item_new.setSale_item_id(new Long(2));
+//        if(saleItemService.updateSaleItemById(sale_item_new)){
 //            System.out.println("更新成功");
-//        else
-//            System.out.println("该剧目已存在");
+//        }
+//        else{
+//            System.out.println("已存在");
+//        }
     }
 }

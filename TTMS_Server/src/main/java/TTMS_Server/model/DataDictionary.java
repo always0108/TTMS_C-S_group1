@@ -1,6 +1,6 @@
 package TTMS_Server.model;
 
-public class Data_dict {
+public class DataDictionary {
     private Integer dict_id;
 
     private Integer dict_parent_id;
@@ -11,9 +11,9 @@ public class Data_dict {
 
     private String dict_value;
 
-    public Data_dict(){}
+    public DataDictionary(){}
 
-    public Data_dict(Integer dict_parent_id,Integer dict_index,String dict_name,String dict_value){
+    public DataDictionary(Integer dict_parent_id, Integer dict_index, String dict_name, String dict_value){
         this.dict_parent_id = dict_parent_id;
         this.dict_index = dict_index;
         this.dict_name = dict_name;

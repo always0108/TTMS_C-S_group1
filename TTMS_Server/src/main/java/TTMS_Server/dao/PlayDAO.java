@@ -35,9 +35,10 @@ public interface PlayDAO {
     void deletePlayById(Integer id);
 
     //更新剧目
-    @Update("update play set play_type_id = #{play_type_id},play_lang_id = #{play_lang_id}," +
-            "play_name = #{play_name},play_introduction = #{play_introduction},play_image = #{play_image}, " +
-            "play_length = #{play_length},play_ticket_price = #{play_ticket_price},play_status = #{play_status}" +
+    @Update("update play set play_type_id = #{play_type_id} , play_lang_id = #{play_lang_id} , " +
+            "play_name = #{play_name} , play_introduction = #{play_introduction} , " +
+            "play_image = #{play_image} , play_length = #{play_length} , " +
+            "play_ticket_price = #{play_ticket_price} , play_status = #{play_status} " +
             "where play_id = #{play_id}")
     void updatePlayById(Play play);
 }
