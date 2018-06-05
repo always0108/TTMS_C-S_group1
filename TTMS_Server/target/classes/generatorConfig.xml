@@ -96,7 +96,7 @@
             <!--<property name="useActualColumnNames" value="true"/>-->
         <!--</table>-->
 
-        <!--<table schema="general" tableName="data_dict" domainObjectName="Data_dict"-->
+        <!--<table schema="general" tableName="data_dict" domainObjectName="DataDictionary"-->
                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false" >-->
             <!--<property name="useActualColumnNames" value="true"/>-->
