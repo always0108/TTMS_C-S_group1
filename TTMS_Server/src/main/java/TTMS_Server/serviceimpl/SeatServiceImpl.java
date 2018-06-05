@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("SeatService")
 public class SeatServiceImpl implements SeatService {
@@ -52,16 +53,6 @@ public class SeatServiceImpl implements SeatService {
         }
     }
 
-    //更新座位状态
-    public boolean updateSeatById(Seat seat){
-        if(seatDAO.selectSeatById(seat.getSeat_id()) != null){
-            seatDAO.updateSeatById(seat);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     //根据演出厅ID批量初始化座位
     public boolean initSeatByStudioId(Integer id){
         Studio studio = studioDAO.selectStudioById(id);
@@ -79,5 +70,21 @@ public class SeatServiceImpl implements SeatService {
         }else{
             return false;
         }
+    }
+
+    //根据演出厅ID更新座位信息
+    @Override
+    public boolean updateStatusByStudioId(Integer studio_id, Map<Integer,Integer> seats){
+        Studio studio = studioDAO.selectStudioById(studio_id);
+        //演出厅存在且座位的行列要满足演出厅中座位的行列
+        if(studio != null){
+            for(Map.Entry<Integer,Integer> entry:seats.entrySet()){
+                seatDAO.updateStatusById(entry.getKey(),entry.getValue());
+            }
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }

@@ -3,13 +3,17 @@ package TTMS_Server.web.RESTful;
 import TTMS_Server.model.ResponseResult;
 import TTMS_Server.model.Seat;
 import TTMS_Server.service.SeatService;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("rest/seat")
@@ -36,6 +40,19 @@ public class SeatRestController {
             return new ResponseResult(false,"初始化成功");
         }else{
             return new ResponseResult(true,"该演出厅已经被初始化");
+        }
+    }
+
+    //根据演出厅ID更新座位信息
+    @RequestMapping(value = "/updateByStudioId",method = RequestMethod.POST)
+    public ResponseResult update(@RequestParam("json") String json){
+        JSONObject jsonObject = JSON.parseObject(json);
+        Integer studio_id = (Integer) jsonObject.get("studio_id");
+        Map<Integer,Integer> seats = (Map<Integer,Integer>)jsonObject.get("seats");
+        if(seatService.updateStatusByStudioId(studio_id,seats)){
+            return new ResponseResult(true,"修改成功");
+        }else{
+            return new ResponseResult(false,"修改失败");
         }
     }
 
