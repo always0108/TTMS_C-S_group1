@@ -22,7 +22,7 @@ public class SeatRestController {
     @RequestMapping(value = "/getStudioSeats",method = RequestMethod.GET)
     public ResponseResult getStudioSeats(@RequestParam("id") String studio_id){
         List<Seat> seats = seatService.selectStudioSeatsByStudioId(Integer.parseInt(studio_id));
-        if(seats == null){
+        if(seats == null || seats.size() == 0 ){
             return new ResponseResult(false,"该演出厅没有初始化");
         }else{
             return new ResponseResult(true,seats);
