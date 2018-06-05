@@ -1,6 +1,5 @@
 package UI.Employee;
 
-import UI.HomeUI;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
@@ -9,7 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.EmployeeProperty;
+import model.Employee;
 import node.FunButton;
 import node.MessageBar;
 import util.Httpclient;
@@ -18,7 +17,7 @@ public class EmployeeDelete extends VBox {
 
     public EmployeeDelete(){}
 
-    public EmployeeDelete(EmployeeProperty emp){
+    public EmployeeDelete(Employee emp){
         this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(20,20,20,20));
 
@@ -62,7 +61,7 @@ public class EmployeeDelete extends VBox {
                         new EmployeeList();
                     } else {
                         MessageBar.showMessageBar("删除失败");
-                        HomeUI.setCenter(new EmployeeDetail(emp));
+                        new EmployeeList();
                     }
                     updateMessage("Done!");
                 }
@@ -86,7 +85,7 @@ public class EmployeeDelete extends VBox {
         });
 
         btCancel.setOnAction(e->{
-            HomeUI.setCenter(new EmployeeDetail(emp));
+            new EmployeeList();
         });
 
     }

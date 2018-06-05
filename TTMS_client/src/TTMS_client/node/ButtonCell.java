@@ -15,7 +15,7 @@ public class ButtonCell extends TableCell<EmployeeProperty, Boolean> {
         cellButton.setOnAction(e->{
                 // get Selected Item
                 EmployeeProperty currentEmp = (EmployeeProperty) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
-                Main.borderPane.setCenter(new EmployeeDetail(currentEmp));
+                //Main.borderPane.setCenter(new EmployeeDetail(currentEmp));
         });
     }
 

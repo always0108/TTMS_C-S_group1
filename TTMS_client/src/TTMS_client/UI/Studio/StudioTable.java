@@ -1,6 +1,6 @@
 package UI.Studio;
 
-import UI.HomeUI;
+import UI.Layout.HomeUI;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

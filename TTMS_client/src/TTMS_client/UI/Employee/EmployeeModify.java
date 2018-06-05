@@ -1,6 +1,5 @@
 package UI.Employee;
 
-import UI.HomeUI;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
@@ -13,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.EmployeeProperty;
+import model.Employee;
 import node.FunButton;
 import node.MessageBar;
 import util.Httpclient;
@@ -25,7 +24,7 @@ public class EmployeeModify extends VBox {
     private HBox hBox;
     private GridPane gridPane;
 
-    public EmployeeModify(EmployeeProperty emp) {
+    public EmployeeModify(Employee emp) {
         this.setAlignment(Pos.TOP_CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(20,20,20,20));

@@ -10,17 +10,17 @@ public class OneSeat extends Button {
         -1：座位损坏，不能使用'
     */
 
-    private  int row;
-    private  int col;
-    private  int status;
-    private  int seat_id;
+    private  Integer row;
+    private  Integer col;
+    private  Integer status;
+    private  Integer seat_id;
 
     public OneSeat() {super();}
 
     public OneSeat(Seat seat){
         this.row = seat.getSeat_row();
         this.col = seat.getSeat_column();
-        this.status = seat.getSeat_status();
+        this.status = seat.getSeat_status().intValue();
         this.seat_id = seat.getSeat_id();
         this.setPrefWidth(48);
         this.setPrefHeight(48);
@@ -48,35 +48,35 @@ public class OneSeat extends Button {
         });
     }
 
-    public int getSeat_id() {
-        return seat_id;
-    }
-
-    public void setSeat_id(int seat_id) {
-        this.seat_id = seat_id;
-    }
-
-    public int getRow() {
+    public Integer getRow() {
         return row;
     }
 
-    public int getCol() {
-        return col;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setRow(int row) {
+    public void setRow(Integer row) {
         this.row = row;
     }
 
-    public void setCol(int col) {
+    public Integer getCol() {
+        return col;
+    }
+
+    public void setCol(Integer col) {
         this.col = col;
     }
 
-    public void setStatus(int status) {
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getSeat_id() {
+        return seat_id;
+    }
+
+    public void setSeat_id(Integer seat_id) {
+        this.seat_id = seat_id;
     }
 }

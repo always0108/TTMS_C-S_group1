@@ -1,21 +1,15 @@
-package node;
+package UI.Layout;
 
 import Service.StudioSrv;
 import UI.Employee.EmployeeList;
-import UI.HomeUI;
-import UI.Main;
+import UI.Play.PlayAdd;
 import UI.Studio.StudioList;
-import UI.Studio.StudioTable;
-import com.alibaba.fastjson.JSONObject;
-import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Studio;
-
-import java.util.List;
+import node.NavigationButton;
 
 public class NavigationBar{
 
@@ -34,7 +28,7 @@ public class NavigationBar{
     public VBox getManagerBar(){
         VBox managerBar = new VBox();
         managerBar.setSpacing(10);
-        managerBar.setPadding(new Insets(20,20,20,50));
+        managerBar.setPadding(new Insets(20,20,20,20));
         managerBar.setAlignment(Pos.TOP_CENTER);
         NavigationButton employeeManagement = new NavigationButton("用户管理");
         employeeManagement.setOnAction(e->{
@@ -46,8 +40,12 @@ public class NavigationBar{
             new StudioList();
         });
 
-        managerBar.getChildren().addAll(employeeManagement,studioManagement);
+        NavigationButton playManagement = new NavigationButton("剧目管理");
+        playManagement.setOnAction(e->{
+            HomeUI.setCenter(new PlayAdd());
+        });
 
+        managerBar.getChildren().addAll(employeeManagement,studioManagement,playManagement);
         return managerBar;
     }
 }

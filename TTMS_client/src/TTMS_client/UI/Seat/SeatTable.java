@@ -1,9 +1,10 @@
 package UI.Seat;
 
 import Service.SeatSrv;
-import UI.HomeUI;
-import UI.Studio.StudioDetail;
 import UI.Studio.StudioList;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
@@ -13,10 +14,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.Seat;
 import node.FunButton;
+import node.MessageBar;
+import util.Httpclient;
 
-import java.awt.*;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,10 +61,58 @@ public class SeatTable extends VBox {
         btGroup.getChildren().addAll(btok,btret);
 
         btok.setOnAction(e->{
+            btok.setDisable(true);
             //根据演出厅id批量更新座位的状态
-            for(Map.Entry<Integer,Integer> entry:seats.entrySet()){
-                System.out.println(entry.getKey()+" : "+entry.getValue());
-            }
+            //创建后台获取数据的线程
+            Task<JSONObject> task = new Task<JSONObject>() {
+                @Override
+                protected JSONObject call() throws Exception {
+                    String url = "/seat/updateByStudioId";
+                    Map<String, Object> data = new HashMap<>();
+
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("studio_id",studio_id);
+                    jsonObject.put("seats",seats);
+                    String jsonStr = JSON.toJSONString(jsonObject);
+
+                    data.put("json",jsonStr);
+                    String res = Httpclient.post(url,data);
+                    return JSON.parseObject(res);
+                }
+
+                @Override
+                protected void running() {
+
+                }
+
+                @Override
+                protected void succeeded() {
+                    super.succeeded();
+                    JSONObject jsonObject = getValue();
+                    if (jsonObject.get("flag").equals(true)) {
+                        MessageBar.showMessageBar("设置成功！");
+                    } else {
+                        MessageBar.showMessageBar(jsonObject.get("content").toString());
+                    }
+                    btok.setDisable(false);
+                    seats.clear();
+                    updateMessage("Done!");
+                }
+
+                @Override
+                protected void cancelled() {
+                    super.cancelled();
+                    updateMessage("Cancelled!");
+                }
+
+                @Override
+                protected void failed() {
+                    super.failed();
+                    updateMessage("Failed!");
+                }
+            };
+            Thread thread = new Thread(task);
+            thread.start();
         });
 
         btret.setOnAction(e->{

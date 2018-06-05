@@ -1,5 +1,7 @@
-package UI;
+package UI.Layout;
 
+import UI.LoginUI;
+import UI.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,14 +10,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import node.MessageBar;
-import node.NavigationBar;
 import util.Httpclient;
 
 public class HomeUI{
 
     public HBox top(String name){
         HBox toppane = new HBox();
-        toppane.setStyle("-fx-background-color: darkgray;-fx-opacity: 0.5");
+        toppane.setStyle("-fx-background-color: darkgray;-fx-opacity: 0.75");
         toppane.setAlignment(Pos.CENTER_RIGHT);
         toppane.setSpacing(20);
         toppane.setPadding(new Insets(8,20,8,20));
@@ -39,9 +40,9 @@ public class HomeUI{
     public Pane center(){
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.TOP_LEFT);
-        vBox.setSpacing(30);
+        vBox.setSpacing(40);
         vBox.setPadding(new Insets(50,20,20,20));
-        Label welcome = new Label("欢迎使用Hackers影院管理系统！");
+        Label welcome = new Label("欢迎使用海客票务管理系统！");
         welcome.setId("welcome");
         Label note = new Label("<使用中遇到问题请及时与我们联系>");
         note.setId("note");

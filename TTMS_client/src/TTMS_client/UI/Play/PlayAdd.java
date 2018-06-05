@@ -1,4 +1,4 @@
-package sample;
+package UI.Play;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import node.FunButton;
 
 import java.io.File;
 
@@ -35,22 +36,19 @@ public class PlayAdd extends GridPane {
         Label type_id = new Label("类型编号：");
         ComboBox<String> play_type_id = new ComboBox<>();
         play_type_id.getItems().addAll("无","惊悚片","爱情片","科幻片");
-        play_type_id.setStyle("-fx-border-color: lightgray");
-        play_type_id.setValue("无");
+        play_type_id.setValue("类型");
         this.add(type_id,0,2);
         this.add(play_type_id,1,2);
 
         Label lang_id = new Label("语言编号：");
         ComboBox<String> play_lang_id = new ComboBox<>();
         play_lang_id.getItems().addAll("原音","中文","英文");
-        play_lang_id.setStyle("-fx-border-color: lightgray");
-        play_lang_id.setValue("原音");
+        play_lang_id.setValue("语言");
         this.add(lang_id,2,2);
         this.add(play_lang_id,3,2);
 
         Label name = new Label("剧目名称：");
         TextField play_name = new TextField();
-        play_name.getStyleClass().add("textField");
         this.add(name,0,3);
         this.add(play_name,1,3,3,1);
 
@@ -80,13 +78,11 @@ public class PlayAdd extends GridPane {
 
         Label introduction = new Label("剧目简介:");
         TextArea play_introduction = new TextArea("这是一条剧目简介......");
-        play_introduction.setPrefColumnCount(20);
-        play_introduction.setPrefRowCount(5);
+        play_introduction.setPrefColumnCount(16);
+        play_introduction.setPrefRowCount(4);
         play_introduction.setWrapText(true);
-        play_introduction.setStyle("-fx-text-fill: lightgray;-fx-font-style: Times;-fx-font-size: 16");
         this.add(introduction,0,5);
         this.add(play_introduction,1,5,3,1);
-
 
         Label length = new Label("剧目时长：");
         TextField play_length = new TextField();
@@ -114,11 +110,9 @@ public class PlayAdd extends GridPane {
         this.add(status,0,8);
 
 
-        Button Confirm = new Button("确认");
-        Confirm.setStyle("-fx-background-color: #6C9BBF");
-        Button Return = new Button("返回");
-        Return.setStyle("-fx-background-color: #6C9BBF");
-        HBox bottom_button = new HBox(100);
+        FunButton Confirm = new FunButton("确认");
+        FunButton Return = new FunButton("返回");
+        HBox bottom_button = new HBox(200);
         bottom_button.setPadding(new Insets(10,100,25,50));
         bottom_button.setAlignment(Pos.CENTER_LEFT);
         bottom_button.getChildren().addAll(Confirm,Return);
