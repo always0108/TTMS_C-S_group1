@@ -59,11 +59,6 @@ public class StudioTest {
 //            System.out.println("更新成功");
 //        else
 //            System.out.println("该演出厅已存在");
-        List<Studio> studios = studioService.getAllStudioByPartName("");
-        for(int i=0;i<studios.size();i++){
-            System.out.println(studios.get(i).getStudio_name());
-            System.out.println(studios.get(i).getStudio_introduction());
-        }
 
     }
 

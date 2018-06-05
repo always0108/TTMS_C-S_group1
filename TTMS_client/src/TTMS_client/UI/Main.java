@@ -23,8 +23,9 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
         borderPane = new BorderPane();
-//        borderPane.setLeft(new NavigationBar().getManagerBar());
-        borderPane.setCenter(LoginUI.init());
+        borderPane.setLeft(new NavigationBar().getManagerBar());
+//        borderPane.setCenter(LoginUI.init());
+//        borderPane.setCenter(TestUI.getTestUI());
 
         borderPane.setStyle("-fx-background-image: url('/image/background.jpg')");
         Scene scene = new Scene(borderPane, 1024, 768);

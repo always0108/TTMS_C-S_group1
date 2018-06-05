@@ -24,7 +24,7 @@ public class LoginUI {
         //标题
         HBox header = new HBox();
         header.setAlignment(Pos.BOTTOM_CENTER);
-        header.setPadding(new Insets(60,20,0,20));
+        header.setPadding(new Insets(60,20,0,40));
         Label text = new Label("欢迎来到Hackers影院！");
         text.setId("welcome-words");
         header.getChildren().add(text);
