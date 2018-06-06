@@ -3,6 +3,7 @@ import TTMS_Server.config.database.MyBatis;
 import TTMS_Server.config.spring.RootConfig;
 import TTMS_Server.config.spring.WebConfig;
 import TTMS_Server.config.spring.WebInit;
+import TTMS_Server.model.DataDictionary;
 import TTMS_Server.service.DataDictionaryService;
 import org.junit.After;
 import org.junit.Before;
@@ -30,9 +31,9 @@ public class DataDictionaryTest {
     private DataDictionaryService data_dictService;
 
     @Test
-    public void Text(){
+    public void Test(){
         //增加
-//        DataDictionary data_dict = new DataDictionary(1,1,"语言类型","0");
+//        DataDictionary data_dict = new DataDictionary(3,2,"英文","0");
 //        if(data_dictService.addDataDictionary(data_dict)){
 //            System.out.println("添加成功");
 //        }
@@ -40,13 +41,15 @@ public class DataDictionaryTest {
 //            System.out.println("该数据字典已存在");
 //        }
 
+        System.out.println(data_dictService.getNextIndexByParentID(2));
+
 //       //删除
-        if(data_dictService.deleteDataDictionaryById(3)){
-            System.out.println("删除成功");
-        }
-        else{
-            System.out.println("该数据字典不存在");
-        }
+//        if(data_dictService.deleteDataDictionaryById(3)){
+//            System.out.println("删除成功");
+//        }
+//        else{
+//            System.out.println("该数据字典不存在");
+//        }
 
 
         //更新
