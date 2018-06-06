@@ -37,20 +37,20 @@ public class SaleTest {
     @Test
     public void Test(){
         //增加
-//        Sale sale = new Sale(1,new Date(),new BigDecimal(100),new BigDecimal(100),new Short("-1"),new Short("-1"));
-//        if(saleService.addSale(sale)){
-//            System.out.println("添加成功");
-//        }
-//        else
-//            System.out.println("已存在");
+        Sale sale = new Sale(1,new Date(),new BigDecimal(100),new BigDecimal(100),new Short("-1"),new Short("-1"));
+        if(saleService.addSale(sale)){
+            System.out.println("添加成功");
+        }
+        else
+            System.out.println("已存在");
 
         //删除
-        if(saleService.deleteSaleById(new Long(1))){
-            System.out.println("删除成功");
-        }
-        else{
-            System.out.println("不存在");
-        }
+//        if(saleService.deleteSaleById(new Long(1))){
+//            System.out.println("删除成功");
+//        }
+//        else{
+//            System.out.println("不存在");
+//        }
 
         //更新
 //        Sale sale_new = new Sale(1,new Date(),new BigDecimal(200),new BigDecimal(100),new Short("-1"),new Short("-1"));

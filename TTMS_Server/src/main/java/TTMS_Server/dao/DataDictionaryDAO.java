@@ -20,9 +20,15 @@ public interface DataDictionaryDAO {
     @Select("select * from data_dict where dict_name = #{name}")
     DataDictionary selectDataDictionaryByName(String name);
 
-    //根据关键字获取匹配的数据字典的信息
-    @Select("select * from data_dict where dict_name like #{name}")
-    List<DataDictionary> getAllDataDictionaryByPartName(String name);
+    //根据父id获取所有信息
+    @Select("select * from data_dict where dict_parent_id = #{dict_parent_id}")
+    List<DataDictionary> selectDataDictionaryByParentId(Integer parentId);
+
+    //根据id获取子类型的所有信息
+    @Select("select * from data_dict  where dict_parent_id in (select dict_id from data_dict " +
+            "where dict_name = #{name})")
+    List<DataDictionary> selectSonDataDictionaryByName(String name);
+
 
     //新增数据字典
     @Insert("insert into data_dict(dict_parent_id,dict_index," +

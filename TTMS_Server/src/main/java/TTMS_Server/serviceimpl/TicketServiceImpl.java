@@ -1,6 +1,8 @@
 package TTMS_Server.serviceimpl;
 
+import TTMS_Server.dao.ScheduleDAO;
 import TTMS_Server.dao.TicketDAO;
+import TTMS_Server.model.Schedule;
 import TTMS_Server.model.Ticket;
 import TTMS_Server.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,9 @@ import org.springframework.stereotype.Service;
 public class TicketServiceImpl implements TicketService {
     @Autowired
     private TicketDAO ticketDAO;
+
+    @Autowired
+    private ScheduleDAO scheduleDAO;
 
     //根据id获取信息
     @Override
@@ -53,4 +58,12 @@ public class TicketServiceImpl implements TicketService {
         else
             return false;
     }
+
+    //根据演出计划id批量生成票
+//    public boolean initTicketByScheduleId(Integer id){
+//        Schedule schedule = scheduleDAO.selectScheduleById(id);
+//        if(schedule!=null){
+//
+//        }
+//    }
 }

@@ -14,7 +14,7 @@ public interface SaleItemDAO {
 
     //增加
     @Insert("insert into sale_item( ticket_id ,sale_ID,sale_item_price) values " +
-            "(#{ticket_id} , #{sale_ID} , #{sale_item_price}" )
+            "(#{ticket_id} , #{sale_ID} , #{sale_item_price})" )
     void addSaleItem(Sale_item sale_item);
 
     //删除

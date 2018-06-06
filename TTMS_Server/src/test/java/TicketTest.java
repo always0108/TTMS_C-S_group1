@@ -35,9 +35,9 @@ public class TicketTest {
     private TicketService ticketService;
 
     @Test
-    public void Text(){
+    public void Test(){
         //增加
-        Ticket ticket = new Ticket(new Long(1),1,1,new BigDecimal(100),new Short("-1"),new Date());
+        Ticket ticket = new Ticket(new Long(1),1,8,new BigDecimal(100),new Short("-1"),new Date());
         if(ticketService.addTicket(ticket)){
             System.out.println("添加成功");
         }
@@ -54,9 +54,9 @@ public class TicketTest {
 //        }
 //
         //更新
-//        Ticket ticket_new = new Ticket();
-//        ticket_new.setTicket_id(new Long(2));
-//        if(ticketService.updateTicketById(ticket)){
+//        Ticket ticket_new = new Ticket(new Long(1),1,8,new BigDecimal(200),new Short("-1"),new Date());
+//        ticket_new.setTicket_id(new Long(1));
+//        if(ticketService.updateTicketById(ticket_new)){
 //            System.out.println("更新成功");
 //        }
 //        else {

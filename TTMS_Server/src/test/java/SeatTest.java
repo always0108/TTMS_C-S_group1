@@ -49,7 +49,7 @@ public class SeatTest {
     public void test(){
 
         //批量生成座位
-        if (seatService.initSeatByStudioId(3)){
+        if (seatService.initSeatByStudioId(1)){
             System.out.println("初始化座位成功");
         }else{
             System.out.println("影厅已经被初始化过了");

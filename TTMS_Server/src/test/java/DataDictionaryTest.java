@@ -3,6 +3,7 @@ import TTMS_Server.config.database.MyBatis;
 import TTMS_Server.config.spring.RootConfig;
 import TTMS_Server.config.spring.WebConfig;
 import TTMS_Server.config.spring.WebInit;
+import TTMS_Server.model.DataDictionary;
 import TTMS_Server.service.DataDictionaryService;
 import org.junit.After;
 import org.junit.Before;
@@ -13,6 +14,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
@@ -30,9 +33,9 @@ public class DataDictionaryTest {
     private DataDictionaryService data_dictService;
 
     @Test
-    public void Text(){
+    public void Test(){
         //增加
-//        DataDictionary data_dict = new DataDictionary(1,1,"语言类型","0");
+//        DataDictionary data_dict = new DataDictionary(2,2,"英文","0");
 //        if(data_dictService.addDataDictionary(data_dict)){
 //            System.out.println("添加成功");
 //        }
@@ -41,12 +44,12 @@ public class DataDictionaryTest {
 //        }
 
 //       //删除
-        if(data_dictService.deleteDataDictionaryById(3)){
-            System.out.println("删除成功");
-        }
-        else{
-            System.out.println("该数据字典不存在");
-        }
+//        if(data_dictService.deleteDataDictionaryById(3)){
+//            System.out.println("删除成功");
+//        }
+//        else{
+//            System.out.println("该数据字典不存在");
+//        }
 
 
         //更新
@@ -58,5 +61,7 @@ public class DataDictionaryTest {
 //        else{
 //            System.out.println("该数据字典已存在");
 //        }
+        List<DataDictionary> dataDictionaries = data_dictService.selectSonDataDictionaryByName("影片类型");
+        System.out.println(dataDictionaries.size());
     }
 }

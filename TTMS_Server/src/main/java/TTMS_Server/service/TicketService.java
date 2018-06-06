@@ -14,6 +14,9 @@ public interface TicketService {
 
     //更新
     boolean updateTicketById(Ticket ticket);
+
+    //根据演出计划id批量生成票
+//    boolean initTicketByScheduleId(Integer id);
 }
 
 

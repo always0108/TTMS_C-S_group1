@@ -37,24 +37,24 @@ public class SaleItemTest {
     @Test
     public void Text(){
         //增加
-        Sale_item  sale_item = new Sale_item(new Long(1),new Long(1),new BigDecimal(59));
-        if(saleItemService.addSaleItem(sale_item)){
-            System.out.println("添加成功");
-        }
-        else {
-            System.out.println("已存在");
-        }
+//        Sale_item  sale_item = new Sale_item(new Long(2),new Long(2),new BigDecimal(59));
+//        if(saleItemService.addSaleItem(sale_item)){
+//            System.out.println("添加成功");
+//        }
+//        else {
+//            System.out.println("已存在");
+//        }
 
         //删除
-//        if(saleItemService.deleteSaleItemById(new Long(1))){
-//            System.out.println("删除成功");
-//        }
-//        else{
-//            System.out.println("不存在");
-//        }
+        if(saleItemService.deleteSaleItemById(new Long(2))){
+            System.out.println("删除成功");
+        }
+        else{
+            System.out.println("不存在");
+        }
 
         //更新
-//        Sale_item sale_item_new = new Sale_item();
+//        Sale_item sale_item_new = new Sale_item(new Long(2),new Long(2),new BigDecimal(69));
 //        sale_item_new.setSale_item_id(new Long(2));
 //        if(saleItemService.updateSaleItemById(sale_item_new)){
 //            System.out.println("更新成功");
