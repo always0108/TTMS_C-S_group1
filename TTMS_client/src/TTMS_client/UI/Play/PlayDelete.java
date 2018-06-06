@@ -36,7 +36,7 @@ public class PlayDelete extends VBox {
         btGroup.getChildren().addAll(btOK,btCancel);
 
         this.getChildren().addAll(mes,btGroup);
-
+        //确认
         btOK.setOnAction(e-> {
             btOK.setVisible(true);
             Task<JSONObject> task = new Task<JSONObject>() {
