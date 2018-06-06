@@ -1,6 +1,7 @@
 package UI.Layout;
 
 import Service.StudioSrv;
+import UI.DataDictionary.DataDictAdd;
 import UI.Employee.EmployeeList;
 import UI.Play.PlayAdd;
 import UI.Studio.StudioList;
@@ -45,7 +46,12 @@ public class NavigationBar{
             HomeUI.setCenter(new PlayAdd());
         });
 
-        managerBar.getChildren().addAll(employeeManagement,studioManagement,playManagement);
+        NavigationButton dataDictManagement = new NavigationButton("字典管理");
+        dataDictManagement.setOnAction(e->{
+            HomeUI.setCenter(new DataDictAdd());
+        });
+
+        managerBar.getChildren().addAll(employeeManagement,studioManagement,playManagement,dataDictManagement);
         return managerBar;
     }
 }
