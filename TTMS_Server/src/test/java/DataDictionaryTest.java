@@ -43,7 +43,7 @@ public class DataDictionaryTest {
 //            System.out.println("该数据字典已存在");
 //        }
 
-        System.out.println(data_dictService.getNextIndexByParentID(2));
+//        System.out.println(data_dictService.getNextIndexByParentID(2));
 
 //       //删除
 //        if(data_dictService.deleteDataDictionaryById(3)){
@@ -63,7 +63,7 @@ public class DataDictionaryTest {
 //        else{
 //            System.out.println("该数据字典已存在");
 //        }
-        List<DataDictionary> dataDictionaries = data_dictService.selectSonDataDictionaryByName("影片类型");
+        List<DataDictionary> dataDictionaries = data_dictService.selectSonDataDictionaryByName("语言类型");
         System.out.println(dataDictionaries.size());
     }
 }

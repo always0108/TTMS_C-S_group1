@@ -1,4 +1,4 @@
-package sample;
+package UI.Play;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -8,7 +8,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Employee;
+import model.Play;
+import node.FunButton;
 import node.MessageBar;
 import util.Httpclient;
 

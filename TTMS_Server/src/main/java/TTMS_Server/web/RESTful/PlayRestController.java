@@ -6,6 +6,7 @@ import TTMS_Server.service.PlayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
 import java.util.List;
 
 @RestController
@@ -19,19 +20,19 @@ public class PlayRestController {
     @RequestMapping(value = "/getAllPlay",method = RequestMethod.GET)
     public ResponseResult getAllPlay(){
         List<Play> plays = playService.getAllPlayByPartName("");
-        if(plays == null || plays.size()==0){
-            return new ResponseResult(false,"没有涨到相应的剧目");
+        if(plays == null){
+            return new ResponseResult(false,"没有找到相应的剧目");
         }else{
             return new ResponseResult(true,plays);
         }
     }
 
     //根据关键字查询剧目
-    @RequestMapping(value = "/getStudioByPartName",method = RequestMethod.GET)
-    public ResponseResult getStudioByPartName(@RequestParam("name") String name){
+    @RequestMapping(value = "/getPlayByPartName",method = RequestMethod.GET)
+    public ResponseResult getPlayByPartName(@RequestParam("name") String name){
         List<Play> plays = playService.getAllPlayByPartName(name);
-        if(plays == null || plays.size()==0){
-            return new ResponseResult(false,"该演出厅不存在");
+        if(plays == null){
+            return new ResponseResult(false,"该剧目不存在");
         }else{
             return new ResponseResult(true,plays);
         }
@@ -40,6 +41,19 @@ public class PlayRestController {
     //添加剧目
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseResult add(@ModelAttribute Play play){
+        play.strToByte();
+//        System.out.println(play.getPlay_image());
+//        System.out.println("base64: "+play.getBase64play_image());
+//        ByteArrayInputStream input = new ByteArrayInputStream(play.getPlay_image());
+//        File file = new File("/home/limeng/Desktop/testImage");
+//        try {
+//            OutputStream outputStream = new FileOutputStream(file);
+//            outputStream.write(play.getPlay_image());
+//        }catch (FileNotFoundException e){
+//            e.printStackTrace();
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
         if (playService.addPlay(play))
             return new ResponseResult(true,"添加成功");
         else{

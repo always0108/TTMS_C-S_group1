@@ -28,8 +28,8 @@ public interface DataDictionaryDAO {
     @Select("select * from data_dict where dict_parent_id = #{dict_parent_id}")
     List<DataDictionary> selectDataDictionaryByParentId(Integer parentId);
 
-    //根据id获取子类型的所有信息
-    @Select("select * from data_dict  where dict_parent_id in (select dict_id from data_dict " +
+    //根据name获取子类型的所有信息
+    @Select("select * from data_dict where dict_parent_id in (select dict_id from data_dict " +
             "where dict_name = #{name})")
     List<DataDictionary> selectSonDataDictionaryByName(String name);
 

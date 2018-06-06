@@ -1,5 +1,6 @@
 package UI;
 
+import Service.DataCollection;
 import UI.Layout.HomeUI;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -81,6 +82,7 @@ public class LoginUI {
                     JSONObject jsonObject = getValue();
                     if(jsonObject.get("flag").equals(true)){
                         note.setText("登录成功");
+                        new DataCollection();
                         JSONObject emp = JSON.parseObject(jsonObject.get("content").toString());
                         new HomeUI().ManagerUI(emp.get("emp_name").toString());
                     }else {

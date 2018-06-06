@@ -9,23 +9,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("rest/datadictionary")
+@RequestMapping("rest/dataDict")
 public class DataDictionaryRestController{
     @Autowired
     private DataDictionaryService dataDictionaryService;
 
-    //根据父id获取数据字典
-    @RequestMapping(value = "/getAllDataDictByParentId",method = RequestMethod.GET)
-    public ResponseResult getAllDataDictionary(@RequestParam("parentId") Integer parentId){
-        List<DataDictionary> dataDictionaries = dataDictionaryService.selectDataDictionaryByParentId(parentId);
-        if(dataDictionaries==null){
+    //根据父名称获取数据字典
+    @RequestMapping(value = "/getDataDictByParentName",method = RequestMethod.GET)
+    public ResponseResult getDataDictByParentName(@RequestParam("name") String name){
+        List<DataDictionary> dataDictionaries = dataDictionaryService.selectSonDataDictionaryByName(name);
+        if(dataDictionaries==null || dataDictionaries.size() == 0){
             return new ResponseResult(false,"该数据字典不存在");
         }
         else {
-            return new ResponseResult(true,dataDictionaries);
+            Map<String,Integer> res = new HashMap<>();
+            for(DataDictionary dataDictionary:dataDictionaries){
+                res.put(dataDictionary.getDict_name(),dataDictionary.getDict_id());
+            }
+            return new ResponseResult(true,res);
         }
 
     }

@@ -1,7 +1,6 @@
 package TTMS_Server.serviceimpl;
 
 import TTMS_Server.dao.PlayDAO;
-import TTMS_Server.dao.StudioDAO;
 import TTMS_Server.model.Play;
 import TTMS_Server.service.PlayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,11 @@ public class PlayServiceImpl implements PlayService {
     //根据关键字获取匹配的演出厅信息
     @Override
     public List<Play> getAllPlayByPartName(String name){
-        return playDAO.getAllPlayByPartName("%"+name+"%");
+        List<Play> plays = playDAO.getAllPlayByPartName("%"+name+"%");
+        for(Play play:plays){
+            play.byteToStr();
+        }
+        return plays;
     }
 
     //新增演出厅

@@ -1,20 +1,18 @@
-package sample;
+package UI.Play;
 
-import javafx.application.Application;
-import javafx.event.EventHandler;
+import UI.Layout.HomeUI;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
+import model.Play;
 
+import java.util.List;
 
 public class PlayTable extends GridPane {
+
+    public PlayTable(){}
 
     public PlayTable(List<Play> plays){
         this.setPadding(new Insets(20,20,20,20));
@@ -28,21 +26,17 @@ public class PlayTable extends GridPane {
             this.add(note,0,0);
         }else {
             Label id = new Label("ID");
-            Label type_id = new Label("影片类型");
-            Label lang_id= new Label("语言类型");
             Label name = new Label("影片名称");
             Label length = new Label("影片时长");
             Label ticket_price = new Label("影片票价");
-            this.addRow(0,id,name,length,type_id,lang_id,ticket_price);
+            this.addRow(0,id,name,length,ticket_price);
 
             for (int i = 0; i < plays.size(); i++) {
                 Play play = plays.get(i);
                 Label play_id = new Label(play.getPlay_id().toString());
-                Label play_type_id = new Label(play.getPlay_type_id().toString());
-                Label play_lang_id = new Label(play.getPlay_lang_id().toString());
                 Label play_name = new Label(play.getPlay_name());
-                Label play_length = new Label(play.getPlay_length());
-                Label play_ticket_price = new Label(play.getPlay_ticket_price());
+                Label play_length = new Label(play.getPlay_length().toString());
+                Label play_ticket_price = new Label(play.getPlay_ticket_price().toString());
 
                 Button btDetail = new Button("详请");
                 Button btModify = new Button("修改");
@@ -58,11 +52,9 @@ public class PlayTable extends GridPane {
                 btDelete.setOnAction(e->{
                     HomeUI.setCenter(new PlayDelete(play));
                 });
-                this.addRow(i+1,play_id,play_name,play_length,play_type_id,play_lang_id,play_ticket_price,
+                this.addRow(i+1,play_id,play_name,play_length,play_ticket_price,
                         btDetail,btModify,btDelete);
             }
         }
     }
-
-    public PlayTable(){}
 }

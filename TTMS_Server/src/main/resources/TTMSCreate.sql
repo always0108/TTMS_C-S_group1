@@ -41,7 +41,6 @@ create table employee
 /*==============================================================*/
 create table play
 (
-
    play_id              int not null auto_increment,
    play_type_id         int,
    play_lang_id         int,
@@ -62,7 +61,6 @@ create table play
 /*==============================================================*/
 create table sale
 (
-
    sale_ID              bigint not null auto_increment,
    emp_id               int,
    sale_time            datetime,

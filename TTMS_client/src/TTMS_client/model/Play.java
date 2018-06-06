@@ -1,5 +1,7 @@
 package model;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.math.BigDecimal;
 
 public class Play {
@@ -20,6 +22,8 @@ public class Play {
     private Short play_status;
 
     private byte[] play_image;
+
+    private String Base64play_image;
 
     public Play(Integer play_type_id,Integer play_lang_id,String play_name,String play_introduction,Integer play_length,BigDecimal play_ticket_price,Short play_status,byte[] play_image){
         this.play_type_id = play_type_id;
@@ -104,5 +108,21 @@ public class Play {
 
     public void setPlay_image(byte[] play_image) {
         this.play_image = play_image;
+    }
+
+    public String getBase64play_image() {
+        return Base64play_image;
+    }
+
+    public void setBase64play_image(String base64play_image) {
+        Base64play_image = base64play_image;
+    }
+
+    public void byteToStr(){
+        Base64play_image = Base64.encodeBase64String(play_image);
+    }
+
+    public void strToByte(){
+        play_image = Base64.decodeBase64(Base64play_image);
     }
 }

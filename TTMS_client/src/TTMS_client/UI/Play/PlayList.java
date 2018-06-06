@@ -1,6 +1,6 @@
-package UI.Employee;
+package UI.Play;
 
-import Service.EmployeeSrv;
+import Service.PlaySrv;
 import UI.Layout.HomeUI;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
@@ -8,16 +8,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Employee;
+import model.Play;
 import node.FunButton;
-import sample.PlayAdd;
-
 import java.util.List;
 
 public class PlayList{
 
     private VBox main = new VBox();
-  //  private PLsySrv playSrv = new PLaySrv();
+    private PlaySrv playSrv = new PlaySrv();
     private ProgressIndicator progressIndicator = new ProgressIndicator();
     private HBox progress;
     private HBox top;
@@ -39,7 +37,7 @@ public class PlayList{
         top = new HBox();
         top.setSpacing(30);
         top.setAlignment(Pos.CENTER);
-        Label note = new Label("用户名:");
+        Label note = new Label("剧目名:");
         key = new TextField();
         FunButton find = new FunButton("查询");
         find.setDefaultButton(true);
@@ -65,17 +63,17 @@ public class PlayList{
         btret.setOnAction(e->{
             HomeUI.showNote();
         });
+
         main.getChildren().addAll(top,scrollPane,bottom);
 
-
-        /*Task<List<Play>> task = new Task<List<Play>>() {
+        Task<List<Play>> task = new Task<List<Play>>() {
             @Override
             protected List<Play> call() throws Exception {
                 Thread.sleep(200);
-                return playSrv.list();
+                return playSrv.getAllPlay();
             }
-        */
-           /* @Override
+
+            @Override
             protected void running() {
                 progressIndicator.setMinSize(100,100);
                 progressIndicator.progressProperty().bind(this.progressProperty());
@@ -98,9 +96,9 @@ public class PlayList{
 
             Task<List<Play>> searchtask = new Task<List<Play>>() {
                 @Override
-                protected List<PLay> call() throws Exception {
+                protected List<Play> call() throws Exception {
                     Thread.sleep(200);
-                    return  employeeSrv.searchByName(key.getText());
+                    return playSrv.searchPlayByName(key.getText());
                 }
 
                 @Override

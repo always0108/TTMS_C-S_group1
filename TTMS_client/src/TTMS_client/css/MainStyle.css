@@ -123,6 +123,9 @@ play.getStyleClass().add("firstMenu");
     -fx-background-color: #F0BC9D;
 }
 
+.combo-box{
+    -fx-font-size: 16px;
+}
 
 
 

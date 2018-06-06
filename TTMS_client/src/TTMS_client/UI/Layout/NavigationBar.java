@@ -4,6 +4,7 @@ import Service.StudioSrv;
 import UI.DataDictionary.DataDictAdd;
 import UI.Employee.EmployeeList;
 import UI.Play.PlayAdd;
+import UI.Play.PlayList;
 import UI.Studio.StudioList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -43,7 +44,7 @@ public class NavigationBar{
 
         NavigationButton playManagement = new NavigationButton("剧目管理");
         playManagement.setOnAction(e->{
-            HomeUI.setCenter(new PlayAdd());
+            new PlayList();
         });
 
         NavigationButton dataDictManagement = new NavigationButton("字典管理");
