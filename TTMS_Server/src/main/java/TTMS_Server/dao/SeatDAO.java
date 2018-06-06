@@ -27,7 +27,7 @@ public interface SeatDAO {
     @Delete("delete from seat where seat_id = #{id}")
     void deleteSeatById(Integer id);
 
-    //更新座位状态
+    //更新座位状态（传入多个参数的解决办法）
     @Update("update seat set seat_status = #{seat_status} where seat_id = #{seat_id}")
-    void updateSeatById(Seat seat);
+    void updateStatusById(@Param("seat_id")Integer seat_id, @Param("seat_status")Integer seat_status);
 }

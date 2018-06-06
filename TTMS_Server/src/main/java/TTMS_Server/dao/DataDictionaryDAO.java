@@ -12,6 +12,10 @@ import java.util.List;
 @Repository
 public interface DataDictionaryDAO {
 
+    //根据ParentId获取下一个规则的下标
+    @Select("select MAX(dict_index) from data_dict where dict_parent_id = #{id}")
+    Integer getNextIndexByParentID(Integer id);
+
     //根据id获取数据字典的信息
     @Select("select * from data_dict where dict_id = #{id}")
     DataDictionary selectDataDictionaryById(Integer id);

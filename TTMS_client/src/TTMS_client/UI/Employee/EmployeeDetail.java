@@ -1,20 +1,19 @@
 package UI.Employee;
 
-import UI.HomeUI;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.EmployeeProperty;
+import model.Employee;
 import node.FunButton;
 
 public class EmployeeDetail extends VBox {
 
     public EmployeeDetail() {}
 
-    public EmployeeDetail(EmployeeProperty emp){
+    public EmployeeDetail(Employee emp){
         this.setAlignment(Pos.TOP_CENTER);
         this.setPadding(new Insets(80,20,20,20));
 
@@ -45,20 +44,8 @@ public class EmployeeDetail extends VBox {
         footer.setAlignment(Pos.CENTER);
         footer.setPadding(new Insets(20,20,20,20));
         footer.setSpacing(40);
-        FunButton btModify = new FunButton("修改");
-        FunButton btDelete = new FunButton("删除");
         FunButton btRet = new FunButton("返回");
-        footer.getChildren().addAll(btModify,btDelete,btRet);
-
-        //点击修改按钮
-        btModify.setOnAction(e->{
-            HomeUI.setCenter(new EmployeeModify(emp));
-        });
-
-        //点击删除按钮
-        btDelete.setOnAction(e->{
-            HomeUI.setCenter(new EmployeeDelete(emp));
-        });
+        footer.getChildren().addAll(btRet);
 
         //点击修改按钮
         btRet.setOnAction(e->{
@@ -66,8 +53,6 @@ public class EmployeeDetail extends VBox {
         });
 
         this.getChildren().addAll(table,footer);
-
-
     }
 
 

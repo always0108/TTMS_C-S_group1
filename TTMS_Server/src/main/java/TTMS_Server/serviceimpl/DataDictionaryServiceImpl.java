@@ -14,6 +14,14 @@ public class DataDictionaryServiceImpl implements DataDictionaryService {
     @Autowired
     private DataDictionaryDAO data_dictDAO;
 
+
+    //根据ParentId获取下一个规则的下标
+    @Override
+    public Integer getNextIndexByParentID(Integer id){
+        //当前最大值加1
+        return data_dictDAO.getNextIndexByParentID(id) + 1;
+    }
+
     //根据id获取数据字典信息
     @Override
     public DataDictionary selectDataDictionaryById(Integer id) {

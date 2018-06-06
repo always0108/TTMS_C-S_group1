@@ -1,15 +1,11 @@
 package node;
 
-import UI.HomeUI;
 import UI.Main;
-import com.alibaba.fastjson.JSONObject;
 import javafx.animation.FadeTransition;
-import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class MessageBar {

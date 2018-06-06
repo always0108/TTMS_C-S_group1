@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface DataDictionaryService {
 
+    //根据ParentId获取下一个规则的下标
+    Integer getNextIndexByParentID(Integer id);
+
     //根据id获取数据字典
     DataDictionary selectDataDictionaryById(Integer id);
 

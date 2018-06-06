@@ -23,6 +23,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
@@ -47,13 +49,13 @@ public class SeatTest {
 
     @Test
     public void test(){
-
-        //批量生成座位
-        if (seatService.initSeatByStudioId(1)){
-            System.out.println("初始化座位成功");
-        }else{
-            System.out.println("影厅已经被初始化过了");
-        }
+      
+//        //批量生成座位
+//        if (seatService.initSeatByStudioId(3)){
+//            System.out.println("初始化座位成功");
+//        }else{
+//            System.out.println("影厅已经被初始化过了");
+//        }
 
 //        //删除
 //        if (seatService.deleteSeatById(1))
@@ -68,6 +70,11 @@ public class SeatTest {
 //            System.out.println("更新成功");
 //        else
 //            System.out.println("该座位不存在");
+
+        Map<Integer,Integer> seats = new HashMap<>();
+        seats.put(5,1);
+        seats.put(6,1);
+        seatService.updateStatusByStudioId(2,seats);
     }
 
 

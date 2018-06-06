@@ -3,6 +3,7 @@ package TTMS_Server.service;
 import TTMS_Server.model.Seat;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SeatService {
 
@@ -18,9 +19,9 @@ public interface SeatService {
     //删除座位
     boolean deleteSeatById(Integer id);
 
-    //更新座位状态
-    boolean updateSeatById(Seat seat);
-
     //根据演出厅ID批量初始化座位
     boolean initSeatByStudioId(Integer id);
+
+    //根据演出厅ID更新座位状态
+    boolean updateStatusByStudioId(Integer studio_id, Map<Integer,Integer> seats);
 }

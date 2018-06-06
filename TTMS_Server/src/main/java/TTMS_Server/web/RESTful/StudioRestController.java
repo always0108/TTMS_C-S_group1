@@ -66,5 +66,4 @@ public class StudioRestController {
             return new ResponseResult(false,"演出厅已存在");
         }
     }
-
 }

@@ -45,22 +45,10 @@ play.getStyleClass().add("firstMenu");
 .firstMenu{
     -fx-pref-width: 150px;
     -fx-pref-height: 50px;
-    /*-fx-background-color: #F0DEB9;*/
     -fx-background-color: #F2E0AA;
     -fx-text-fill: black;
     -fx-text-font: bolder 30px serif;
 }
-
-/* 左栏二级菜单按钮的样式
-modify.getStyleClass().add("secondMenu");
-*/
-.secondMenu{
-    -fx-width: 100px;
-    -fx-height: 50px;
-    -fx-background-color: #F2E0AA;
-    -fx-text-fill: black;
-    -fx-text-font: bolder 25px serif;
-    }
 
 #welcome-words{
     -fx-font-size: 50px;
