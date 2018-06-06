@@ -14,7 +14,7 @@ public interface TicketDAO {
     //增加
     @Insert("insert into ticket (seat_id , sched_id , ticket_price , ticket_status ," +
             "ticket_locked_time) values (#{seat_id} , #{sched_id} , #{ticket_price} , " +
-            "#{ticket_status} , #{ticket_locked_time}")
+            "#{ticket_status} , #{ticket_locked_time})")
     void addTicket(Ticket ticket);
 
     //删除
@@ -26,4 +26,6 @@ public interface TicketDAO {
             "ticket_price = #{ticket_price} , ticket_status = #{ticket_status} , " +
             "ticket_locked_time = #{ticket_locked_time} where ticket_id = #{ticket_id}")
     void  updateTicketById(Ticket ticket);
+
+
 }

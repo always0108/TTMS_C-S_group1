@@ -15,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 @ContextConfiguration(classes = {RootConfig.class,WebConfig.class,WebInit.class,MyBatis.class,DbConfig.class})
@@ -61,5 +63,7 @@ public class DataDictionaryTest {
 //        else{
 //            System.out.println("该数据字典已存在");
 //        }
+        List<DataDictionary> dataDictionaries = data_dictService.selectSonDataDictionaryByName("影片类型");
+        System.out.println(dataDictionaries.size());
     }
 }

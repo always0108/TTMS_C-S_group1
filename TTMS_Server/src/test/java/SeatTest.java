@@ -49,7 +49,7 @@ public class SeatTest {
 
     @Test
     public void test(){
-
+      
 //        //批量生成座位
 //        if (seatService.initSeatByStudioId(3)){
 //            System.out.println("初始化座位成功");

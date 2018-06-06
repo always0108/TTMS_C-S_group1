@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("Data_dictService")
+@Service("DataDictionaryService")
 public class DataDictionaryServiceImpl implements DataDictionaryService {
 
     @Autowired
@@ -34,11 +34,18 @@ public class DataDictionaryServiceImpl implements DataDictionaryService {
         return data_dictDAO.selectDataDictionaryByName(name);
     }
 
-    //根据关键字获取匹配的数据字典信息
+    //根据父id获取数据字典信息
     @Override
-    public List<DataDictionary> getAllDataDictionaryByPartName(String name){
-        return data_dictDAO.getAllDataDictionaryByPartName("%"+name+"%");
+    public List<DataDictionary> selectDataDictionaryByParentId(Integer parentId){
+        return data_dictDAO.selectDataDictionaryByParentId(parentId);
     }
+
+    //根据名称获取子类型数据字典
+    @Override
+    public List<DataDictionary> selectSonDataDictionaryByName(String name){
+        return data_dictDAO.selectSonDataDictionaryByName(name);
+    }
+
 
     //新增数据字典
     @Override

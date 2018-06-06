@@ -12,6 +12,10 @@ public interface ScheduleDAO {
     @Select("select * from schedule where sched_id = #{id}")
     Schedule selectScheduleById(Integer id);
 
+    //根据play_id获取所有演出计划
+
+    //根据studio_id获取所有演出计划*
+
     //新增
     @Insert("insert into schedule(studio_id,play_id,sched_time,sched_ticket_price) values (" +
             "#{studio_id},#{play_id},#{sched_time},#{sched_ticket_price})")
