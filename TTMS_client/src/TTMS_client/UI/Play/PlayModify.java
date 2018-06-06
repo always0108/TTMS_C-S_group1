@@ -1,5 +1,8 @@
 package UI.Play;
 import Service.DataCollection;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.application.Application;
@@ -18,13 +21,23 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Play;
 import node.FunButton;
+import node.MessageBar;
+import org.apache.commons.codec.binary.Base64;
+import util.Httpclient;
 import util.ImageByte;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 
 
 public class PlayModify extends GridPane {
+
+    private String path = null;
 
     public PlayModify(Play play){
         this.setHgap(20);
@@ -73,10 +86,6 @@ public class PlayModify extends GridPane {
         this.add(image,0,4);
         this.add(play_image,1,4);
         Button buttonLoad = new Button("选择文件");
-
-        buttonLoad.setOnAction(e->{
-            play_image.setText(ImageByte.getFilePath());
-        });
         this.add(buttonLoad,2,4);
 
         Label introduction = new Label("剧目简介");
@@ -97,6 +106,23 @@ public class PlayModify extends GridPane {
         this.add(price,0,7);
         this.add(play_price,1,7,3,1);
 
+        ImageView play_imageview = new ImageView(ImageByte.bytesToImage(play.getPlay_image()));
+        play_imageview.setFitHeight(240);
+        play_imageview.setFitWidth(180);
+        this.add(play_imageview,4,2,1,6);
+
+        buttonLoad.setOnAction(e->{
+            path = ImageByte.getFilePath();
+            play_image.setText(path);
+            File file = new File(path);
+            try {
+                InputStream input = new FileInputStream(file);
+                Image imageNew = new Image(input);
+                play_imageview.setImage(imageNew);
+            }catch (FileNotFoundException ex){
+                ex.printStackTrace();
+            }
+        });
 
         FunButton Confirm = new FunButton("确认");
         FunButton Return = new FunButton("返回");
@@ -107,7 +133,70 @@ public class PlayModify extends GridPane {
         this.add(bottom_button,1,9,4,1);
 
         Confirm.setOnAction(e->{
+            Confirm.setDisable(true);
+            //创建后台获取数据的线程
+            Task<JSONObject> task = new Task<JSONObject>() {
+                @Override
+                protected JSONObject call() throws Exception {
+                    String url = "/play/update";
+                    String str;
+                    int play_id = play.getPlay_id();
+                    short status = 0;
+                    if(path != null){
+                        byte[] data = ImageByte.imageToBytes(path);
+                        str = Base64.encodeBase64String(data);
+                    }else{
+                        str = play.getBase64play_image();
+                    }
 
+                    Map<String, Object> play = new HashMap<>();
+                    play.put("play_id",play_id);
+                    play.put("play_type_id",DataCollection.playTypeComboBox.get(play_type_id.getValue()));
+                    play.put("play_lang_id",DataCollection.playLangComboBox.get(play_lang_id.getValue()));
+                    play.put("play_name",play_name.getText());
+                    play.put("play_introduction",play_introduction.getText());
+                    play.put("play_length",Integer.valueOf(play_length.getText()));
+                    play.put("play_ticket_price",new BigDecimal(play_price.getText()));
+                    play.put("Base64play_image",str);
+                    play.put("play_status",status);
+
+                    String res = Httpclient.post(url, play);
+                    return JSON.parseObject(res);
+                }
+
+                @Override
+                protected void running() {
+
+                }
+
+                @Override
+                protected void succeeded() {
+                    super.succeeded();
+                    JSONObject jsonObject = getValue();
+                    if (jsonObject.get("flag").equals(true)) {
+                        MessageBar.showMessageBar("修改成功！");
+                        new PlayList();
+                    } else {
+                        MessageBar.showMessageBar(jsonObject.get("content").toString());
+                    }
+                    Confirm.setDisable(false);
+                    updateMessage("Done!");
+                }
+
+                @Override
+                protected void cancelled() {
+                    super.cancelled();
+                    updateMessage("Cancelled!");
+                }
+
+                @Override
+                protected void failed() {
+                    super.failed();
+                    updateMessage("Failed!");
+                }
+            };
+            Thread thread = new Thread(task);
+            thread.start();
         });
 
         Return.setOnAction(e->{

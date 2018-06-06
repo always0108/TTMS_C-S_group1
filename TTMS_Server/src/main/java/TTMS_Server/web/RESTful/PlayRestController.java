@@ -42,18 +42,6 @@ public class PlayRestController {
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseResult add(@ModelAttribute Play play){
         play.strToByte();
-//        System.out.println(play.getPlay_image());
-//        System.out.println("base64: "+play.getBase64play_image());
-//        ByteArrayInputStream input = new ByteArrayInputStream(play.getPlay_image());
-//        File file = new File("/home/limeng/Desktop/testImage");
-//        try {
-//            OutputStream outputStream = new FileOutputStream(file);
-//            outputStream.write(play.getPlay_image());
-//        }catch (FileNotFoundException e){
-//            e.printStackTrace();
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
         if (playService.addPlay(play))
             return new ResponseResult(true,"添加成功");
         else{
@@ -74,10 +62,11 @@ public class PlayRestController {
     //修改剧目
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public ResponseResult update(@ModelAttribute Play play){
+        play.strToByte();
         if (playService.updatePlayById(play))
             return new ResponseResult(true,"修改成功");
         else{
-            return new ResponseResult(false,"该剧目已存在");
+            return new ResponseResult(false,"修改失败");
         }
     }
 }

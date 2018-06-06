@@ -2,6 +2,7 @@ package UI.Play;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -13,10 +14,10 @@ import util.ImageByte;
 public class PlayDetail extends GridPane {
 
     public PlayDetail(Play play){
-        this.setAlignment(Pos.CENTER);
-        this.setHgap(20);
+        this.setAlignment(Pos.TOP_CENTER);
+        this.setHgap(30);
         this.setVgap(10);
-        this.setPadding(new Insets(20,20,20,20));
+        this.setPadding(new Insets(60,20,20,20));
 
         Label play_id = new Label("剧目编号：");
         Label play_type_id = new Label("剧目类型：");
@@ -33,12 +34,15 @@ public class PlayDetail extends GridPane {
         Label lengthValue = new Label(play.getPlay_length().toString());
         Label ticket_priceValue = new Label(play.getPlay_ticket_price().toString());
         Label statusValue= new Label(play.getPlay_status().toString());
-        Label introductionValue = new Label(play.getPlay_introduction());
+        TextArea introductionValue = new TextArea(play.getPlay_introduction());
+        introductionValue.setWrapText(true);
+        introductionValue.setEditable(false);
+        introductionValue.setStyle("-fx-max-width: 400px;-fx-max-height:200;-fx-border-style: none;-fx-background-color: bisque;-fx-font-size: 16px;-fx-opacity: 0.75");
 
         ImageView play_imageview = new ImageView(ImageByte.bytesToImage(play.getPlay_image()));
-        play_imageview.setFitHeight(200);
-        play_imageview.setFitWidth(150);
-        this.add(play_imageview,0,0,1,8);
+        play_imageview.setFitHeight(240);
+        play_imageview.setFitWidth(180);
+        this.add(play_imageview,0,0,1,6);
         this.addColumn(1,play_id,play_type_id,play_lang_id,play_name,play_length,play_ticket_price,play_status,play_introduction);
         this.addColumn(2,idValue,type_idValue,lang_idValue,nameValue,lengthValue,ticket_priceValue,statusValue,introductionValue);
 

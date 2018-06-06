@@ -101,13 +101,9 @@ public class PlayAdd extends GridPane {
                 @Override
                 protected JSONObject call() throws Exception {
                     String url = "/play/add";
-                    //未安排演出
                     short status = 0;
                     byte[] data = ImageByte.imageToBytes(play_image_textfield.getText());
                     String str = Base64.encodeBase64String(data);
-                    System.out.println(data);
-                    System.out.println("base64: "+str);
-                    System.out.println(Base64.decodeBase64(str));
 
                     Map<String, Object> play = new HashMap<>();
                     play.put("play_type_id",DataCollection.playTypeComboBox.get(play_type_id.getValue()));

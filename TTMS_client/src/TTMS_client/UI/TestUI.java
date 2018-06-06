@@ -31,6 +31,8 @@ public class TestUI {
         System.out.println(data);
 
         ImageView imageView = new ImageView(ImageByte.bytesToImage(data));
+        System.out.println(imageView.getImage().getWidth());
+        System.out.println(imageView.getImage().getHeight());
         hBox.getChildren().add(imageView);
 
         return hBox;
