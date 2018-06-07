@@ -20,7 +20,6 @@ import java.util.List;
 public class StudioList{
 
     private StudioSrv studioSrv = new StudioSrv();
-    private List<Studio> studios;
     private VBox main;
     private HBox top;
     private ScrollPane scrollPane;
@@ -52,12 +51,11 @@ public class StudioList{
         find.setDefaultButton(true);
         top.getChildren().addAll(note,key,find);
 
-        Task<JSONObject> task = new Task<JSONObject>() {
+        Task<List<Studio>> task = new Task<List<Studio>>() {
             @Override
-            protected JSONObject call() throws Exception {
-                studios = studioSrv.getAllStudio();
+            protected List<Studio> call() throws Exception {
                 Thread.sleep(200);
-                return null;
+                return studioSrv.getAllStudio();
             }
 
             @Override
@@ -71,7 +69,7 @@ public class StudioList{
             @Override
             protected void succeeded() {
                 super.succeeded();
-                scrollPane.setContent(new StudioTable(studios));
+                scrollPane.setContent(new StudioTable(this.getValue()));
                 HomeUI.setCenter(main);
                 updateMessage("Done!");
             }
@@ -117,7 +115,6 @@ public class StudioList{
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setStyle("-fx-opacity: 0.75;-fx-border-style: none;-fx-background-color: bisque");
-        scrollPane.setContent(new StudioTable(studioSrv.getAllStudio()));
 
         //功能按钮框
         bottom = new HBox();

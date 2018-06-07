@@ -1,5 +1,7 @@
 package UI.DataDictionary;
 
+import Service.DataCollection;
+import Service.DataDictSrv;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
@@ -45,9 +47,10 @@ public class DataDictAdd extends VBox {
 
         Label branch = new Label("分支:");
         ComboBox<String> parentName = new ComboBox<>();
-        parentName.getItems().addAll("根","影片类型","语言");
         parentName.setValue("请选择");
-
+        for(Map.Entry<String,Integer> entry:DataCollection.dataDictComboBox.entrySet()){
+            parentName.getItems().add(entry.getKey());
+        }
         Label name = new Label("名称:");
         TextField dataName = new TextField();
 
@@ -67,52 +70,56 @@ public class DataDictAdd extends VBox {
         //确认添加
         btok.setOnAction(e -> {
             btok.setDisable(true);
-//            //创建后台获取数据的线程
-//            Task<JSONObject> task = new Task<JSONObject>() {
-//                @Override
-//                protected JSONObject call() throws Exception {
-//                    String url = "/dataDict/add";
-//
-//                    Map<String, Object> dataDict = new HashMap<>();
-//
-//
-//                    String res = Httpclient.post(url, dataDict);
-//                    return JSON.parseObject(res);
-//                }
-//
-//                @Override
-//                protected void running() {
-//
-//                }
-//
-//                @Override
-//                protected void succeeded() {
-//                    super.succeeded();
-//                    JSONObject jsonObject = getValue();
-//                    if (jsonObject.get("flag").equals(true)) {
-//                        MessageBar.showMessageBar("添加成功！");
-//                        new DataDictList();
-//                    } else {
-//                        MessageBar.showMessageBar(jsonObject.get("content").toString());
-//                    }
-//                    btok.setDisable(false);
-//                    updateMessage("Done!");
-//                }
-//
-//                @Override
-//                protected void cancelled() {
-//                    super.cancelled();
-//                    updateMessage("Cancelled!");
-//                }
-//
-//                @Override
-//                protected void failed() {
-//                    super.failed();
-//                    updateMessage("Failed!");
-//                }
-//            };
-//            Thread thread = new Thread(task);
-//            thread.start();
+            if(dataName.getText().equals(parentName.getValue())){
+                MessageBar.showMessageBar("该名称已存在");
+            }else {
+                Task<JSONObject> task = new Task<JSONObject>() {
+                    @Override
+                    protected JSONObject call() throws Exception {
+                        String url = "/dataDict/add";
+                        Map<String, Object> dataDict = new HashMap<>();
+                        dataDict.put("dict_parent_id",DataCollection.dataDictComboBox.get(parentName.getValue()));
+                        dataDict.put("dict_name",dataName.getText());
+                        dataDict.put("dict_value",dataValue.getText());
+                        String res = Httpclient.post(url, dataDict);
+                        return JSON.parseObject(res);
+                    }
+
+                    @Override
+                    protected void running() {
+
+                    }
+
+                    @Override
+                    protected void succeeded() {
+                        super.succeeded();
+                        JSONObject jsonObject = getValue();
+                        if (jsonObject.get("flag").equals(true)) {
+                            DataCollection.updateDataDict();
+                            MessageBar.showMessageBar("添加成功！");
+                            new DataDictList();
+                        }else {
+                            MessageBar.showMessageBar(jsonObject.get("content").toString());
+                        }
+                        btok.setDisable(false);
+                        updateMessage("Done!");
+                    }
+
+                    @Override
+                    protected void cancelled() {
+                        super.cancelled();
+                        updateMessage("Cancelled!");
+                    }
+
+                    @Override
+                    protected void failed() {
+                        super.failed();
+                        updateMessage("Failed!");
+                    }
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+            }
         });
 
         btret.setOnAction(e -> {

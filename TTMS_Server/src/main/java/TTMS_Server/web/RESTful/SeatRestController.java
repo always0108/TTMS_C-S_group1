@@ -37,9 +37,9 @@ public class SeatRestController {
     @RequestMapping(value = "/init",method = RequestMethod.GET)
     public ResponseResult init(@RequestParam("id") String studio_id){
         if(seatService.initSeatByStudioId(Integer.parseInt(studio_id))){
-            return new ResponseResult(false,"初始化成功");
+            return new ResponseResult(true,"初始化成功");
         }else{
-            return new ResponseResult(true,"该演出厅已经被初始化");
+            return new ResponseResult(false,"该演出厅已经被初始化");
         }
     }
 

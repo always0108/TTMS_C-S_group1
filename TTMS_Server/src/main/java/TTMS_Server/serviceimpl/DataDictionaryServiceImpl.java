@@ -34,6 +34,12 @@ public class DataDictionaryServiceImpl implements DataDictionaryService {
         return data_dictDAO.selectDataDictionaryByName(name);
     }
 
+    //根据关键字获取匹配所有规则的信息
+    @Override
+    public List<DataDictionary> getAllDataDcitByPartName(String name){
+        return data_dictDAO.getAllDataDcitByPartName("%"+name+"%");
+    }
+
     //根据父id获取数据字典信息
     @Override
     public List<DataDictionary> selectDataDictionaryByParentId(Integer parentId){
@@ -45,7 +51,6 @@ public class DataDictionaryServiceImpl implements DataDictionaryService {
     public List<DataDictionary> selectSonDataDictionaryByName(String name){
         return data_dictDAO.selectSonDataDictionaryByName(name);
     }
-
 
     //新增数据字典
     @Override
@@ -62,11 +67,11 @@ public class DataDictionaryServiceImpl implements DataDictionaryService {
     //删除数据字典
     @Override
     public boolean deleteDataDictionaryById(Integer id){
-        if(data_dictDAO.selectDataDictionaryById(id)!=null){
+        List<DataDictionary> dataDictionaries = data_dictDAO.selectDataDictionaryByParentId(id);
+        if(dataDictionaries == null || dataDictionaries.size() == 0 ){
             data_dictDAO.deleteDataDictionaryById(id);
             return true;
-        }
-        else{
+        } else{
             return false;
         }
     }
@@ -75,7 +80,6 @@ public class DataDictionaryServiceImpl implements DataDictionaryService {
     @Override
     public boolean updateDataDictionaryById(DataDictionary data_dict){
         DataDictionary data_dict_old = data_dictDAO.selectDataDictionaryById(data_dict.getDict_id());
-
         if(data_dict_old==null){
             return false;
         }

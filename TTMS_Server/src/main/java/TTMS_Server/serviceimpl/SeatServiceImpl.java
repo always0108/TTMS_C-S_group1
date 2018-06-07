@@ -57,7 +57,7 @@ public class SeatServiceImpl implements SeatService {
     public boolean initSeatByStudioId(Integer id){
         Studio studio = studioDAO.selectStudioById(id);
         //演出厅存在且座位的行列要满足演出厅中座位的行列
-        if(studio != null && studio.getStudio_flag() == 0){
+        if(studio.getStudio_flag() == 0){
             for(int i = 1; i <= studio.getStudio_row_count(); i++){
                 for(int j = 1 ;j <= studio.getStudio_col_count(); j++){
                     Seat seat = new Seat(studio.getStudio_id(),i,j,Short.parseShort("0"));

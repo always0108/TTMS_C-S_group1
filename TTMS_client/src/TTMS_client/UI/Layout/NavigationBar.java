@@ -1,31 +1,18 @@
 package UI.Layout;
 
 import Service.StudioSrv;
-import UI.DataDictionary.DataDictAdd;
+import UI.DataDictionary.DataDictList;
 import UI.Employee.EmployeeList;
-import UI.Play.PlayAdd;
 import UI.Play.PlayList;
 import UI.Studio.StudioList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import node.NavigationButton;
 
 public class NavigationBar{
 
-    private ProgressIndicator progressIndicator = new ProgressIndicator();
-    private HBox progress;
-    private StudioSrv studioSrv = new StudioSrv();
-
-    public NavigationBar(){
-        progress = new HBox();
-        progress.setPadding(new Insets(0,50,20,0));
-        progress.setSpacing(30);
-        progress.setAlignment(Pos.CENTER);
-        progress.getChildren().add(progressIndicator);
-    }
+    public NavigationBar(){}
 
     public VBox getManagerBar(){
         VBox managerBar = new VBox();
@@ -49,7 +36,7 @@ public class NavigationBar{
 
         NavigationButton dataDictManagement = new NavigationButton("字典管理");
         dataDictManagement.setOnAction(e->{
-            HomeUI.setCenter(new DataDictAdd());
+            new DataDictList();
         });
 
         managerBar.getChildren().addAll(employeeManagement,studioManagement,playManagement,dataDictManagement);

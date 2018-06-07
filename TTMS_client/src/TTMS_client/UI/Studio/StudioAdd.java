@@ -1,5 +1,6 @@
 package UI.Studio;
 
+import Service.SeatSrv;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
@@ -21,6 +22,7 @@ public class StudioAdd extends VBox {
 
     private HBox hBox;
     private GridPane gridPane;
+    private SeatSrv seatSrv = new SeatSrv();
 
     public StudioAdd() {
         this.setAlignment(Pos.TOP_CENTER);

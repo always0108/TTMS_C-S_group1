@@ -15,6 +15,9 @@ public interface DataDictionaryService {
     //根据名称获取数据字典
     DataDictionary selectDataDictionaryByName(String name);
 
+    //根据关键字获取匹配所有规则的信息
+    List<DataDictionary> getAllDataDcitByPartName(String name);
+
     //根据父id获取数据字典
     List<DataDictionary> selectDataDictionaryByParentId(Integer parentId);
 

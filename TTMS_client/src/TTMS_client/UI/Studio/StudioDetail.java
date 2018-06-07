@@ -54,8 +54,7 @@ public class StudioDetail extends VBox {
         Label studio_col = new Label(studio.getStudio_col_count().toString());
 
         Label introduction = new Label("简介：");
-        TextArea studio_introduction = new TextArea(studio.getStudio_seat_count().toString());
-        studio_introduction.setStyle("-fx-font-size: 16px;-fx-pref-width: 400px;-fx-pref-height: 100px");
+        TextArea studio_introduction = new TextArea(studio.getStudio_introduction());
 
         Label flag = new Label("状态：");
         Label studio_flag = new Label(studio.getStudio_flag().toString());
@@ -74,6 +73,7 @@ public class StudioDetail extends VBox {
                 }else{
                     MessageBar.showMessageBar("初始化失败");
                 }
+                new StudioList();
             }
         });
 
