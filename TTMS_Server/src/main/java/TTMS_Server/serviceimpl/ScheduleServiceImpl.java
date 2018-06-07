@@ -6,6 +6,8 @@ import TTMS_Server.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("ScheduleService")
 public class ScheduleServiceImpl implements ScheduleService{
 
@@ -15,6 +17,14 @@ public class ScheduleServiceImpl implements ScheduleService{
     //根据id获取信息
     @Override
     public Schedule selectScheduleById(Integer id){return scheduleDAO.selectScheduleById(id);}
+
+    //根据剧目id获取
+    @Override
+    public List<Schedule> selectScheduleByPlayId(Integer id){ return scheduleDAO.selectScheduleByPlayId(id);}
+
+    //根据演出厅id获取
+    @Override
+    public List<Schedule> selectScheduleByStudioId(Integer id){ return scheduleDAO.selectScheduleByStudioId(id);}
 
     //增加
     @Override
