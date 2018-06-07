@@ -11,6 +11,13 @@
     <title>$Title$</title>
   </head>
   <body>
-  Hello ! ! ！
+  <h1>添加剧目</h1>
+  <form action="/rest/schedule/add " method="post">
+    <input type="text" name="studio_id">
+    <input type="text" name="play_id">
+    <input type="text" name="schedule_time">
+    <input type="text" name="schedule_ticket_price">
+    <input type="submit">
+  </form>
   </body>
 </html>
