@@ -27,5 +27,7 @@ public interface TicketDAO {
             "ticket_locked_time = #{ticket_locked_time} where ticket_id = #{ticket_id}")
     void  updateTicketById(Ticket ticket);
 
-
+    //根据演出计划批量删除票
+    @Delete("delete from ticket where sched_id = #{sched_id}")
+    void deleteTicketByScheduleId(Integer sched_id);
 }

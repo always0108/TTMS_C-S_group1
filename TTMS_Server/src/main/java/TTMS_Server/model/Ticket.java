@@ -18,13 +18,11 @@ public class Ticket {
 
     public Ticket(){}
 
-    public Ticket(Long ticket_id,Integer seat_id,Integer sched_id,BigDecimal ticket_price,Short ticket_status,Date ticket_locked_time){
-        this.ticket_id = ticket_id;
+    public Ticket(Integer seat_id,Integer sched_id,BigDecimal ticket_price,Short ticket_status){
         this.seat_id = seat_id;
         this.sched_id = sched_id;
         this.ticket_price = ticket_price;
         this.ticket_status = ticket_status;
-        this.ticket_locked_time = ticket_locked_time;
     }
 
     public Long getTicket_id() {

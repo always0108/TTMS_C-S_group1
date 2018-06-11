@@ -9,10 +9,13 @@ public interface ScheduleService {
     //根据id获取信息
     Schedule selectScheduleById(Integer id);
 
-    //根据剧目id获取演出计划
+    //根据剧目id获取相应演出计划
     List<Schedule> selectScheduleByPlayId(Integer id);
 
-    //根据演出厅id获取
+    //根据剧目Id和日期获取相应演出计划
+    List<Schedule> selectScheduleByPlayIdDate(Integer id,String date);
+
+    //根据演出厅id获取相应演出计划
     List<Schedule> selectScheduleByStudioId(Integer id);
 
     //增加

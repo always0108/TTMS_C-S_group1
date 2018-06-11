@@ -3,7 +3,9 @@ package UI.Layout;
 import Service.StudioSrv;
 import UI.DataDictionary.DataDictList;
 import UI.Employee.EmployeeList;
+import UI.Main;
 import UI.Play.PlayList;
+import UI.Sale.ChoosePlay;
 import UI.Studio.StudioList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,7 +41,13 @@ public class NavigationBar{
             new DataDictList();
         });
 
-        managerBar.getChildren().addAll(employeeManagement,studioManagement,playManagement,dataDictManagement);
+        NavigationButton sellTicket = new NavigationButton("卖票");
+        sellTicket.setOnAction(e->{
+            Main.borderPane.setCenter(new ChoosePlay());
+        });
+
+        managerBar.getChildren().addAll(employeeManagement,studioManagement,playManagement,
+                dataDictManagement,sellTicket);
         return managerBar;
     }
 }

@@ -1,5 +1,5 @@
-package Schedule;
-import Schedule.Schedule;
+package UI.Schedule;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
@@ -8,7 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.Play;
+import model.Schedule;
 import node.FunButton;
 import node.MessageBar;
 import util.Httpclient;
@@ -23,7 +23,7 @@ public class ScheduleDelete extends VBox {
 
         HBox mes = new HBox();
         mes.setAlignment(Pos.CENTER);
-        Label note = new Label("确定要删除"+schedule.getSched_id()+"演出计划?");
+        Label note = new Label("确定要删除本次演出计划?");
         mes.getChildren().add(note);
 
         HBox btGroup = new HBox();
@@ -31,8 +31,8 @@ public class ScheduleDelete extends VBox {
         btGroup.setSpacing(50);
         btGroup.setPadding(new Insets(40,20,20,20));
 
-        Schedule.FunButton btOK = new Schedule.FunButton("确认");
-        Schedule.FunButton btCancel = new Schedule.FunButton("取消");
+        FunButton btOK = new FunButton("确认");
+        FunButton btCancel = new FunButton("取消");
 
         btGroup.getChildren().addAll(btOK,btCancel);
 
@@ -43,7 +43,7 @@ public class ScheduleDelete extends VBox {
             Task<JSONObject> task = new Task<JSONObject>() {
                 @Override
                 protected JSONObject call() throws Exception {
-                    String url = "/play/delete?id=" + schedule.getSched_id();
+                    String url = "/schedule/delete?id=" + schedule.getSched_id();
                     String res = Httpclient.get(url);
                     return JSON.parseObject(res);
                 }
@@ -58,10 +58,10 @@ public class ScheduleDelete extends VBox {
                     JSONObject jsonObject = getValue();
                     if (jsonObject.get("flag").equals(true)) {
                         MessageBar.showMessageBar("删除成功");
-                        new PlayList();
+                        new ScheduleList(schedule.getPlay_id());
                     } else {
                         MessageBar.showMessageBar("删除失败");
-                        new PlayList();
+                        new ScheduleList(schedule.getPlay_id());
                     }
                     updateMessage("Done!");
                 }
@@ -85,7 +85,7 @@ public class ScheduleDelete extends VBox {
         });
 
         btCancel.setOnAction(e->{
-            new ScheduleList();
+            new ScheduleList(schedule.getPlay_id());
         });
 
     }

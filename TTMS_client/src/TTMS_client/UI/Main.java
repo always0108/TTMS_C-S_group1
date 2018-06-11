@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import util.DateFormat;
 
 public class Main extends Application {
 
@@ -21,7 +22,7 @@ public class Main extends Application {
         borderPane = new BorderPane();
 //        borderPane.setLeft(new NavigationBar().getManagerBar());
         borderPane.setCenter(LoginUI.init());
-//        borderPane.setCenter(TestUI.getTestUI());
+//        new TestUI().test();
 
         borderPane.setStyle("-fx-background-image: url('/image/background.jpg')");
         Scene scene = new Scene(borderPane, 1024, 768);

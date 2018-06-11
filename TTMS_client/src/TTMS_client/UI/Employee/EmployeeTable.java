@@ -18,8 +18,8 @@ public class EmployeeTable extends GridPane {
         this.setVgap(20);
         this.setAlignment(Pos.CENTER);
 
-        if(employees.size() == 0 || employees == null){
-            Label note = new Label("没有符合条件的结果");
+        if(employees == null || employees.size() == 0 ){
+            Label note = new Label("没有符合条件的职员");
             note.setStyle("-fx-font-size: 20px");
             this.add(note,0,0);
         }else {

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import model.Studio;
 import util.Httpclient;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public class StudioSrv {
@@ -26,6 +27,7 @@ public class StudioSrv {
         }else{
             System.out.println("网络连接失败");
             return null;
+            
         }
     }
 }

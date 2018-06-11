@@ -19,8 +19,8 @@ public class ScheduleTable extends GridPane {
         this.setVgap(20);
         this.setAlignment(Pos.CENTER);
 
-        if(schedules.size() == 0 || schedules == null){
-            Label note = new Label("没有符合条件的结果");
+        if(schedules == null || schedules.size() == 0){
+            Label note = new Label("没有安排演出计划");
             note.setStyle("-fx-font-size: 20px");
             this.add(note,0,0);
         }else {
@@ -40,18 +40,11 @@ public class ScheduleTable extends GridPane {
                 Label schedule_sched_id = new Label(schedule.getSched_id().toString());
                 Label schedule_studio_id = new Label(schedule.getStudio_id().toString());
                 Label schedule_play_id = new Label(schedule.getPlay_id().toString());
-
-                //更改
-                // Label schedule_sched_date = new Label(schedule.getSched_time().toString());
-                //Label schedule_sched_time = new Label();
+                Label schedule_time = new Label(schedule.getSched_time().toString());
                 Label schedule_ticket_price = new Label(schedule.getSched_ticket_price().toString());
 
-                Button btDetail = new Button("详请");
                 Button btModify = new Button("修改");
                 Button btDelete = new Button("删除");
-                btDetail.setOnAction(e->{
-                    HomeUI.setCenter(new ScheduleDetail(schedule));
-                });
 
                 btModify.setOnAction(e->{
                     HomeUI.setCenter(new ScheduleModify(schedule));
@@ -60,9 +53,9 @@ public class ScheduleTable extends GridPane {
                 btDelete.setOnAction(e->{
                     HomeUI.setCenter(new ScheduleDelete(schedule));
                 });
-                //需要添加schedule_sched_date & schedule_sched_time
-                this.addRow(i+1,schedule_sched_id,schedule_studio_id,schedule_play_id,schedule_ticket_price,
-                        btDetail,btModify,btDelete);
+
+                this.addRow(i+1,schedule_sched_id,schedule_studio_id,schedule_play_id,
+                        schedule_time,schedule_ticket_price, btModify,btDelete);
             }
         }
     }

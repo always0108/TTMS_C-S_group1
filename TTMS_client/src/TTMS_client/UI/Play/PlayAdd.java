@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import model.Play;
 import node.FunButton;
 import node.MessageBar;
 import org.apache.commons.codec.binary.Base64;

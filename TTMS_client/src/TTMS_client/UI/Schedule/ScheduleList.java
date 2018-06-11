@@ -1,5 +1,6 @@
 package UI.Schedule;
 
+import Service.ScheduleSrv;
 import UI.Layout.HomeUI;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
@@ -21,9 +22,9 @@ public class ScheduleList{
     private HBox top;
     private HBox bottom;
     private ScrollPane scrollPane;
-    private TextField key;
+    private DatePicker datePicker;
 
-    public ScheduleList(){
+    public ScheduleList(Integer play_id){
         main.setAlignment(Pos.TOP_CENTER);
         main.setSpacing(20);
         main.setPadding(new Insets(60, 20, 20, 20));
@@ -37,11 +38,9 @@ public class ScheduleList{
         top = new HBox();
         top.setSpacing(30);
         top.setAlignment(Pos.CENTER);
-        Label note = new Label("演出计划ID:");
-        key = new TextField();
-        FunButton find = new FunButton("查询");
-        find.setDefaultButton(true);
-        top.getChildren().addAll(note,key,find);
+        Label note = new Label("选择日期");
+        datePicker = new DatePicker();
+        top.getChildren().addAll(note,datePicker);
 
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
@@ -63,14 +62,15 @@ public class ScheduleList{
         btret.setOnAction(e->{
             HomeUI.showNote();
         });
-        main.getChildren().addAll(top,scrollPane,bottom);
+        scrollPane.setContent(new ScheduleTable(scheduleSrv.getScheduleByPlayId(play_id)));
 
+        main.getChildren().addAll(top,scrollPane,bottom);
 
         Task<List<Schedule>> task = new Task<List<Schedule>>() {
             @Override
             protected List<Schedule> call() throws Exception {
                 Thread.sleep(200);
-                return scheduleSrv.list();
+                return scheduleSrv.getScheduleByPlayId(play_id);
             }
 
             @Override
@@ -91,14 +91,14 @@ public class ScheduleList{
         Thread thread = new Thread(task);
         thread.start();
 
-        find.setOnAction(e->{
-            find.setDisable(true);
+        datePicker.setOnAction(e->{
+            datePicker.setDisable(true);
 
             Task<List<Schedule>> searchtask = new Task<List<Schedule>>() {
                 @Override
                 protected List<Schedule> call() throws Exception {
                     Thread.sleep(200);
-                    return  scheduleSrv.searchByName(key.getText());
+                    return  scheduleSrv.searchScheduleByDate(play_id,datePicker.getEditor().getText());
                 }
 
                 @Override
@@ -115,7 +115,7 @@ public class ScheduleList{
                     main.getChildren().remove(progress);
                     scrollPane.setContent(new ScheduleTable(this.getValue()));
                     main.getChildren().addAll(scrollPane,bottom);
-                    find.setDisable(false);
+                    datePicker.setDisable(false);
                     updateMessage("Done!");
                 }
             };

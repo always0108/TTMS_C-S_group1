@@ -25,7 +25,7 @@ public class DataDictTable extends GridPane {
         this.setVgap(20);
         this.setAlignment(Pos.CENTER);
 
-        if(data_dicts.size() == 0 || data_dicts == null){
+        if(data_dicts == null || data_dicts.size() == 0){
             Label note = new Label("没有符合条件的结果");
             note.setStyle("-fx-font-size: 20px");
             this.add(note,0,0);

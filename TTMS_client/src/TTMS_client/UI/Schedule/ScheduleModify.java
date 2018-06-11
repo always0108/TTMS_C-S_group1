@@ -1,84 +1,75 @@
-package Schedule;
+package UI.Schedule;
 
+import Service.StudioSrv;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import javafx.concurrent.Task;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Play;
+import model.Schedule;
+import model.Studio;
+import node.FunButton;
+import node.MessageBar;
+import util.DateFormat;
+import util.Httpclient;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScheduleModify extends GridPane {
+
+    private List<Studio> studios = new StudioSrv().getAllStudio();
+    private Map<String,Integer> studioComboBox = new HashMap<>();
+
     public ScheduleModify(Schedule schedule){
         this.setHgap(20);
         this.setVgap(20);
         this.setPadding(new Insets(25,25,25,25));
 
         Text playadd = new Text("修改演出计划");
-        //playadd.getStyleClass().add("funText");
         playadd.setFont(Font.font(30));
-        this.add(playadd,0,0);
-        Label id = new Label("演出计划编号：");
-        Label sched_id=new Label(schedule.getSched_id().toString());
-        //play_id.getStyleClass().add("textField");
-        this.add(id,0,1);
-        this.add(sched_id,1,1);
+        this.add(playadd,0,0,2,1);
 
-
-        Label studio_id = new Label("演出厅编号：");
-        Label type_id = new Label("类型编号：");
+        Label studio_id = new Label("演出厅：");
         ComboBox<String> sched_studio_id = new ComboBox<>();
-        for (Map.Entry<String,Integer> entry:DataCollection.playTypeComboBox.entrySet()){
-            if (schedule.getPlay_type_id() == entry.getValue()) {
-                sched_studio_id.setValue(entry.getKey());
+        sched_studio_id.setValue("请选择");
+        for (Studio studio:studios) {
+            if(studio.getStudio_id() == schedule.getStudio_id()){
+                sched_studio_id.setValue(studio.getStudio_name());
             }
-            sched_studio_id.getItems().add(entry.getKey());
+            studioComboBox.put(studio.getStudio_name(),studio.getStudio_id());
+            sched_studio_id.getItems().add(studio.getStudio_name());
         }
+        sched_studio_id.setDisable(true);
 
-        this.add(studio_id,0,2);
-        this.add(sched_studio_id,1,2);
+//            Label date = new Label("演出日期：");
+//            DatePicker sched_date = new DatePicker();
+//
+//            Label time = new Label("演出时间：");
+//            TextField sched_time= new TextField();
 
-        Label play_id = new Label("剧目编号：");
-        TextField sched_play_id= new TextField(schedule.getPlay_id().toString());
-        this.add(play_id,0,3);
-        this.add(sched_play_id,1,3);
-
-        Label date = new Label("演出日期：");
-        //DatePicker sched_date = new DatePicker();
-       // date.getStyleClass().add("textField");
-        this.add(date,0,4);
-        this.add(sched_date,1,4);
         Label time = new Label("演出时间：");
-        TextField sched_time= new TextField(schedule.getSched_time().toString());
-        this.add(time,0,5);
-        this.add(sched_time,1,5);
-
-
+        TextField sched_time= new TextField();
+        Label note = new Label("(yyyy-MM-dd HH:mm:ss)");
 
         Label ticket_price = new Label("票价：");
-        TextField sched_ticket_price = new TextField(schedule.getSched_ticket_price().toString());
-        this.add(ticket_price,0,6);
-        this.add(sched_ticket_price,1,6);
+        TextField sched_ticket_price = new TextField();
 
+        FunButton Confirm = new FunButton("确认");
+        FunButton Return = new FunButton("返回");
 
+        this.addColumn(0,studio_id,time,ticket_price,Confirm);
+        this.addColumn(1,sched_studio_id,sched_time,sched_ticket_price,Return);
+        this.add(note,2,2);
 
-        Button Confirm = new Button("确认");
-        Confirm.setStyle("-fx-background-color: #6C9BBF");
-        Button Return = new Button("返回");
-        Return.setStyle("-fx-background-color: #6C9BBF");
-        HBox bottom_button = new HBox(10);
-        bottom_button.setPadding(new Insets(25,25,25,25 ));
-        bottom_button.setAlignment(Pos.CENTER_LEFT);
-        bottom_button.getChildren().addAll(Confirm,Return);
-        this.add(Confirm,0,7);
-        this.add(Return,1,7);
 
         Confirm.setOnAction(e->{
             Confirm.setDisable(true);
@@ -89,16 +80,15 @@ public class ScheduleModify extends GridPane {
                     String url = "/schedule/update";
                     String str;
 
-                    Map<String, Object> schedule = new HashMap<>();
+                    Map<String, Object> newSchedule = new HashMap<>();
 
-                    schedule.put("studio_id",DataCollection.playTypeComboBox.get(sched_studio_id.getValue()));
-                    schedule.put("play_id",play_id.getText());
-                    // play.put("sched_date",sched_date.getText());
-                    schedule.put("sched_time",Integer.valueOf(sched_time.getText()));
-                    schedule.put("sched_ticket_price",new BigDecimal(sched_ticket_price.getText()));
+                    newSchedule.put("sched_id",schedule.getSched_id());
+                    newSchedule.put("studio_id",studioComboBox.get(sched_studio_id.getValue()));
+                    newSchedule.put("play_id",schedule.getPlay_id());
+                    newSchedule.put("sched_time",DateFormat.stringToTimestamp(sched_time.getText()));
+                    newSchedule.put("sched_ticket_price",new BigDecimal(sched_ticket_price.getText()));
 
-
-                    String res = Httpclient.post(url, schedule);
+                    String res = Httpclient.post(url, newSchedule);
                     return JSON.parseObject(res);
                 }
                 @Override
@@ -112,9 +102,10 @@ public class ScheduleModify extends GridPane {
                     JSONObject jsonObject = getValue();
                     if (jsonObject.get("flag").equals(true)) {
                         MessageBar.showMessageBar("修改成功！");
-                        new PlayList();
+                        new ScheduleList(schedule.getPlay_id());
                     } else {
                         MessageBar.showMessageBar(jsonObject.get("content").toString());
+                        new ScheduleList(schedule.getPlay_id());
                     }
                     Confirm.setDisable(false);
                     updateMessage("Done!");
@@ -137,7 +128,7 @@ public class ScheduleModify extends GridPane {
         });
 
         Return.setOnAction(e->{
-            new ScheduleList();
+            new ScheduleList(schedule.getPlay_id());
         });
     }
 

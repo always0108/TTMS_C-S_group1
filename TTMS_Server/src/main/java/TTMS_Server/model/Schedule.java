@@ -1,6 +1,7 @@
 package TTMS_Server.model;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Schedule {
@@ -10,13 +11,13 @@ public class Schedule {
 
     private Integer play_id;
 
-    private Date sched_time;
+    private Timestamp sched_time;
 
     private BigDecimal sched_ticket_price;
 
     public Schedule(){}
 
-    public Schedule(Integer studio_id,Integer play_id,Date sched_time,BigDecimal sched_ticket_price){
+    public Schedule(Integer studio_id,Integer play_id,Timestamp sched_time,BigDecimal sched_ticket_price){
         this.studio_id = studio_id;
         this.play_id = play_id;
         this.sched_time = sched_time;
@@ -47,11 +48,11 @@ public class Schedule {
         this.play_id = play_id;
     }
 
-    public Date getSched_time() {
+    public Timestamp getSched_time() {
         return sched_time;
     }
 
-    public void setSched_time(Date sched_time) {
+    public void setSched_time(Timestamp sched_time) {
         this.sched_time = sched_time;
     }
 

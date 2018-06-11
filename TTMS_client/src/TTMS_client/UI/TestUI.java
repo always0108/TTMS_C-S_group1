@@ -1,41 +1,57 @@
 package UI;
 
-
-import UI.Seat.SeatTable;
-import UI.Studio.StudioAdd;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import util.ImageByte;
+
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class TestUI {
 
-    public static Pane getTestUI(){
+//    public static Pane getTestUI(){
 
-        HBox hBox = new HBox();
-        hBox.setSpacing(30);
-        hBox.setPadding(new Insets(20,20,20,20));
-        hBox.setAlignment(Pos.CENTER);
+//        HBox hBox = new HBox();
+//        hBox.setSpacing(30);
+//        hBox.setPadding(new Insets(20,20,20,20));
+//        hBox.setAlignment(Pos.CENTER);
 
-        String path = ImageByte.getFilePath();
-        byte[] data = ImageByte.imageToBytes(path);
-        System.out.println(data);
-
-        ImageView imageView = new ImageView(ImageByte.bytesToImage(data));
-        System.out.println(imageView.getImage().getWidth());
-        System.out.println(imageView.getImage().getHeight());
-        hBox.getChildren().add(imageView);
-
-        return hBox;
-    }
-
+//        CalendarTimePicker timePicker = new CalendarTimePicker();
+//        Button button = new Button("确认");
+//        button.setOnAction(e->{
+//            System.out.println(timePicker.getCalendar());
+//        });
+//
+//        hBox.getChildren().addAll(timePicker,button);
+//        GridPane gridPane = new GridPane();
+//        int limit = 60;
+//        TextField time = new TextField("0");
+//        Button up = new Button("+");
+//        Button down = new Button("-");
+//        gridPane.add(time,0,0,1,2);
+//        gridPane.addColumn(1,up,down);
+//
+//        up.setOnAction(e->{
+//            int tmp = Integer.valueOf(time.getText());
+//            if(tmp < limit){
+//                time.setText(String.valueOf(tmp+1));
+//            }
+//        });
+//
+//        down.setOnAction(e->{
+//            int tmp = Integer.valueOf(time.getText());
+//            if(tmp > 0){
+//                time.setText(String.valueOf(tmp-1));
+//            }
+//        });
+//        return gridPane;
+//    }
+        public void test(){
+            Calendar calendar = Calendar.getInstance();
+            System.out.println(calendar.get(Calendar.YEAR));
+            System.out.println(calendar.get(Calendar.MONTH)+1);
+            System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+        }
 }

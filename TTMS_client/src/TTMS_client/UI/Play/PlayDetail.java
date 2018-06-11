@@ -1,5 +1,8 @@
 package UI.Play;
 
+import UI.Layout.HomeUI;
+import UI.Schedule.ScheduleAdd;
+import UI.Schedule.ScheduleList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextArea;
@@ -8,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
 import model.Play;
+import model.Studio;
 import node.FunButton;
 import util.ImageByte;
 
@@ -46,12 +50,18 @@ public class PlayDetail extends GridPane {
         this.addColumn(1,play_id,play_type_id,play_lang_id,play_name,play_length,play_ticket_price,play_status,play_introduction);
         this.addColumn(2,idValue,type_idValue,lang_idValue,nameValue,lengthValue,ticket_priceValue,statusValue,introductionValue);
 
+        FunButton btModify = new FunButton("管理演出计划");
         FunButton btRet = new FunButton("返回");
-        HBox hBox=new HBox(100);
+        HBox hBox=new HBox(200);
         hBox.setPadding(new Insets(25,25,25,25));
         hBox.setAlignment(Pos.CENTER);
-        hBox.getChildren().addAll(btRet);
+        hBox.getChildren().addAll(btModify,btRet);
         this.add(hBox,0,9,3,1);
+
+        btModify.setOnAction(e->{
+            new ScheduleList(play.getPlay_id());
+        });
+
         btRet.setOnAction(e->{
             new PlayList();
         });

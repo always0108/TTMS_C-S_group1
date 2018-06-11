@@ -36,14 +36,14 @@ public class TicketTest {
 
     @Test
     public void Test(){
-        //增加
-        Ticket ticket = new Ticket(new Long(1),1,8,new BigDecimal(100),new Short("-1"),new Date());
-        if(ticketService.addTicket(ticket)){
-            System.out.println("添加成功");
-        }
-        else {
-            System.out.println("已存在");
-        }
+//        //增加
+//        Ticket ticket = new Ticket(new Long(1),1,8,new BigDecimal(100),new Short("-1"),new Date());
+//        if(ticketService.addTicket(ticket)){
+//            System.out.println("添加成功");
+//        }
+//        else {
+//            System.out.println("已存在");
+//        }
 
         //删除
 //        if(ticketService.deleteTicketById(new Long(1))){

@@ -6,20 +6,33 @@ import TTMS_Server.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
 @RequestMapping("rest/schedule")
 public class ScheduleRestController {
+
     @Autowired
     private ScheduleService scheduleService;
 
-    //根据剧目id获取演出计划
+    //根据剧目id获取相应演出计划
     @RequestMapping(value = "/getScheduleByPlayId",method = RequestMethod.GET)
-    public ResponseResult getScheduleByPlayId(@RequestParam("id") Integer id){
+    public ResponseResult getScheduleByPlayId(@RequestParam("play_id") Integer id){
         List<Schedule> schedules = scheduleService.selectScheduleByPlayId(id);
         if(schedules==null){
             return new ResponseResult(false,"演出计划不存在");
+        }else{
+            return new ResponseResult(true,schedules);
+        }
+    }
+
+    //根据剧目id和日期获取相应演出计划
+    @RequestMapping(value = "/getScheduleByPlayIdDate",method = RequestMethod.GET)
+    public ResponseResult getScheduleByPlayIdDate(@RequestParam("play_id") Integer play_id, @RequestParam("date") String date){
+        List<Schedule> schedules = scheduleService.selectScheduleByPlayIdDate(play_id,date);
+        if(schedules==null){
+            return new ResponseResult(false,"这天没有不存在");
         }else{
             return new ResponseResult(true,schedules);
         }
@@ -48,7 +61,7 @@ public class ScheduleRestController {
     }
 
     //删除演出计划
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
     public ResponseResult delete(@RequestParam("id") Integer id){
         if(scheduleService.deleteScheduleById(id)){
             return new ResponseResult(true,"删除成功");
