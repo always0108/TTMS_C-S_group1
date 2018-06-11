@@ -23,6 +23,11 @@ public interface PlayDAO {
     @Select("select * from play where play_name like #{name}")
     List<Play> getAllPlayByPartName(String name);
 
+    //根据日期获取当天上映的剧目
+    @Select("select * from play where play_id in (select play_id from schedule where  " +
+            "sched_time >= #{start} and sched_time < #{end})")
+    List<Play> selectPlayByDate(@Param("start")String start, @Param("end")String end);
+
     //新增剧目
     @Insert("insert into play(play_type_id,play_lang_id," +
             "play_name,play_introduction,play_image,play_length," +

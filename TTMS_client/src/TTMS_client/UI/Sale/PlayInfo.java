@@ -1,5 +1,8 @@
 package UI.Sale;
 
+import Service.PlaySrv;
+import Service.ScheduleSrv;
+import UI.Layout.HomeUI;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Hyperlink;
@@ -8,11 +11,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Play;
+import model.Schedule;
+import util.DateFormat;
 import util.ImageByte;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class PlayInfo extends GridPane {
+
+    private ScheduleSrv scheduleSrv = new ScheduleSrv();
 
     public PlayInfo() {}
 
@@ -43,6 +51,9 @@ public class PlayInfo extends GridPane {
                 if(j == 3){
                     j = 0;
                 }
+                link.setOnAction(e->{
+                    HomeUI.setCenter(new PlaySchedule(scheduleSrv.getTodayLeastSchedules(play.getPlay_id()),play));
+                });
             }
         }
     }

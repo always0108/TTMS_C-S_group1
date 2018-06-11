@@ -19,6 +19,16 @@ public class PlaySrv{
     public List<Play> searchPlayByName(String name){
         String url = "/play/getPlayByPartName?name="+name;
         String res = Httpclient.get(url);
+        return JSONToPlays(res);
+    }
+
+    public List<Play> selectPlayByDate(String date){
+        String url = "/play/selectPlayByDate?date="+date;
+        String res = Httpclient.get(url);
+        return JSONToPlays(res);
+    }
+
+    public List<Play> JSONToPlays(String res){
         JSONObject jsonObject = JSON.parseObject(res);
         if(jsonObject.get("flag").equals(true)) {
             List<Play> plays = JSONArray.parseArray(jsonObject.getString("content"), Play.class);

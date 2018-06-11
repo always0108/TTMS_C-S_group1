@@ -16,6 +16,7 @@ import java.util.Calendar;
 public class ChoosePlay extends VBox {
 
     private PlaySrv playSrv = new PlaySrv();
+    private ScrollPane playsArea;
 
     public ChoosePlay(){
         this.setAlignment(Pos.TOP_CENTER);
@@ -32,18 +33,30 @@ public class ChoosePlay extends VBox {
         Button today = new Button((todayDate.get(Calendar.MONTH)+1) +"月"+todayDate.get(Calendar.DAY_OF_MONTH)+"日");
         Button tomorrow = new Button((tomorrowDate.get(Calendar.MONTH)+1) +"月"+tomorrowDate.get(Calendar.DAY_OF_MONTH)+"日");
         dateBox.getChildren().addAll(today,tomorrow);
+        today.setDisable(true);
+
+        String todayDateString = todayDate.get(Calendar.YEAR)+"-"+(todayDate.get(Calendar.MONTH)+1)
+                +"-"+ todayDate.get(Calendar.DAY_OF_MONTH);
+
+        String tomorrowDateString = tomorrowDate.get(Calendar.YEAR)+"-"+(tomorrowDate.get(Calendar.MONTH)+1)
+                +"-"+ tomorrowDate.get(Calendar.DAY_OF_MONTH);
+
+        playsArea = new ScrollPane();
+        playsArea.setStyle("-fx-padding: 0;-fx-opacity: 0.75;-fx-background-color: bisque");
+        playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString)));
+
 
         today.setOnAction(e->{
-
+            today.setDisable(true);
+            tomorrow.setDisable(false);
+            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString)));
         });
 
         tomorrow.setOnAction(e->{
-
+            tomorrow.setDisable(true);
+            today.setDisable(false);
+            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(tomorrowDateString)));
         });
-
-        ScrollPane playsArea = new ScrollPane();
-        playsArea.setStyle("-fx-padding: 0;-fx-opacity: 0.75;-fx-background-color: bisque");
-        playsArea.setContent(new PlayInfo(playSrv.getAllPlay()));
 
         //功能按钮框
         HBox bottom = new HBox();

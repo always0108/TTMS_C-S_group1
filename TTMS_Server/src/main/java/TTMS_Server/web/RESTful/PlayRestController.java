@@ -37,6 +37,17 @@ public class PlayRestController {
         }
     }
 
+    //根据日期列出当天上映的演出计划
+    @RequestMapping(value = "/selectPlayByDate",method = RequestMethod.GET)
+    public ResponseResult selectPlayByDate(@RequestParam("date") String date){
+        List<Play> plays = playService.selectPlayByDate(date);
+        if(plays == null){
+            return new ResponseResult(false,"该剧目不存在");
+        }else{
+            return new ResponseResult(true,plays);
+        }
+    }
+
     //添加剧目
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseResult add(@ModelAttribute Play play){

@@ -38,6 +38,17 @@ public class ScheduleRestController {
         }
     }
 
+    //根据剧目id和获取当天剩余演出计划
+    @RequestMapping(value = "/getTodayLeastSchedules",method = RequestMethod.GET)
+    public ResponseResult getTodayLeastSchedules(@RequestParam("play_id") Integer play_id){
+        List<Schedule> schedules = scheduleService.selectTodayLeastSchedules(play_id);
+        if(schedules==null){
+            return new ResponseResult(false,"这天没有不存在");
+        }else{
+            return new ResponseResult(true,schedules);
+        }
+    }
+
     //根据演出厅id获取演出计划
     @RequestMapping(value = "/getScheduleByStudioId",method = RequestMethod.GET)
     public ResponseResult getScheduleByStudioId(@RequestParam("id") Integer id){

@@ -15,6 +15,9 @@ public interface ScheduleService {
     //根据剧目Id和日期获取相应演出计划
     List<Schedule> selectScheduleByPlayIdDate(Integer id,String date);
 
+    //根据剧目Id获取当天剩余演出计划
+    List<Schedule> selectTodayLeastSchedules(Integer id);
+
     //根据演出厅id获取相应演出计划
     List<Schedule> selectScheduleByStudioId(Integer id);
 

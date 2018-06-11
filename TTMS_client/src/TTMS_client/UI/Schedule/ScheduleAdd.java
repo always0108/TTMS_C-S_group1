@@ -29,7 +29,7 @@ public class ScheduleAdd extends GridPane{
 
     public ScheduleAdd() {}
 
-    public ScheduleAdd(Play play) {
+    public ScheduleAdd(Integer play_id) {
             this.setHgap(20);
             this.setVgap(20);
             this.setPadding(new Insets(25,25,25,25));
@@ -76,7 +76,7 @@ public class ScheduleAdd extends GridPane{
                         Map<String, Object> schedule = new HashMap<>();
 
                         schedule.put("studio_id",studioComboBox.get(sched_studio_id.getValue()));
-                        schedule.put("play_id",play.getPlay_id());
+                        schedule.put("play_id",play_id);
                         schedule.put("sched_time",DateFormat.stringToTimestamp(sched_time.getText()));
                         schedule.put("sched_ticket_price",new BigDecimal(sched_ticket_price.getText()));
 
@@ -115,7 +115,7 @@ public class ScheduleAdd extends GridPane{
             });
 
             Return.setOnAction(e->{
-                new PlayDetail(play);
+                new ScheduleList(play_id);
             });
         }
 }

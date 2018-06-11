@@ -16,18 +16,23 @@ public class ScheduleSrv {
     public List<Schedule> getScheduleByPlayId(Integer play_id) {
         String url = "/schedule/getScheduleByPlayId?play_id="+play_id;
         String res = Httpclient.get(url);
-        JSONObject jsonObject = JSON.parseObject(res);
-        return JSONToList(jsonObject);
+        return JSONToSchedules(res);
     }
 
     public List<Schedule> searchScheduleByDate(Integer play_id,String date) {
         String url = "/schedule/getScheduleByPlayIdDate?play_id="+play_id+"&date="+date;
         String res = Httpclient.get(url);
-        JSONObject jsonObject = JSON.parseObject(res);
-        return JSONToList(jsonObject);
+        return JSONToSchedules(res);
     }
 
-    public List<Schedule> JSONToList(JSONObject jsonObject){
+    public List<Schedule> getTodayLeastSchedules(Integer play_id){
+        String url = "/schedule/getTodayLeastSchedules?play_id="+play_id;
+        String res = Httpclient.get(url);
+        return JSONToSchedules(res);
+    }
+
+    public List<Schedule> JSONToSchedules(String res){
+        JSONObject jsonObject = JSON.parseObject(res);
         if (jsonObject.get("flag").equals(true)) {
             List<Schedule> schedules = JSONArray.parseArray(jsonObject.getString("content"), Schedule.class);
             return schedules;

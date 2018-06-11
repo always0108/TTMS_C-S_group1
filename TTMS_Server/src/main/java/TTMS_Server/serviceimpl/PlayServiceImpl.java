@@ -6,6 +6,10 @@ import TTMS_Server.service.PlayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service("PlayService")
@@ -30,6 +34,29 @@ public class PlayServiceImpl implements PlayService {
     @Override
     public List<Play> getAllPlayByPartName(String name){
         List<Play> plays = playDAO.getAllPlayByPartName("%"+name+"%");
+        for(Play play:plays){
+            play.byteToStr();
+        }
+        return plays;
+    }
+
+    //根据日期列出当天上映的演出计划
+    @Override
+    public List<Play> selectPlayByDate(String date){
+        String start = date + " 00:00:00";
+        String end = null;
+        Date startDate = null;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            startDate = df.parse(start);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+            calendar.add(Calendar.DATE,1);
+            end = df.format(calendar.getTime());
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        List<Play> plays = playDAO.selectPlayByDate(start,end);
         for(Play play:plays){
             play.byteToStr();
         }

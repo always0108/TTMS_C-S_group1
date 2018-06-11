@@ -48,6 +48,16 @@ public class ScheduleServiceImpl implements ScheduleService{
         return scheduleDAO.selectScheduleByPlayIdDate(id,start,end);
     }
 
+    //根据剧目Id获取当天剩余演出计划
+    public List<Schedule> selectTodayLeastSchedules(Integer id){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar now = Calendar.getInstance();
+        String start = df.format(now.getTime());
+        now.add(Calendar.DATE,1);
+        String end = df.format(now.getTime()).substring(0,11) + "00:00:00";
+        return scheduleDAO.selectScheduleByPlayIdDate(id,start,end);
+    }
+
     //根据演出厅id获取相应的演出计划
     @Override
     public List<Schedule> selectScheduleByStudioId(Integer id){ return scheduleDAO.selectScheduleByStudioId(id);}
@@ -55,6 +65,7 @@ public class ScheduleServiceImpl implements ScheduleService{
     //增加
     @Override
     public boolean addSchedule(Schedule schedule){
+        System.out.println(schedule.getSched_time());
         scheduleDAO.addSchedule(schedule);
         ticketService.initTicketByScheduleId(schedule.getSched_id());
         return true;

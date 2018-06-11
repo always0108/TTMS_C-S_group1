@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.Play;
 import model.Schedule;
 import node.FunButton;
 
@@ -57,7 +58,7 @@ public class ScheduleList{
         bottom.getChildren().addAll(btAdd,btret);
 
         btAdd.setOnAction(e->{
-            HomeUI.setCenter(new ScheduleAdd());
+            HomeUI.setCenter(new ScheduleAdd(play_id));
         });
         btret.setOnAction(e->{
             HomeUI.showNote();

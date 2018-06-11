@@ -65,7 +65,7 @@ public class ScheduleTest {
 //        }
 //        else
 //            System.out.println("已存在");
-        List<Schedule> schedules = scheduleService.selectScheduleByPlayIdDate(1,"2018-06-11");
+        List<Schedule> schedules = scheduleService.selectTodayLeastSchedules(1);
         for(Schedule schedule: schedules){
             System.out.println(schedule.getSched_time());
         }
