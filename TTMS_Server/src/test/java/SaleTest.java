@@ -36,13 +36,13 @@ public class SaleTest {
 
     @Test
     public void Test(){
-        //增加
-        Sale sale = new Sale(1,new Date(),new BigDecimal(100),new BigDecimal(100),new Short("-1"),new Short("-1"));
-        if(saleService.addSale(sale)){
-            System.out.println("添加成功");
-        }
-        else
-            System.out.println("已存在");
+//        //增加
+//        Sale sale = new Sale(1,new Date(),new BigDecimal(100),new BigDecimal(100),new Short("-1"),new Short("-1"));
+//        if(saleService.addSale(sale)){
+//            System.out.println("添加成功");
+//        }
+//        else
+//            System.out.println("已存在");
 
         //删除
 //        if(saleService.deleteSaleById(new Long(1))){

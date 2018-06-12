@@ -7,6 +7,7 @@ import TTMS_Server.model.Schedule;
 import TTMS_Server.model.Seat;
 import TTMS_Server.model.SeatAndTicket;
 import TTMS_Server.model.Ticket;
+import TTMS_Server.service.SaleService;
 import TTMS_Server.service.ScheduleService;
 import TTMS_Server.service.SeatService;
 import TTMS_Server.service.TicketService;
@@ -27,6 +28,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Autowired
     private ScheduleService scheduleService;
+
+    @Autowired
+    private SaleService saleService;
 
     //根据id获取信息
     @Override
@@ -118,22 +122,30 @@ public class TicketServiceImpl implements TicketService {
         if(ticket.getTicket_locked_time() == null){
             return true;
         }else{
-            Calendar oldLockTime = Calendar.getInstance();
-            oldLockTime.setTime(ticket.getTicket_locked_time());
-            //锁定时间为15分钟
-            oldLockTime.add(Calendar.MINUTE,15);
-            Calendar newLockTime = Calendar.getInstance();
-            //锁定的时间还没有到期
-            if(oldLockTime.after(newLockTime)){
-                return false;
-            }else {
-                return true;
-            }
+//            Calendar oldLockTime = Calendar.getInstance();
+//            oldLockTime.setTime(ticket.getTicket_locked_time());
+//            //锁定时间为5分钟
+//            oldLockTime.add(Calendar.MINUTE,5);
+//            Calendar newLockTime = Calendar.getInstance();
+//            //锁定的时间还没有到期
+//            if(oldLockTime.after(newLockTime)){
+//                return false;
+//            }else {
+//                return true;
+//            }
+            return false;
         }
     }
 
     //更新上锁时间
-    public void  updateLockedTime(Ticket ticket){
+    public void updateLockedTime(Ticket ticket){
         ticketDAO.updateLockedTime(ticket);
+    }
+
+    //给取消的订单中的票解锁
+    public void UnLockNotPayTickets(Long saleID){
+        if(saleService.selectSaleById(saleID).getSale_status() == 0){
+            ticketDAO.UnLockNotPayTickets(saleID);
+        }
     }
 }

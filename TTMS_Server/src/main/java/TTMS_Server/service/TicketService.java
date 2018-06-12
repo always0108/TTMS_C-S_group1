@@ -34,6 +34,9 @@ public interface TicketService {
 
     //更新上锁时间
     void  updateLockedTime(Ticket ticket);
+
+    //给取消的订单中的票解锁
+    void UnLockNotPayTickets(Long saleID);
 }
 
 

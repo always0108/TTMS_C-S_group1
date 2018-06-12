@@ -8,7 +8,10 @@ import TTMS_Server.model.Ticket;
 import TTMS_Server.service.SaleItemService;
 import TTMS_Server.service.SaleService;
 import TTMS_Server.service.TicketService;
+import TTMS_Server.utils.UnlockTicketThread;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -52,32 +55,23 @@ public class SaleServiceImpl implements SaleService{
     //更新
     public boolean updateSaleById(Sale sale){
         Sale sale_old = saleDAO.selectSaleById(sale.getSale_ID());
-
         //不存在
         if(sale_old==null){
             return false;
         }
-
-        if(sale_old.getSale_ID().equals(sale.getSale_ID())||
-                saleDAO.selectSaleById(sale.getSale_ID())==null){
-            saleDAO.updateSaleById(sale);
-            return  true;
-        }
-        else
-            return false;
+        saleDAO.updateSaleById(sale);
+        return  true;
     }
 
     //生成一个订单
     public synchronized Sale dealSale(List<SeatAndTicket> seatAndTickets){
         Sale newSale = new Sale();
-
         //先判断是否有座位被锁定
         for(SeatAndTicket seatAndTicket:seatAndTickets){
             if(!ticketService.isLocked(seatAndTicket.getTicket_id())){//座位被别人锁定
                 return null;
             }
         }
-
         //生成订单
         addSale(newSale);
         BigDecimal total  = new BigDecimal("0");
@@ -87,7 +81,7 @@ public class SaleServiceImpl implements SaleService{
         for(SeatAndTicket seatAndTicket:seatAndTickets){
                 saleItemService.addSaleItem(new Sale_item(seatAndTicket.getTicket_id(),
                         newSale.getSale_ID(),seatAndTicket.getTicket_price()));
-                total.add(seatAndTicket.getTicket_price());
+            total = total.add(seatAndTicket.getTicket_price());
                 ticketTemp.setTicket_id(seatAndTicket.getTicket_id());
                 ticketTemp.setTicket_locked_time(time);
                 ticketService.updateLockedTime(ticketTemp);
@@ -99,5 +93,28 @@ public class SaleServiceImpl implements SaleService{
         newSale.setSale_status(Short.parseShort("0"));
         updateSaleById(newSale);
         return newSale;
+    }
+
+    //更新状态
+    public boolean updateStatusById(Sale sale){
+        Sale sale_old = saleDAO.selectSaleById(sale.getSale_ID());
+        //不存在
+        if(sale_old==null){
+            return false;
+        }
+        saleDAO.updateStatusById(sale);
+        return  true;
+    }
+
+    //取消订单
+    public boolean cancelSaleById(Long sale_ID){
+        Sale sale_old = saleDAO.selectSaleById(sale_ID);
+        //不存在
+        if(sale_old==null){
+            return false;
+        }
+        ticketService.UnLockNotPayTickets(sale_ID);
+        saleDAO.cancelSaleById(sale_ID);
+        return true;
     }
 }

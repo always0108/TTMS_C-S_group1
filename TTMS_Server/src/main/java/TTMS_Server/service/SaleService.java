@@ -21,4 +21,10 @@ public interface SaleService {
 
     //生成一个订单
     Sale dealSale(List<SeatAndTicket> seatAndTickets);
+
+    //更新状态
+    boolean updateStatusById(Sale sale);
+
+    //取消订单
+    boolean cancelSaleById(Long sale_ID);
 }

@@ -44,4 +44,9 @@ public interface TicketDAO {
     @Select("select ticket_id,seat_row,seat_column,ticket_price,ticket_status " +
             "from seat natural join ticket where sched_id = #{sched_id}")
     List<SeatAndTicket> selectTicketByScheduleId(Integer sched_id);
+
+    //给取消的订单中的票解锁
+    @Update("update ticket set ticket_status = 0,ticket_locked_time = NULL " +
+            "where ticket_id in (select ticket_id from sale_item where sale_ID = #{SaleID})")
+    void UnLockNotPayTickets(Long SaleID);
 }

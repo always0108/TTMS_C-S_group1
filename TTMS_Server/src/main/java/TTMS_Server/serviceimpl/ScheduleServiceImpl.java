@@ -65,7 +65,6 @@ public class ScheduleServiceImpl implements ScheduleService{
     //增加
     @Override
     public boolean addSchedule(Schedule schedule){
-        System.out.println(schedule.getSched_time());
         scheduleDAO.addSchedule(schedule);
         ticketService.initTicketByScheduleId(schedule.getSched_id());
         return true;

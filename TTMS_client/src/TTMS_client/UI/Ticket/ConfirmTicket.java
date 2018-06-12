@@ -1,5 +1,6 @@
 package UI.Ticket;
 
+import UI.Layout.HomeUI;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
@@ -10,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Sale;
 import model.SeatAndTicket;
 import node.FunButton;
 import node.MessageBar;
@@ -93,6 +95,8 @@ public class ConfirmTicket extends VBox {
                     JSONObject jsonObject = getValue();
                     if(jsonObject.get("flag").equals(true)){
                         MessageBar.showMessageBar("订单成功生成");
+                        Sale sale = jsonObject.getObject("content",Sale.class);
+                        HomeUI.setCenter(new Pay(sale));
                     }else{
                         MessageBar.showMessageBar(jsonObject.get("content").toString());
                     }
@@ -121,8 +125,6 @@ public class ConfirmTicket extends VBox {
         });
 
         this.getChildren().addAll(title,tickets,priceArea,btGroup);
-
-
 
     }
 

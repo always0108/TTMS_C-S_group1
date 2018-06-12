@@ -27,4 +27,13 @@ public interface SaleDAO {
             "sale_payment = #{sale_payment} , sale_change = #{sale_change} , " +
             "sale_type = #{sale_type} , sale_status = #{sale_status} where sale_ID = #{sale_ID}")
     void updateSaleById(Sale sale);
+
+    //更新状态
+    @Update("update sale set sale_time = #{sale_time} , sale_change = #{sale_change} , " +
+            "sale_status = #{sale_status} where sale_ID = #{sale_ID}")
+    void updateStatusById(Sale sale);
+
+    //取消订单
+    @Update("update sale set sale_status = -1 where sale_ID = #{sale_ID}")
+    void cancelSaleById(Long sale_ID);
 }
