@@ -7,7 +7,7 @@ public class OneSeat extends Button {
     /*status取值含义:
         0：空位，没有安排座位
         1：完好的座位，可以使用
-        -1：座位损坏，不能使用'
+        -1：座位损坏，不能使用
     */
 
     private  Integer row;

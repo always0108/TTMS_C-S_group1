@@ -1,6 +1,5 @@
-package UI.Sale;
+package UI.Sell;
 
-import Service.PlaySrv;
 import Service.ScheduleSrv;
 import UI.Layout.HomeUI;
 import javafx.geometry.Insets;
@@ -11,11 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Play;
-import model.Schedule;
-import util.DateFormat;
 import util.ImageByte;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class PlayInfo extends GridPane {

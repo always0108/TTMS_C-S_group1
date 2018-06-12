@@ -60,22 +60,8 @@ public class StudioDetail extends VBox {
         Label studio_flag = new Label(studio.getStudio_flag().toString());
 
         Label seat = new Label("座位管理：");
-        Button btinit = new Button("初始化");
         Button btset = new Button("设置");
         FunButton btret = new FunButton("返回");
-
-        btinit.setOnAction(e->{
-            if(studio.getStudio_flag() != 0){
-                MessageBar.showMessageBar("该演出厅已经被初始化了");
-            }else {
-                if(seatSrv.initSeatsByStudioID(studio.getStudio_id())){
-                    MessageBar.showMessageBar("初始化成功");
-                }else{
-                    MessageBar.showMessageBar("初始化失败");
-                }
-                new StudioList();
-            }
-        });
 
         btset.setOnAction(e->{
             HomeUI.setCenter(new SeatTable(studio.getStudio_id()));
@@ -87,7 +73,7 @@ public class StudioDetail extends VBox {
 
         gridPane.addColumn(0, name, row, col, introduction,flag);
         gridPane.addColumn(1, studio_name,studio_row,studio_col,studio_introduction,studio_flag);
-        gridPane.addRow(5,seat,btinit,btset);
+        gridPane.addRow(5,seat,btset);
         gridPane.add(btret,1,6);
         this.getChildren().addAll(hBox,gridPane);
     }

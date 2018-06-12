@@ -15,6 +15,7 @@ public interface SaleDAO {
     @Insert("insert into sale (emp_id , sale_time , sale_payment , sale_change ," +
             " sale_type , sale_status ) values (#{emp_id} , #{sale_time} , #{sale_payment} , " +
             "#{sale_change} , #{sale_type} , #{sale_status} )")
+    @Options(useGeneratedKeys=true, keyProperty="sale_ID", keyColumn="sale_ID")
     void addSale(Sale sale);
 
     //删除

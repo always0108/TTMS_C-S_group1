@@ -1,4 +1,4 @@
-package UI.Sale;
+package UI.Sell;
 
 public class SellTicket {
 }

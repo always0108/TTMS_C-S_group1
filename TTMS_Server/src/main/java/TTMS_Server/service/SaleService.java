@@ -1,6 +1,9 @@
 package TTMS_Server.service;
 
 import TTMS_Server.model.Sale;
+import TTMS_Server.model.SeatAndTicket;
+
+import java.util.List;
 
 public interface SaleService {
 
@@ -15,4 +18,7 @@ public interface SaleService {
 
     //更新
     boolean updateSaleById(Sale sale);
+
+    //生成一个订单
+    Sale dealSale(List<SeatAndTicket> seatAndTickets);
 }

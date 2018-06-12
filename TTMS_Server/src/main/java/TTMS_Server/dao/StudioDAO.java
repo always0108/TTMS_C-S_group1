@@ -26,6 +26,7 @@ public interface StudioDAO {
     @Insert("insert into studio(studio_name,studio_row_count,studio_col_count,studio_seat_count," +
             "studio_introduction,studio_flag) values (#{studio_name},#{studio_row_count}," +
             "#{studio_col_count},#{studio_seat_count},#{studio_introduction},#{studio_flag})")
+    @Options(useGeneratedKeys=true, keyProperty="studio_id", keyColumn="studio_id")
     void addStudio(Studio studio);
 
     //删除演出厅

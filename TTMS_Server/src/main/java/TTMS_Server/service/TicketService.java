@@ -1,6 +1,11 @@
 package TTMS_Server.service;
 
+import TTMS_Server.model.SeatAndTicket;
 import TTMS_Server.model.Ticket;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.Date;
+import java.util.List;
 
 public interface TicketService {
     //根据id获取信息
@@ -20,6 +25,15 @@ public interface TicketService {
 
     //根据演出计划id批量删除票
     boolean deleteTicketByScheduleId(Integer sched_id);
+
+    //根据演出计划批量提取票
+    List<SeatAndTicket> selectTicketByScheduleId(Integer sched_id);
+
+    //判断该票是否能被锁定
+    boolean isLocked(Long ticket_id);
+
+    //更新上锁时间
+    void  updateLockedTime(Ticket ticket);
 }
 
 

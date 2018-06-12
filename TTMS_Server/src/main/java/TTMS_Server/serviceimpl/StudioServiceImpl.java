@@ -2,7 +2,9 @@ package TTMS_Server.serviceimpl;
 
 import TTMS_Server.dao.StudioDAO;
 import TTMS_Server.model.Studio;
+import TTMS_Server.service.SeatService;
 import TTMS_Server.service.StudioService;
+import TTMS_Server.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class StudioServiceImpl implements StudioService {
 
     @Autowired
     private StudioDAO studioDAO;
+
+    @Autowired
+    private SeatService seatService;
 
     //根据id获取演出厅信息
     @Override
@@ -37,6 +42,7 @@ public class StudioServiceImpl implements StudioService {
     public boolean addStudio(Studio studio){
         if (studioDAO.selectStudioByName(studio.getStudio_name()) == null){
             studioDAO.addStudio(studio);
+            seatService.initSeatByStudioId(studio.getStudio_id());
             return true;
         }
         return false;

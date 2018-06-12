@@ -60,7 +60,7 @@ public class SeatServiceImpl implements SeatService {
         if(studio.getStudio_flag() == 0){
             for(int i = 1; i <= studio.getStudio_row_count(); i++){
                 for(int j = 1 ;j <= studio.getStudio_col_count(); j++){
-                    Seat seat = new Seat(studio.getStudio_id(),i,j,Short.parseShort("0"));
+                    Seat seat = new Seat(studio.getStudio_id(),i,j,Short.parseShort("1"));
                     seatDAO.addSeat(seat);
                 }
             }

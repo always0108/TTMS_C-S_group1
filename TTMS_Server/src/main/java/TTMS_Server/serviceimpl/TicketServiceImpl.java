@@ -5,6 +5,7 @@ import TTMS_Server.dao.SeatDAO;
 import TTMS_Server.dao.TicketDAO;
 import TTMS_Server.model.Schedule;
 import TTMS_Server.model.Seat;
+import TTMS_Server.model.SeatAndTicket;
 import TTMS_Server.model.Ticket;
 import TTMS_Server.service.ScheduleService;
 import TTMS_Server.service.SeatService;
@@ -12,6 +13,8 @@ import TTMS_Server.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service("TicketService")
@@ -95,5 +98,42 @@ public class TicketServiceImpl implements TicketService {
         }else{
             return false;
         }
+    }
+
+    //根据演出计划批量提取票
+    public List<SeatAndTicket> selectTicketByScheduleId(Integer sched_id){
+        //先给超时的订单的票解锁
+
+        Schedule schedule = scheduleService.selectScheduleById(sched_id);
+        if(schedule != null){
+            return ticketDAO.selectTicketByScheduleId(sched_id);
+        }else{
+            return null;
+        }
+    }
+
+    //判断该票是否能被锁定
+    public boolean isLocked(Long ticket_id){
+        Ticket ticket = ticketDAO.selectTicketById(ticket_id);
+        if(ticket.getTicket_locked_time() == null){
+            return true;
+        }else{
+            Calendar oldLockTime = Calendar.getInstance();
+            oldLockTime.setTime(ticket.getTicket_locked_time());
+            //锁定时间为15分钟
+            oldLockTime.add(Calendar.MINUTE,15);
+            Calendar newLockTime = Calendar.getInstance();
+            //锁定的时间还没有到期
+            if(oldLockTime.after(newLockTime)){
+                return false;
+            }else {
+                return true;
+            }
+        }
+    }
+
+    //更新上锁时间
+    public void  updateLockedTime(Ticket ticket){
+        ticketDAO.updateLockedTime(ticket);
     }
 }

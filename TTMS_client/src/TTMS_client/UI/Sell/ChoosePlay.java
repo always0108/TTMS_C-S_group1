@@ -1,4 +1,4 @@
-package UI.Sale;
+package UI.Sell;
 
 import Service.PlaySrv;
 import UI.Layout.HomeUI;
