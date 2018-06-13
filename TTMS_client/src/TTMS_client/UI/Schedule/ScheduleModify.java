@@ -100,13 +100,8 @@ public class ScheduleModify extends GridPane {
                 protected void succeeded() {
                     super.succeeded();
                     JSONObject jsonObject = getValue();
-                    if (jsonObject.get("flag").equals(true)) {
-                        MessageBar.showMessageBar("修改成功！");
-                        new ScheduleList(schedule.getPlay_id());
-                    } else {
-                        MessageBar.showMessageBar(jsonObject.get("content").toString());
-                        new ScheduleList(schedule.getPlay_id());
-                    }
+                    MessageBar.showMessageBar(jsonObject.get("content").toString());
+                    new ScheduleList(schedule.getPlay_id());
                     Confirm.setDisable(false);
                     updateMessage("Done!");
                 }

@@ -52,7 +52,7 @@ public class SeatRestController {
         if(seatService.updateStatusByStudioId(studio_id,seats)){
             return new ResponseResult(true,"修改成功");
         }else{
-            return new ResponseResult(false,"修改失败");
+            return new ResponseResult(false,"修改失败，该演出厅已经安排了演出计划");
         }
     }
 

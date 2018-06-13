@@ -142,4 +142,9 @@ public class TicketServiceImpl implements TicketService {
     public void UnLockTickets(Short status,Long saleID){
         ticketDAO.UnLockTickets(status,saleID);
     }
+
+    //根据演出计划提取卖出的票
+    public List<Ticket> selectSelledTicketByScheduleId(Integer sched_id){
+        return ticketDAO.selectSelledTicketByScheduleId(sched_id);
+    }
 }

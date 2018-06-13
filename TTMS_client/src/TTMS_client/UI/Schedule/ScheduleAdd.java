@@ -94,6 +94,7 @@ public class ScheduleAdd extends GridPane{
                         super.succeeded();
                         JSONObject jsonObject = getValue();
                         MessageBar.showMessageBar(jsonObject.get("content").toString());
+                        new ScheduleList(play_id);
                         Confirm.setDisable(false);
                         updateMessage("Done!");
                     }

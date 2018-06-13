@@ -50,4 +50,8 @@ public interface TicketDAO {
     void UnLockTickets(@Param("ticket_status")Short ticket_status,
                              @Param("sale_ID")Long sale_ID);
 
+    //根据演出计划提取卖出的票
+    @Select("select * from  ticket where sched_id = #{sched_id}")
+    List<Ticket> selectSelledTicketByScheduleId(Integer sched_id);
+
 }

@@ -65,7 +65,7 @@ public class PlayRestController {
         if (playService.deletePlayById(id))
             return new ResponseResult(true,"删除成功");
         else{
-            return new ResponseResult(false,"该剧目不存在");
+            return new ResponseResult(false,"该剧目已经安排了演出计划");
         }
     }
 

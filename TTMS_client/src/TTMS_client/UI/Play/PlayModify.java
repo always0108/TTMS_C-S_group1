@@ -173,12 +173,8 @@ public class PlayModify extends GridPane {
                 protected void succeeded() {
                     super.succeeded();
                     JSONObject jsonObject = getValue();
-                    if (jsonObject.get("flag").equals(true)) {
-                        MessageBar.showMessageBar("修改成功！");
-                        new PlayList();
-                    } else {
-                        MessageBar.showMessageBar(jsonObject.get("content").toString());
-                    }
+                    new PlayList();
+                    MessageBar.showMessageBar(jsonObject.get("content").toString());
                     Confirm.setDisable(false);
                     updateMessage("Done!");
                 }

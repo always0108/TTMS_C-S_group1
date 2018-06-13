@@ -25,6 +25,13 @@ public interface ScheduleDAO {
                           @Param("start")String start,
                           @Param("end")String end);
 
+    //根据studio_id和日期获取相应的演出计划
+    @Select("select * from schedule where studio_id = #{studio_id} " +
+            "and sched_time >= #{start} and sched_time < #{end}")
+    List<Schedule> selectScheduleByStudioIdDate(@Param("studio_id")Integer studio_id,
+                                              @Param("start")String start,
+                                              @Param("end")String end);
+
     //根据studio_id获取所有演出计划
     @Select("select * from schedule where studio_id = #{id}")
     List<Schedule> selectScheduleByStudioId(Integer id);

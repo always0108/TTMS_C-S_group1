@@ -129,12 +129,8 @@ public class PlayAdd extends GridPane {
                 protected void succeeded() {
                     super.succeeded();
                     JSONObject jsonObject = getValue();
-                    if (jsonObject.get("flag").equals(true)) {
-                        MessageBar.showMessageBar("添加成功！");
-                        new PlayList();
-                    } else {
-                        MessageBar.showMessageBar(jsonObject.get("content").toString());
-                    }
+                    MessageBar.showMessageBar(jsonObject.get("content").toString());
+                    new PlayList();
                     Confirm.setDisable(false);
                     updateMessage("Done!");
                 }

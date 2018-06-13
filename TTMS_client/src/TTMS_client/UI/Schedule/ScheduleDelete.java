@@ -56,11 +56,7 @@ public class ScheduleDelete extends VBox {
                 protected void succeeded() {
                     super.succeeded();
                     JSONObject jsonObject = getValue();
-                    if (jsonObject.get("flag").equals(true)) {
-                        MessageBar.showMessageBar("删除成功");
-                    } else {
-                        MessageBar.showMessageBar("删除失败");
-                    }
+                    MessageBar.showMessageBar(jsonObject.get("content").toString());
                     new ScheduleList(schedule.getPlay_id());
                     updateMessage("Done!");
                 }

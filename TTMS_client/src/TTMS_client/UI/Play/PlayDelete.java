@@ -56,13 +56,8 @@ public class PlayDelete extends VBox {
                 protected void succeeded() {
                     super.succeeded();
                     JSONObject jsonObject = getValue();
-                    if (jsonObject.get("flag").equals(true)) {
-                        MessageBar.showMessageBar("删除成功");
-                        new PlayList();
-                    } else {
-                        MessageBar.showMessageBar("删除失败");
-                        new PlayList();
-                    }
+                    MessageBar.showMessageBar(jsonObject.get("content").toString());
+                    new PlayList();
                     updateMessage("Done!");
                 }
 

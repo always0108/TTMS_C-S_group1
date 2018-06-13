@@ -67,7 +67,7 @@ public class ScheduleRestController {
             return new ResponseResult(true,"添加成功");
         }
         else{
-            return new ResponseResult(false,"演出计划已存在");
+            return new ResponseResult(false,"与其他演出计划冲突");
         }
     }
 

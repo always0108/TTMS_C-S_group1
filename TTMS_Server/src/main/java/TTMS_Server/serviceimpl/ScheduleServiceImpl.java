@@ -1,7 +1,9 @@
 package TTMS_Server.serviceimpl;
 
 import TTMS_Server.dao.ScheduleDAO;
+import TTMS_Server.model.Play;
 import TTMS_Server.model.Schedule;
+import TTMS_Server.service.PlayService;
 import TTMS_Server.service.ScheduleService;
 import TTMS_Server.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,10 @@ public class ScheduleServiceImpl implements ScheduleService{
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private PlayService playService;
+
 
     //根据id获取信息
     @Override
@@ -48,6 +54,12 @@ public class ScheduleServiceImpl implements ScheduleService{
         return scheduleDAO.selectScheduleByPlayIdDate(id,start,end);
     }
 
+    //根据演出厅Id和日期获取相应的演出计划
+    public List<Schedule> selectScheduleByStudioIdDate(Integer studio_id,
+                                                String start,String end){
+        return scheduleDAO.selectScheduleByStudioIdDate(studio_id,start,end);
+    }
+
     //根据剧目Id获取当天剩余演出计划
     public List<Schedule> selectTodayLeastSchedules(Integer id){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -65,6 +77,41 @@ public class ScheduleServiceImpl implements ScheduleService{
     //增加
     @Override
     public boolean addSchedule(Schedule schedule){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar newTime = Calendar.getInstance();
+        newTime.setTime(schedule.getSched_time());
+
+        //一般电影都小于三个小时，判断前后3小时是否冲突
+        Calendar beforeTime = Calendar.getInstance();
+        beforeTime.setTime(schedule.getSched_time());
+        beforeTime.add(Calendar.HOUR,-3);
+
+        Calendar afterTime = Calendar.getInstance();
+        afterTime.setTime(schedule.getSched_time());
+        afterTime.add(Calendar.HOUR,3);
+
+        //进行容错处理
+        List<Schedule> beforeSchedules = selectScheduleByStudioIdDate(schedule.getStudio_id(),df.format(beforeTime.getTime()),df.format(newTime.getTime()));
+        for(Schedule schedule1:beforeSchedules){
+            Play play = playService.selectPlayById(schedule1.getPlay_id());
+            Calendar tmp = Calendar.getInstance();
+            tmp.setTime(schedule1.getSched_time());
+            tmp.add(Calendar.MINUTE,play.getPlay_length());
+            if(tmp.after(newTime)){
+                return false;
+            }
+        }
+
+        List<Schedule> afterSchedules = selectScheduleByStudioIdDate(schedule.getStudio_id(),df.format(newTime.getTime()),df.format(afterTime.getTime()));
+        for(Schedule schedule1:afterSchedules){
+            Calendar tmp = Calendar.getInstance();
+            tmp.setTime(schedule1.getSched_time());
+            Play play = playService.selectPlayById(schedule.getPlay_id());
+            newTime.add(Calendar.MINUTE,play.getPlay_length());
+            if(tmp.before(newTime)){
+                return false;
+            }
+        }
         scheduleDAO.addSchedule(schedule);
         ticketService.initTicketByScheduleId(schedule.getSched_id());
         return true;
@@ -73,7 +120,8 @@ public class ScheduleServiceImpl implements ScheduleService{
     //删除
     @Override
     public boolean deleteScheduleById(Integer id){
-        if(scheduleDAO.selectScheduleById(id)!=null){
+        //票没有卖出才能删除
+        if(scheduleDAO.selectScheduleById(id)!=null && ticketService.selectSelledTicketByScheduleId(id) == null ){
             //先将票销毁
             ticketService.deleteTicketByScheduleId(id);
             scheduleDAO.deleteScheduleById(id);

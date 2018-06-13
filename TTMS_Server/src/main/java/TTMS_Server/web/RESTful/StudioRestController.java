@@ -54,7 +54,7 @@ public class StudioRestController {
         if (studioService.deleteStudioById(new Integer(id)))
             return new ResponseResult(true,"删除成功");
         else{
-            return new ResponseResult(false,"该演出厅不存在");
+            return new ResponseResult(false,"该已经安排了演出计划");
         }
     }
 

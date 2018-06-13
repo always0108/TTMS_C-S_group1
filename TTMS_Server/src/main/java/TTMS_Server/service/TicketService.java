@@ -38,6 +38,8 @@ public interface TicketService {
     //给订单中的票解锁
     void UnLockTickets(Short status,Long saleID);
 
+    //根据演出计划提取卖出的票
+    List<Ticket> selectSelledTicketByScheduleId(Integer sched_id);
 }
 
 

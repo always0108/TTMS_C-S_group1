@@ -42,7 +42,7 @@ public class HomeUI{
         vBox.setPadding(new Insets(50,20,20,20));
         Label welcome = new Label("欢迎使用海客票务管理系统！");
         welcome.setId("welcome");
-        Label note = new Label("<使用中遇到问题请及时与我们联系>");
+        Label note = new Label("<--使用中遇到问题请及时与我们联系-->");
         note.setId("note");
         Label email = new Label("Email:  Hackers@hacker.org");
         email.getStyleClass().add("conection");
