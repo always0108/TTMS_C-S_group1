@@ -1,7 +1,5 @@
 package UI.Layout;
 
-import UI.LoginUI;
-import UI.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -54,16 +52,22 @@ public class HomeUI{
         return vBox;
     }
 
-    public void cherkUI(String name){
+    public void adminUI(String name){
         Main.borderPane.setTop(top(name));
-        //Main.borderPane.setCenter(salemenu());
+        Main.borderPane.setCenter(center());
+        Main.borderPane.setLeft(NavigationBar.getAdminBar());
+    }
+
+    public void sellManUI(String name){
+        Main.borderPane.setTop(top(name));
+        Main.borderPane.setCenter(center());
+        Main.borderPane.setLeft(NavigationBar.getSellManBar());
     }
 
     public void ManagerUI(String name){
         Main.borderPane.setTop(top(name));
         Main.borderPane.setCenter(center());
-        Main.borderPane.setLeft(new NavigationBar().getManagerBar());
-        MessageBar.showMessageBar("欢迎登录！");
+        Main.borderPane.setLeft(NavigationBar.getManagerBar());
     }
 
     public static void setCenter(Pane pane){

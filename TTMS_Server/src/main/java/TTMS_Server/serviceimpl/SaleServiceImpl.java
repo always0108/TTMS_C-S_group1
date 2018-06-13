@@ -8,10 +8,7 @@ import TTMS_Server.model.Ticket;
 import TTMS_Server.service.SaleItemService;
 import TTMS_Server.service.SaleService;
 import TTMS_Server.service.TicketService;
-import TTMS_Server.utils.UnlockTicketThread;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -64,7 +61,7 @@ public class SaleServiceImpl implements SaleService{
     }
 
     //生成一个订单
-    public synchronized Sale dealSale(List<SeatAndTicket> seatAndTickets){
+    public synchronized Sale dealSale(List<SeatAndTicket> seatAndTickets,Integer flag,Integer emp_id){
         Sale newSale = new Sale();
         //先判断是否有座位被锁定
         for(SeatAndTicket seatAndTicket:seatAndTickets){
@@ -87,33 +84,44 @@ public class SaleServiceImpl implements SaleService{
                 ticketService.updateLockedTime(ticketTemp);
         }
         newSale.setSale_time(Calendar.getInstance().getTime());
-        //newSale.setEmp_id();
+        newSale.setEmp_id(emp_id);
         newSale.setSale_payment(total);
-        newSale.setSale_type(Short.parseShort("1"));
+        newSale.setSale_type(flag.shortValue());
         newSale.setSale_status(Short.parseShort("0"));
         updateSaleById(newSale);
         return newSale;
     }
 
-    //更新状态
-    public boolean updateStatusById(Sale sale){
+    //付款完成后更新状态，将座位解锁
+    public boolean updateStatusById(Sale sale,Integer flag){
         Sale sale_old = saleDAO.selectSaleById(sale.getSale_ID());
         //不存在
         if(sale_old==null){
             return false;
         }
         saleDAO.updateStatusById(sale);
-        return  true;
+        if(flag == 1){
+            ticketService.UnLockTickets(Short.parseShort("-1"),sale.getSale_ID());
+        }else {
+            ticketService.UnLockTickets(Short.parseShort("0"),sale.getSale_ID());
+        }
+        return true;
     }
 
     //取消订单
-    public boolean cancelSaleById(Long sale_ID){
+    public boolean cancelSaleById(Long sale_ID,Integer flag){
         Sale sale_old = saleDAO.selectSaleById(sale_ID);
         //不存在
         if(sale_old==null){
             return false;
         }
-        ticketService.UnLockNotPayTickets(sale_ID);
+        if(flag == 1){
+            //买票时若取消状态该变为0（可选）
+            ticketService.UnLockTickets(Short.parseShort("0"),sale_ID);
+        }else{
+            //退票时若取消状态该变为-1（已选）
+            ticketService.UnLockTickets(Short.parseShort("-1"),sale_ID);
+        }
         saleDAO.cancelSaleById(sale_ID);
         return true;
     }

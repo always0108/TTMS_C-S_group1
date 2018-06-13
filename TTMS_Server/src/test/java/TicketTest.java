@@ -62,6 +62,6 @@ public class TicketTest {
 //        else {
 //            System.out.println("已存在");
 //        }
-        ticketService.UnLockNotPayTickets(Long.parseLong("3"));
+        ticketService.UnLockTickets(Short.parseShort("0"),Long.parseLong("1"));
     }
 }

@@ -1,7 +1,5 @@
 package TTMS_Server.serviceimpl;
 
-import TTMS_Server.dao.ScheduleDAO;
-import TTMS_Server.dao.SeatDAO;
 import TTMS_Server.dao.TicketDAO;
 import TTMS_Server.model.Schedule;
 import TTMS_Server.model.Seat;
@@ -14,8 +12,6 @@ import TTMS_Server.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Service("TicketService")
@@ -143,9 +139,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     //给取消的订单中的票解锁
-    public void UnLockNotPayTickets(Long saleID){
-        if(saleService.selectSaleById(saleID).getSale_status() == 0){
-            ticketDAO.UnLockNotPayTickets(saleID);
-        }
+    public void UnLockTickets(Short status,Long saleID){
+        ticketDAO.UnLockTickets(status,saleID);
     }
 }

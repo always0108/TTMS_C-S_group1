@@ -20,7 +20,7 @@ public class PlayInfo extends GridPane {
 
     public PlayInfo() {}
 
-    public PlayInfo(List<Play> plays) {
+    public PlayInfo(List<Play> plays,Integer flag) {
         this.setHgap(20);
         this.setVgap(20);
         this.setAlignment(Pos.CENTER);
@@ -48,7 +48,7 @@ public class PlayInfo extends GridPane {
                     j = 0;
                 }
                 link.setOnAction(e->{
-                    HomeUI.setCenter(new PlaySchedule(scheduleSrv.getTodayLeastSchedules(play.getPlay_id()),play));
+                    HomeUI.setCenter(new PlaySchedule(scheduleSrv.getTodayLeastSchedules(play.getPlay_id()),play,flag));
                 });
             }
         }

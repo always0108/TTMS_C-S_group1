@@ -20,11 +20,11 @@ public interface SaleService {
     boolean updateSaleById(Sale sale);
 
     //生成一个订单
-    Sale dealSale(List<SeatAndTicket> seatAndTickets);
+    Sale dealSale(List<SeatAndTicket> seatAndTickets,Integer flag,Integer emp_id);
 
     //更新状态
-    boolean updateStatusById(Sale sale);
+    boolean updateStatusById(Sale sale,Integer flag);
 
     //取消订单
-    boolean cancelSaleById(Long sale_ID);
+    boolean cancelSaleById(Long sale_ID,Integer flag);
 }

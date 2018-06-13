@@ -19,7 +19,7 @@ public class PlaySchedule extends VBox {
 
     ScrollPane scrollPane = new ScrollPane();
 
-    public PlaySchedule(List<Schedule> schedules, Play play){
+    public PlaySchedule(List<Schedule> schedules, Play play,Integer flag){
         this.setPadding(new Insets(30,20,20,20));
         this.setSpacing(30);
         this.setAlignment(Pos.TOP_LEFT);
@@ -33,7 +33,7 @@ public class PlaySchedule extends VBox {
             title.setFont(Font.font(28));
             VBox scheduleArea = new VBox();
             for (Schedule schedule:schedules) {
-                scheduleArea.getChildren().add(new OnePlaySchedule(schedule,play));
+                scheduleArea.getChildren().add(new OnePlaySchedule(schedule,play,flag));
             }
             scrollPane.setContent(scheduleArea);
             this.getChildren().addAll(title,scrollPane);
@@ -46,7 +46,7 @@ public class PlaySchedule extends VBox {
         bottom.getChildren().add(btret);
 
         btret.setOnAction(e->{
-            HomeUI.setCenter(new ChoosePlay());
+            HomeUI.setCenter(new ChoosePlay(flag));
         });
         this.getChildren().addAll(bottom);
     }

@@ -1,10 +1,10 @@
-package UI;
+package UI.Layout;
 
+import UI.Layout.LoginUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import util.DateFormat;
 
 public class Main extends Application {
 
@@ -20,19 +20,14 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
         borderPane = new BorderPane();
-//        borderPane.setLeft(new NavigationBar().getManagerBar());
         borderPane.setCenter(LoginUI.init());
-//        new TestUI().test();
 
         borderPane.setStyle("-fx-background-image: url('/image/background.jpg')");
         Scene scene = new Scene(borderPane, 1024, 768);
-
         scene.getStylesheets().add(getClass().getResource("/css/MainStyle.css").toExternalForm());
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

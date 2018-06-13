@@ -23,7 +23,7 @@ public class OnePlaySchedule extends HBox {
 
     private List<Studio> studios = new StudioSrv().getAllStudio();
 
-    public OnePlaySchedule(Schedule schedule, Play play){
+    public OnePlaySchedule(Schedule schedule, Play play,Integer flag){
         this.setAlignment(Pos.CENTER_LEFT);
         this.setPadding(new Insets(10,10,10,10));
         this.setSpacing(30);
@@ -74,7 +74,7 @@ public class OnePlaySchedule extends HBox {
         FunButton check = new FunButton("选座");
         choose.getChildren().add(check);
         check.setOnAction(e->{
-            HomeUI.setCenter(new TicketTable(schedule.getSched_id()));
+            HomeUI.setCenter(new TicketTable(schedule.getSched_id(),flag));
         });
         this.getChildren().addAll(time,type,studioArea,price,choose);
     }

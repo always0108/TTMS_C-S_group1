@@ -15,7 +15,6 @@ import model.Sale;
 import model.SeatAndTicket;
 import node.FunButton;
 import node.MessageBar;
-import util.DateFormat;
 import util.Httpclient;
 
 import java.math.BigDecimal;
@@ -25,7 +24,7 @@ import java.util.Map;
 
 public class ConfirmTicket extends VBox {
 
-    public ConfirmTicket(List<SeatAndTicket> seatAndTickets) {
+    public ConfirmTicket(List<SeatAndTicket> seatAndTickets,Integer flag,Integer sched_id) {
         this.setAlignment(Pos.TOP_LEFT);
         this.setSpacing(40);
         this.setPadding(new Insets(20,20,20,20));
@@ -80,6 +79,7 @@ public class ConfirmTicket extends VBox {
                     jsonObject.put("tickets",seatAndTickets);
                     String jsonStr = JSON.toJSONString(jsonObject);
                     data.put("json",jsonStr);
+                    data.put("flag",flag);
                     String res = Httpclient.post(url, data);
                     return JSON.parseObject(res);
                 }
@@ -96,7 +96,11 @@ public class ConfirmTicket extends VBox {
                     if(jsonObject.get("flag").equals(true)){
                         MessageBar.showMessageBar("订单成功生成");
                         Sale sale = jsonObject.getObject("content",Sale.class);
-                        HomeUI.setCenter(new Pay(sale));
+                        if(flag == 1){
+                            HomeUI.setCenter(new Pay(sale));
+                        }else{
+                            HomeUI.setCenter(new Return(sale));
+                        }
                     }else{
                         MessageBar.showMessageBar(jsonObject.get("content").toString());
                     }
@@ -121,7 +125,7 @@ public class ConfirmTicket extends VBox {
         });
 
         btret.setOnAction(e->{
-            //取消交易
+            HomeUI.setCenter(new TicketTable(sched_id,flag));
         });
 
         this.getChildren().addAll(title,tickets,priceArea,btGroup);

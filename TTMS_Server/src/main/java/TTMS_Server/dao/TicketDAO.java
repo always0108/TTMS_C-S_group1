@@ -5,7 +5,6 @@ import TTMS_Server.model.Ticket;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -46,7 +45,9 @@ public interface TicketDAO {
     List<SeatAndTicket> selectTicketByScheduleId(Integer sched_id);
 
     //给取消的订单中的票解锁
-    @Update("update ticket set ticket_status = 0,ticket_locked_time = NULL " +
-            "where ticket_id in (select ticket_id from sale_item where sale_ID = #{SaleID})")
-    void UnLockNotPayTickets(Long SaleID);
+    @Update("update ticket set ticket_status = #{ticket_status},ticket_locked_time = NULL " +
+            "where ticket_id in (select ticket_id from sale_item where sale_ID = #{sale_ID})")
+    void UnLockTickets(@Param("ticket_status")Short ticket_status,
+                             @Param("sale_ID")Long sale_ID);
+
 }

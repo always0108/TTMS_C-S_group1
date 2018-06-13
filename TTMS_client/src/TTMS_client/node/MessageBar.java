@@ -1,6 +1,6 @@
 package node;
 
-import UI.Main;
+import UI.Layout.Main;
 import javafx.animation.FadeTransition;
 import javafx.concurrent.Task;
 import javafx.geometry.Pos;

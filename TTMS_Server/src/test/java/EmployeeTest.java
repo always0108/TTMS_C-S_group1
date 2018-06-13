@@ -47,12 +47,7 @@ public void after() throws Exception {
     @Test
     public void test(){
        //增加
-        Employee emp = new Employee("04163164",1,"limeng","123456",
-                "17691169108","西安","ldx19980108@gmail.com");
-        if (employeeService.addEmployee(emp))
-           System.out.println("添加成功");
-        else
-           System.out.println("该用户已存在");
+        init();
 //        //删除
 //        if (employeeService.deleteEmployeeById(3))
 //           System.out.println("删除成功");
@@ -67,6 +62,21 @@ public void after() throws Exception {
 //            System.out.println("更新成功");
 //        else
 //            System.out.println("该用户名已存在");
+  }
+
+  //初始化数据，增加一个经理、一个售票员、一个管理员
+  public void init(){
+      Employee manager = new Employee("00000002",1,"manager","123456",
+              "13815360180","西安","manager@gmail.com");
+      employeeService.addEmployee(manager);
+
+      Employee sellman = new Employee("00000003",2,"sellman","123456",
+              "18915479666","西安","sellman@gmail.com");
+      employeeService.addEmployee(sellman);
+
+      Employee admin = new Employee("00000001",3,"admin","123456",
+              "17691145006","西安","admin@gmail.com");
+      employeeService.addEmployee(admin);
   }
 
 

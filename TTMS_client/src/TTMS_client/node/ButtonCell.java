@@ -1,7 +1,5 @@
 package node;
 
-import UI.Employee.EmployeeDetail;
-import UI.Main;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import model.EmployeeProperty;

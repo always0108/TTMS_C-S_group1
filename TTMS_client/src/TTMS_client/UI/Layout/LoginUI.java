@@ -1,4 +1,4 @@
-package UI;
+package UI.Layout;
 
 import Service.DataCollection;
 import UI.Layout.HomeUI;
@@ -10,7 +10,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import model.Employee;
 import node.FunButton;
+import node.MessageBar;
 import util.Httpclient;
 
 import java.util.HashMap;
@@ -83,8 +85,15 @@ public class LoginUI {
                     if(jsonObject.get("flag").equals(true)){
                         note.setText("登录成功");
                         new DataCollection();
-                        JSONObject emp = JSON.parseObject(jsonObject.get("content").toString());
-                        new HomeUI().ManagerUI(emp.get("emp_name").toString());
+                        Employee emp = jsonObject.getObject("content",Employee.class);
+                        if(emp.getEmp_type() == 1){//经理
+                            new HomeUI().ManagerUI(emp.getEmp_name());
+                        }else if(emp.getEmp_type() == 2){//售票员
+                            new HomeUI().sellManUI(emp.getEmp_name());
+                        }else if(emp.getEmp_type() == 3){//管理员
+                            new HomeUI().adminUI(emp.getEmp_name());
+                        }
+                        MessageBar.showMessageBar("欢迎登录！");
                     }else {
                         note.setTextFill(Color.RED);
                         note.setText(jsonObject.get("content").toString());

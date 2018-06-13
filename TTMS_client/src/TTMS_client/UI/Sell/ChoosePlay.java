@@ -18,7 +18,7 @@ public class ChoosePlay extends VBox {
     private PlaySrv playSrv = new PlaySrv();
     private ScrollPane playsArea;
 
-    public ChoosePlay(){
+    public ChoosePlay(Integer flag){
         this.setAlignment(Pos.TOP_CENTER);
         this.setSpacing(10);
         this.setPadding(new Insets(20,20,20,20));
@@ -43,19 +43,19 @@ public class ChoosePlay extends VBox {
 
         playsArea = new ScrollPane();
         playsArea.setStyle("-fx-padding: 0;-fx-opacity: 0.75;-fx-background-color: bisque");
-        playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString)));
+        playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString),flag));
 
 
         today.setOnAction(e->{
             today.setDisable(true);
             tomorrow.setDisable(false);
-            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString)));
+            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString),flag));
         });
 
         tomorrow.setOnAction(e->{
             tomorrow.setDisable(true);
             today.setDisable(false);
-            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(tomorrowDateString)));
+            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(tomorrowDateString),flag));
         });
 
         //功能按钮框
