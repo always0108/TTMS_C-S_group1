@@ -7,6 +7,7 @@ import TTMS_Server.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,6 +44,7 @@ public class PlayServiceImpl implements PlayService {
         }
         return plays;
     }
+
 
     //根据日期列出当天上映的演出计划
     @Override

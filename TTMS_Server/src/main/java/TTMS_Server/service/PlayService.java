@@ -15,6 +15,7 @@ public interface PlayService {
     //根据关键字获取匹配的剧目信息
     List<Play> getAllPlayByPartName(String name);
 
+
     //根据日期列出当天上映的演出计划
     List<Play> selectPlayByDate(String date);
 

@@ -11,7 +11,7 @@ public class DataCollection {
     public static Map<String,Integer> playLangComboBox;
     public static Map<String,Integer> dataDictComboBox;
     public static Map<Integer,String> playTypeTable = new HashMap<>();
-    public static Map<Integer,String> playlangTable = new HashMap<>();;
+    public static Map<Integer,String> playlangTable = new HashMap<>();
 
     public DataCollection(){
         updateDataDict();
