@@ -3,6 +3,7 @@ import TTMS_Server.config.database.MyBatis;
 import TTMS_Server.config.spring.RootConfig;
 import TTMS_Server.config.spring.WebConfig;
 import TTMS_Server.config.spring.WebInit;
+import TTMS_Server.model.EmployeeSale;
 import TTMS_Server.model.Sale;
 import TTMS_Server.service.SaleService;
 import org.junit.After;
@@ -17,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
@@ -61,6 +63,8 @@ public class SaleTest {
 //        else{
 //            System.out.println("已存在");
 //        }
+        BigDecimal sale = saleService.selectSaleAmountByEmployeeId(2);
+        System.out.println(sale);
+        }
     }
 
-}

@@ -1,5 +1,6 @@
 package UI.Layout;
 
+import UI.Analyze.AnalysisMenu;
 import UI.DataDictionary.DataDictList;
 import UI.Employee.EmployeeList;
 import UI.Play.PlayList;
@@ -30,7 +31,7 @@ public class NavigationBar{
 
         NavigationButton saleAnalysis = new NavigationButton("销售分析");
         saleAnalysis.setOnAction(e->{
-            //销售分析的界面
+            HomeUI.setCenter(new AnalysisMenu());
         });
 
         managerBar.getChildren().addAll(playManagement,dataDictManagement,saleAnalysis);

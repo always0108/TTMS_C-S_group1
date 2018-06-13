@@ -1,10 +1,7 @@
 package TTMS_Server.serviceimpl;
 
 import TTMS_Server.dao.SaleDAO;
-import TTMS_Server.model.Sale;
-import TTMS_Server.model.Sale_item;
-import TTMS_Server.model.SeatAndTicket;
-import TTMS_Server.model.Ticket;
+import TTMS_Server.model.*;
 import TTMS_Server.service.SaleItemService;
 import TTMS_Server.service.SaleService;
 import TTMS_Server.service.TicketService;
@@ -30,6 +27,22 @@ public class SaleServiceImpl implements SaleService{
 
     //根据id获取信息
     public Sale selectSaleById(Long id) { return saleDAO.selectSaleById(id); }
+
+    //获取所有票房
+    public List<EmployeeSale> selectAllTicketPrice(){
+        return saleDAO.selectAllTicketPrice();
+    }
+
+    //根据剧目查询票房
+    public List<PlaySale> selectPlayTicketAmountByPlayID(){
+        return saleDAO.selectPlayTicketAmountByPlayID();
+    }
+
+    //根据员工id获取销售额
+    @Override
+    public BigDecimal selectSaleAmountByEmployeeId(Integer id){
+        return saleDAO.selectSaleAmountByEmployeeId(id);
+    }
 
     //增加
     public boolean addSale(Sale sale){

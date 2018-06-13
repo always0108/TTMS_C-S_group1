@@ -21,7 +21,8 @@ public interface PlayDAO {
 
     //根据关键字获取匹配的剧目信息
     @Select("select * from play where play_name like #{name}")
-    List<Play> getAllPlayByPartName(String name);
+        List<Play> getAllPlayByPartName(String name);
+
 
     //根据日期获取当天上映的剧目
     @Select("select * from play where play_id in (select play_id from schedule where  " +
