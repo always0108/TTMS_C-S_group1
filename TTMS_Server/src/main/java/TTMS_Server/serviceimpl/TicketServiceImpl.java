@@ -1,4 +1,4 @@
-package TTMS_Server.serviceImpl;
+package TTMS_Server.serviceimpl;
 
 import TTMS_Server.dao.TicketDAO;
 import TTMS_Server.model.Schedule;

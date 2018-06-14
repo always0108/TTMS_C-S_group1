@@ -1,10 +1,11 @@
-package TTMS_Server.serviceImpl;
+package TTMS_Server.serviceimpl;
 
 
 import TTMS_Server.dao.EmployeeDAO;
 import TTMS_Server.model.Employee;
 import TTMS_Server.service.EmployeeService;
 import TTMS_Server.utils.MD5;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +77,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeDAO.selectById(emp_id);
         String Password = employeeDAO.getPasswordByName(employee.getEmp_name());
         if(MD5.codeByMD5(oldPassword).equals(Password)){
-            employeeDAO.updatePasswordById(emp_id, MD5.codeByMD5(newPassword));
+            employeeDAO.updatePasswordById(emp_id,MD5.codeByMD5(newPassword));
             return true;
         }else {
             return false;

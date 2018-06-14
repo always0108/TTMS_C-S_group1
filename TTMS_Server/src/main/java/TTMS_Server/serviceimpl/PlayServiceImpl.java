@@ -1,4 +1,4 @@
-package TTMS_Server.serviceImpl;
+package TTMS_Server.serviceimpl;
 
 import TTMS_Server.dao.PlayDAO;
 import TTMS_Server.model.Play;
