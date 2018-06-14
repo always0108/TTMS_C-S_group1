@@ -140,8 +140,10 @@ public class StudioAdd extends VBox {
             new StudioList();
         });
 
-        gridPane.add(btok, 1, 4);
-        gridPane.add(btret, 2, 4);
+        HBox bottom_button = new HBox(150);
+        bottom_button.setAlignment(Pos.CENTER);
+        bottom_button.getChildren().addAll(btok,btret);
+        gridPane.add(bottom_button,1,4);
 
         this.getChildren().addAll(hBox,gridPane);
     }

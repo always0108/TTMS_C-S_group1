@@ -89,9 +89,9 @@ public class PlayAdd extends GridPane {
 
         FunButton Confirm = new FunButton("确认");
         FunButton Return = new FunButton("返回");
-        HBox bottom_button = new HBox(200);
+        HBox bottom_button = new HBox(160);
         bottom_button.setPadding(new Insets(10,100,25,50));
-        bottom_button.setAlignment(Pos.CENTER_LEFT);
+        bottom_button.setAlignment(Pos.CENTER);
         bottom_button.getChildren().addAll(Confirm,Return);
         this.add(bottom_button,1,7,4,1);
 

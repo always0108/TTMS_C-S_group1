@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import model.Play;
+import node.TableButton;
 
 import java.util.List;
 
@@ -38,9 +39,9 @@ public class PlayTable extends GridPane {
                 Label play_length = new Label(play.getPlay_length().toString());
                 Label play_ticket_price = new Label(play.getPlay_ticket_price().toString());
 
-                Button btDetail = new Button("详请");
-                Button btModify = new Button("修改");
-                Button btDelete = new Button("删除");
+                TableButton btDetail = new TableButton("详请");
+                TableButton btModify = new TableButton("修改");
+                TableButton btDelete = new TableButton("删除");
                 btDetail.setOnAction(e->{
                     HomeUI.setCenter(new PlayDetail(play));
                 });

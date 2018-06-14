@@ -46,7 +46,6 @@ public class ScheduleList{
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-padding: 0;-fx-opacity: 0.75;-fx-background-color: bisque");
 
         //功能按钮框
         bottom = new HBox();

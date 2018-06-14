@@ -31,7 +31,7 @@ public class StudioList{
     public StudioList(){
         main = new VBox();
         main.setAlignment(Pos.TOP_CENTER);
-        main.setPadding(new Insets(60,20,20,20));
+        main.setPadding(new Insets(40,20,20,20));
         main.setSpacing(20);
 
         //进度条
@@ -114,7 +114,6 @@ public class StudioList{
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-opacity: 0.75;-fx-border-style: none;-fx-background-color: bisque");
 
         //功能按钮框
         bottom = new HBox();

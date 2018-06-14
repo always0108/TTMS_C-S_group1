@@ -20,6 +20,7 @@ public class EmployeeDelete extends VBox {
     public EmployeeDelete(Employee emp){
         this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(20,20,20,20));
+        this.setSpacing(20);
 
         HBox mes = new HBox();
         mes.setAlignment(Pos.CENTER);

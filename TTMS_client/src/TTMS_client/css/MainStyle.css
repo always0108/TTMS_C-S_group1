@@ -1,106 +1,52 @@
-/*设置表格头靠左、字体大小，字体颜色*/
-.column-header{
-    -fx-alignment: center;
-    -fx-text-fill: rgba(68,68,68,0.96);
-    -fx-font-size: 16px;
-}
-
-.table-view{
-    -fx-opacity: 0.75;
-    -fx-background-insets: 0;
-    -fx-alignment: center;
-    -fx-text-fill: rgba(68,68,68,0.96);
-    -fx-font-size: 14px;
-}
-
-/*设置表格头高度*/
-.table-view .column-header-background{
-    -fx-pref-height: 40;
-}
-
-/*设置每一行内容居中，每一行高度*/
-.table-row-cell{
-    -fx-background-insets: 0;
-    -fx-cell-size: 40px;
-    -fx-alignment: center;
-}
-
-.table-row-cell:empty .table-cell {
-    -fx-border-width: 0px;
-}
-
-
-.table-column{
-    -fx-alignment: center-left;
-}
-
-.titledPane{
-    -fx-font-size: 20px;
-    -fx-font-style: italic;
-}
-/*
-*  左栏一级菜单面板的样式
-play.getStyleClass().add("firstMenu");
-*/
-.firstMenu{
-    -fx-pref-width: 150px;
-    -fx-pref-height: 50px;
-    -fx-background-color: #F2E0AA;
-    -fx-text-fill: black;
-    -fx-text-font: bolder 30px serif;
-}
-
 #welcome-words{
-    -fx-font-size: 50px;
-    -fx-text-fill: coral;
+    -fx-font-size: 48px;
+    -fx-text-fill: #000b00;
     -fx-alignment: inherit;
 }
 
 #welcome{
     -fx-margin-bottom: 50px;
-    -fx-font: bolder 35px serif;
+    -fx-font: bolder 30px serif;
     -fx-alignment: inherit;
     -fx-opacity: 1;
-    -fx-text-fill: #B8850A;/*设置标签内容的文本字体颜色*/
-   }
-
-.note{
-    -fx-font: bolder 25px serif;
-    -fx-margin: 30px 0 30px 0;
+    -fx-text-fill: #B8850A;
 }
 
-.conection{
-    -fx-font: italic 20px serif;
-    -fx-text-fill: blue;
-}
-
-.accordion{
-    -fx-font-size: 20px;
-    -fx-font-style: italic;
-    -fx-opacity: 0.75;
-}
-
-.button{
-    -fx-font-size: 18px;
-    -fx-font-style: italic;
-    -fx-opacity: 0.8;
+#note{
+    -fx-font: bolder 18px serif;
+    -fx-margin: 30px 30px 30px 30px;
+    -fx-wrap-text: true;
 }
 
 .label{
     -fx-font-size:18px;
-    -fx-font-family:Cursive;
 }
 
 .radio-button{
-    -fx-font:italic 20px TimesNR;
+    -fx-font:italic 18px TimesNR;
+}
+
+.button{
+    -fx-font-size: 18px;
+}
+
+.navigationButton{
+    -fx-pref-width: 175px;
+    -fx-pref-height: 30px;
+    -fx-background-color:#cd5e3c;
+    -fx-text-fill: #eaf4fc;
+}
+
+.tableButton{
+    -fx-background-color: #bed3ca;
+    -fx-border-radius: 10px;
 }
 
 .funButton{
-    -fx-width: 80px;/* 宽高没有起作用 */
-    -fx-height: 30px;
-    -fx-font: bolder 18px Georgia;
-    -fx-color: #245881;
-    -fx-background-color: #6C9BBF;
+    -fx-min-height: 40px;
+    -fx-min-width: 100px;
+    -fx-border-radius: 10px;
+    -fx-background-color: #ffa631;
 }
 
 .funText{
@@ -109,23 +55,31 @@ play.getStyleClass().add("firstMenu");
      -fx-font-family:Cursive;
 }
 
-.textField{
-    -fx-width: 150px;
-    -fx-height: 40px;
-    -fx-font-size: 16px;
-    -fx-background-color: #F0BC9D;
-}
-
 .text-field{
     -fx-width: 150px;
     -fx-height: 40px;
     -fx-font-size: 16px;
-    -fx-background-color: #F0BC9D;
+    -fx-background-color: #f8f4e6;
+}
+
+.text-area{
+    -fx-font-size: 16px;
+    -fx-background-color: #edd3a1;
+    -fx-color-label-visible: true;
+    -fx-border-style: none;
 }
 
 .combo-box{
     -fx-font-size: 16px;
+    -fx-background-color: #f8f4e6;
 }
+
+.scroll-pane{
+    -fx-opacity: 0.7;
+    -fx-border-style: none;
+}
+
+
 
 
 

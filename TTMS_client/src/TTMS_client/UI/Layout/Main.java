@@ -24,7 +24,8 @@ public class Main extends Application {
         borderPane = new BorderPane();
         borderPane.setCenter(LoginUI.init());
 
-        borderPane.setStyle("-fx-background-image: url('/image/background.jpg')");
+        //borderPane.setStyle("-fx-background-image: url('/image/bgpic3.jpg')");
+        borderPane.setStyle("-fx-background-color:linear-gradient(to bottom,#ebf6f7,#007bbb);");
         Scene scene = new Scene(borderPane, 1024, 768);
         scene.getStylesheets().add(getClass().getResource("/css/MainStyle.css").toExternalForm());
         primaryStage.setScene(scene);

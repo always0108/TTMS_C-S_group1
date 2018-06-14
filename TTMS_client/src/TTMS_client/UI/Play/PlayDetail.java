@@ -41,7 +41,7 @@ public class PlayDetail extends GridPane {
         TextArea introductionValue = new TextArea(play.getPlay_introduction());
         introductionValue.setWrapText(true);
         introductionValue.setEditable(false);
-        introductionValue.setStyle("-fx-max-width: 400px;-fx-max-height:200;-fx-border-style: none;-fx-background-color: bisque;-fx-font-size: 16px;-fx-opacity: 0.75");
+        introductionValue.setStyle("-fx-max-width: 400px;-fx-max-height:200px");
 
         ImageView play_imageview = new ImageView(ImageByte.bytesToImage(play.getPlay_image()));
         play_imageview.setFitHeight(240);
@@ -52,9 +52,9 @@ public class PlayDetail extends GridPane {
 
         FunButton btModify = new FunButton("管理演出计划");
         FunButton btRet = new FunButton("返回");
-        HBox hBox=new HBox(200);
-        hBox.setPadding(new Insets(25,25,25,25));
-        hBox.setAlignment(Pos.CENTER);
+        HBox hBox=new HBox(160);
+        hBox.setPadding(new Insets(25,80,25,25));
+        hBox.setAlignment(Pos.CENTER_RIGHT);
         hBox.getChildren().addAll(btModify,btRet);
         this.add(hBox,0,9,3,1);
 

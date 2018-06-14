@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import model.Employee;
+import node.TableButton;
 
 import java.util.List;
 
@@ -36,9 +37,9 @@ public class EmployeeTable extends GridPane {
                 Label emp_no = new Label(emp.getEmp_no());
                 Label emp_name = new Label(emp.getEmp_name());
 
-                Button btDetail = new Button("详请");
-                Button btModify = new Button("修改");
-                Button btDelete = new Button("删除");
+                TableButton btDetail = new TableButton("详请");
+                TableButton btModify = new TableButton("修改");
+                TableButton btDelete = new TableButton("删除");
                 btDetail.setOnAction(e->{
                     HomeUI.setCenter(new EmployeeDetail(emp));
                 });

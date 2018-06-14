@@ -167,8 +167,11 @@ public class EmployeeModify extends VBox {
             new EmployeeList();
         });
 
-        gridPane.add(btok, 1, 6);
-        gridPane.add(btret, 2, 6);
+        HBox bottom_button = new HBox(150);
+        bottom_button.setAlignment(Pos.CENTER);
+        bottom_button.getChildren().addAll(btok,btret);
+        gridPane.add(bottom_button,1,7);
+
         this.getChildren().addAll(hBox,gridPane);
     }
 }

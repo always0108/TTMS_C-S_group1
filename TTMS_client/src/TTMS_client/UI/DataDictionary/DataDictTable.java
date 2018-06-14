@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import model.Data_dict;
 import model.Play;
+import node.TableButton;
 
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class DataDictTable extends GridPane {
                 Label data_parentId = new Label(data.getDict_parent_id().toString());
                 Label data_name = new Label(data.getDict_name());
 
-                Button btModify = new Button("修改");
-                Button btDelete = new Button("删除");
+                TableButton btModify = new TableButton("修改");
+                TableButton btDelete = new TableButton("删除");
 
                 btModify.setOnAction(e->{
                     HomeUI.setCenter(new DataDictModify(data));

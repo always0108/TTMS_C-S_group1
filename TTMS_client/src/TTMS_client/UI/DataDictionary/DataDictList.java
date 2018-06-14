@@ -30,7 +30,7 @@ public class DataDictList {
     public DataDictList(){
         main = new VBox();
         main.setAlignment(Pos.TOP_CENTER);
-        main.setPadding(new Insets(60,20,20,20));
+        main.setPadding(new Insets(20,20,20,20));
         main.setSpacing(20);
 
         //进度条
@@ -42,7 +42,7 @@ public class DataDictList {
         //搜索框
         top = new HBox();
         top.setAlignment(Pos.CENTER);
-        top.setPadding(new Insets(20,20,20,20));
+        top.setPadding(new Insets(20,20,0,20));
         top.setSpacing(30);
         Label note = new Label("名称：");
         key = new TextField();
@@ -113,7 +113,6 @@ public class DataDictList {
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-opacity: 0.75;-fx-border-style: none;-fx-background-color: bisque");
 
         //功能按钮框
         bottom = new HBox();

@@ -15,14 +15,14 @@ public class MessageBar {
 
     static {
         pane.setAlignment(Pos.CENTER);
-        label.setStyle("-fx-font-size: 20px");
+        pane.setStyle("-fx-background-color: #2b2b2b");
+        label.setStyle("-fx-text-fill: #eaf4fc;-fx-font-size: 18px");
         pane.getChildren().addAll(label);
         pane.setPrefHeight(30);
         Main.borderPane.setBottom(pane);
     }
 
     public static void showMessageBar(String mes){
-        pane.setStyle("-fx-background-color: coral");
         label.setText(mes);
         FadeTransition appear = new FadeTransition();
         appear.setNode(pane);
@@ -57,7 +57,6 @@ public class MessageBar {
                 updateMessage("Failed!");
             }
         };
-
         new Thread(task).start();
     }
 }

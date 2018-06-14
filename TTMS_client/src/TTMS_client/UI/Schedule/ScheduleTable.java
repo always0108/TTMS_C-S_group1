@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 import model.Schedule;
+import node.TableButton;
 
 import java.util.List;
 
@@ -39,8 +40,8 @@ public class ScheduleTable extends GridPane {
                 Label schedule_time = new Label(schedule.getSched_time().toString());
                 Label schedule_ticket_price = new Label(schedule.getSched_ticket_price().toString());
 
-                Button btModify = new Button("修改");
-                Button btDelete = new Button("删除");
+                TableButton btModify = new TableButton("修改");
+                TableButton btDelete = new TableButton("删除");
 
                 btModify.setOnAction(e->{
                     HomeUI.setCenter(new ScheduleModify(schedule));

@@ -27,7 +27,7 @@ public class EmployeeList{
     public EmployeeList(){
         main.setAlignment(Pos.TOP_CENTER);
         main.setSpacing(20);
-        main.setPadding(new Insets(60, 20, 20, 20));
+        main.setPadding(new Insets(40, 20, 20, 20));
 
         progress = new HBox();
         progress.setPadding(new Insets(0,50,20,0));
@@ -47,7 +47,6 @@ public class EmployeeList{
         scrollPane = new ScrollPane();
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-padding: 0;-fx-opacity: 0.75;-fx-background-color: bisque");
 
         //功能按钮框
         bottom = new HBox();

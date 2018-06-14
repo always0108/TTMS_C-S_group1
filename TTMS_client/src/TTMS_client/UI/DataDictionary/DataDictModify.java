@@ -39,7 +39,7 @@ public class DataDictModify extends VBox {
         //标题
         hBox = new HBox();
         hBox.setAlignment(Pos.CENTER_LEFT);
-        Text text = new Text("修改演出厅");
+        Text text = new Text("修改");
         text.getStyleClass().add("funText");
         text.setFont(Font.font(20));
         hBox.getChildren().add(text);
