@@ -4,6 +4,7 @@ import TTMS_Server.dao.PlayDAO;
 import TTMS_Server.model.Play;
 import TTMS_Server.model.PlayPercent;
 import TTMS_Server.service.PlayService;
+import TTMS_Server.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.text.ParseException;
@@ -17,6 +18,9 @@ public class PlayServiceImpl implements PlayService {
 
     @Autowired
     private PlayDAO playDAO;
+
+    @Autowired
+    private ScheduleService scheduleService;
 
     //根据id获取演出厅信息
     @Override
@@ -100,7 +104,7 @@ public class PlayServiceImpl implements PlayService {
     //删除演出厅
     @Override
     public boolean deletePlayById(Integer id){
-        if (playDAO.selectPlayById(id) != null){
+        if (playDAO.selectPlayById(id) != null && scheduleService.selectScheduleByPlayId(id) == null){
             playDAO.deletePlayById(id);
             return true;
         }
