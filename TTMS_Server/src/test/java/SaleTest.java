@@ -3,6 +3,7 @@ import TTMS_Server.config.database.MyBatis;
 import TTMS_Server.config.spring.RootConfig;
 import TTMS_Server.config.spring.WebConfig;
 import TTMS_Server.config.spring.WebInit;
+import TTMS_Server.model.Employee;
 import TTMS_Server.model.EmployeeSale;
 import TTMS_Server.model.Sale;
 import TTMS_Server.service.SaleService;
@@ -63,8 +64,11 @@ public class SaleTest {
 //        else{
 //            System.out.println("已存在");
 //        }
-        BigDecimal sale = saleService.selectSaleAmountByEmployeeId(2);
-        System.out.println(sale);
+        List<EmployeeSale> employeeSales = saleService.selectSaleAmountsByEmployeeName();
+        for(EmployeeSale employeeSale:employeeSales){
+            System.out.println(employeeSale.getEmp_name());
+            System.out.println(employeeSale.getSaleAmount());
+        }
         }
     }
 

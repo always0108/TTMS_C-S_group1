@@ -19,8 +19,12 @@ public interface SaleService {
     //根据剧目查询票房
     List<PlaySale> selectPlayTicketAmountByPlayID();
 
-    //根据员工id查询销售额
+    //根据员工id查询纯销售额
     BigDecimal selectSaleAmountByEmployeeId(Integer id);
+
+    //根据员工name获取销售额
+    List<EmployeeSale> selectSaleAmountsByEmployeeName();
+
 
     //增加
     boolean addSale(Sale sale);

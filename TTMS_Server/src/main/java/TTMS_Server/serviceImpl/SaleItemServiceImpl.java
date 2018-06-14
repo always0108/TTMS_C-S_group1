@@ -1,4 +1,4 @@
-package TTMS_Server.serviceimpl;
+package TTMS_Server.serviceImpl;
 
 import TTMS_Server.dao.SaleItemDAO;
 import TTMS_Server.model.Sale_item;

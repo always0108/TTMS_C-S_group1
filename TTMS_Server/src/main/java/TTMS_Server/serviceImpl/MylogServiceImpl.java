@@ -1,9 +1,8 @@
-package TTMS_Server.serviceimpl;
+package TTMS_Server.serviceImpl;
 
 import TTMS_Server.dao.MylogDAO;
 import TTMS_Server.model.Mylog;
 import TTMS_Server.service.MylogService;
-import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

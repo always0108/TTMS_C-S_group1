@@ -1,11 +1,9 @@
-package TTMS_Server.serviceimpl;
+package TTMS_Server.serviceImpl;
 
 import TTMS_Server.dao.StudioDAO;
 import TTMS_Server.model.Studio;
-import TTMS_Server.service.ScheduleService;
 import TTMS_Server.service.SeatService;
 import TTMS_Server.service.StudioService;
-import TTMS_Server.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +17,6 @@ public class StudioServiceImpl implements StudioService {
 
     @Autowired
     private SeatService seatService;
-
-    @Autowired
-    private ScheduleService scheduleService;
 
     //根据id获取演出厅信息
     @Override
@@ -55,8 +50,7 @@ public class StudioServiceImpl implements StudioService {
     //删除演出厅
     @Override
     public boolean deleteStudioById(Integer id){
-        //当演出厅存在并且没有安排演出计划
-        if (studioDAO.selectStudioById(id) != null && scheduleService.selectScheduleByStudioId(id) == null){
+        if (studioDAO.selectStudioById(id) != null){
             studioDAO.deleteStudioById(id);
             return true;
         }

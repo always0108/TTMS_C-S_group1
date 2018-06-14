@@ -1,4 +1,4 @@
-package TTMS_Server.serviceimpl;
+package TTMS_Server.serviceImpl;
 
 import TTMS_Server.dao.SaleDAO;
 import TTMS_Server.model.*;
@@ -38,10 +38,16 @@ public class SaleServiceImpl implements SaleService{
         return saleDAO.selectPlayTicketAmountByPlayID();
     }
 
-    //根据员工id获取销售额
+    //根据员工id获取纯销售额
     @Override
     public BigDecimal selectSaleAmountByEmployeeId(Integer id){
         return saleDAO.selectSaleAmountByEmployeeId(id);
+    }
+
+    //根据员工name获取销售额
+    @Override
+    public List<EmployeeSale> selectSaleAmountsByEmployeeName(){
+        return saleDAO.selectSaleAmountsByEmployeeName();
     }
 
     //增加

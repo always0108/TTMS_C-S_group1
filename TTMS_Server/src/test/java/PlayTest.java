@@ -6,6 +6,7 @@ import TTMS_Server.config.spring.WebConfig;
 import TTMS_Server.config.spring.WebInit;
 import TTMS_Server.model.Employee;
 import TTMS_Server.model.Play;
+import TTMS_Server.model.PlayPercent;
 import TTMS_Server.model.Studio;
 import TTMS_Server.service.DataDictionaryService;
 import TTMS_Server.service.EmployeeService;
@@ -74,5 +75,11 @@ public class PlayTest {
 //            System.out.println("更新成功");
 //        else
 //            System.out.println("该剧目已存在");
-    }
+
+        List<PlayPercent> playPercents = playService.getAllPlayPercentByDate("2018-06-13");
+        for(PlayPercent playPercent:playPercents){
+            System.out.println(playPercent.getPlay_name());
+            System.out.println(playPercent.getPlay_amount());
+        }
+        }
 }

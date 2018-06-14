@@ -1,10 +1,9 @@
-package TTMS_Server.serviceimpl;
+package TTMS_Server.serviceImpl;
 
 import TTMS_Server.dao.SeatDAO;
 import TTMS_Server.dao.StudioDAO;
 import TTMS_Server.model.Seat;
 import TTMS_Server.model.Studio;
-import TTMS_Server.service.ScheduleService;
 import TTMS_Server.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +19,6 @@ public class SeatServiceImpl implements SeatService {
 
     @Autowired
     private StudioDAO studioDAO;
-
-    @Autowired
-    private ScheduleService scheduleService;
 
     //根据id获取座位信息
     public Seat selectSeatById(Integer id){
@@ -81,7 +77,7 @@ public class SeatServiceImpl implements SeatService {
     public boolean updateStatusByStudioId(Integer studio_id, Map<Integer,Integer> seats){
         Studio studio = studioDAO.selectStudioById(studio_id);
         //演出厅存在且座位的行列要满足演出厅中座位的行列
-        if(studio != null && scheduleService.selectScheduleByStudioId(studio_id)==null){
+        if(studio != null){
             for(Map.Entry<Integer,Integer> entry:seats.entrySet()){
                 seatDAO.updateStatusById(entry.getKey(),entry.getValue());
             }
