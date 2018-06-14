@@ -2,6 +2,7 @@ package TTMS_Server.dao;
 
 
 import TTMS_Server.model.Play;
+import TTMS_Server.model.PlayPercent;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,17 @@ public interface PlayDAO {
     @Select("select * from play where play_name like #{name}")
         List<Play> getAllPlayByPartName(String name);
 
+    //根据剧目名称获取剧目当天场次占比
+    @Select("select play_name,count(sched_id) as play_amount from (select * from " +
+            "(select play_id,play_name from play) sonplay " +
+            "natural join schedule)sonschedule  group by play_id;")
+    List<PlayPercent> getAllPlayPercentByName();
+
+    //当天剧目百分比
+    @Select("select play_name,count(sched_id) as play_amount from (select * from (select * from " +
+            "(select play_id,play_name from play) sonplay natural join schedule)sonschedule)ss " +
+            "where sched_time >= #{start} and sched_time < #{end} group by play_id;")
+    List<PlayPercent> getAllPlayPercentByDate(@Param("start") String start,@Param("end")String end);
 
     //根据日期获取当天上映的剧目
     @Select("select * from play where play_id in (select play_id from schedule where  " +
@@ -48,3 +60,5 @@ public interface PlayDAO {
             "where play_id = #{play_id}")
     void updatePlayById(Play play);
 }
+
+

@@ -2,12 +2,11 @@ package TTMS_Server.serviceimpl;
 
 import TTMS_Server.dao.PlayDAO;
 import TTMS_Server.model.Play;
+import TTMS_Server.model.PlayPercent;
 import TTMS_Server.service.PlayService;
 import TTMS_Server.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,6 +44,29 @@ public class PlayServiceImpl implements PlayService {
         return plays;
     }
 
+    //根据剧目名称获取剧目当天场次占比
+    @Override
+    public List<PlayPercent> getAllPlayPercentByName(){
+        List<PlayPercent> playPercents = playDAO.getAllPlayPercentByName();
+        return playPercents;
+    }
+
+    //剧目百分比
+    public List<PlayPercent> getAllPlayPercentByDate(String date) {
+        String start = date + " 00:00:00";
+        String end = null;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date startDate = df.parse(start);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+            calendar.add(Calendar.DATE, 1);
+            end = df.format(calendar.getTime());
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return playDAO.getAllPlayPercentByDate(start,end);
+    }
 
     //根据日期列出当天上映的演出计划
     @Override

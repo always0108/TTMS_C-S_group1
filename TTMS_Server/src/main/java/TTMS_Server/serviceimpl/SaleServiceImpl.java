@@ -44,6 +44,12 @@ public class SaleServiceImpl implements SaleService{
         return saleDAO.selectSaleAmountByEmployeeId(id);
     }
 
+    //根据员工name获取销售额
+    @Override
+    public List<EmployeeSale> selectSaleAmountsByEmployeeName(){
+        return saleDAO.selectSaleAmountsByEmployeeName();
+    }
+
     //增加
     public boolean addSale(Sale sale){
         if(saleDAO.selectSaleById(sale.getSale_ID())==null){

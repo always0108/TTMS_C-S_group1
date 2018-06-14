@@ -5,14 +5,16 @@ import java.math.BigDecimal;
 public class EmployeeSale {
 
     String emp_name;
+    Integer emp_id;
     BigDecimal saleAmount;
 
     public EmployeeSale() {
     }
 
-    public EmployeeSale(String emp_name, BigDecimal saleAmount) {
+    public EmployeeSale(String emp_name,Integer emp_id, BigDecimal saleAmount) {
 
         this.emp_name = emp_name;
+        this.emp_id = emp_id;
         this.saleAmount = saleAmount;
     }
 
@@ -23,6 +25,10 @@ public class EmployeeSale {
     public void setEmp_name(String emp_name) {
         this.emp_name = emp_name;
     }
+
+    public Integer getEmp_id() { return  emp_id; }
+
+    public void setEmp_id(Integer  emp_id) { this.emp_id = emp_id; }
 
     public BigDecimal getSaleAmount() {
         return saleAmount;
