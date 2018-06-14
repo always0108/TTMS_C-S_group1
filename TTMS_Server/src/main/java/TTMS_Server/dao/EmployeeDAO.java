@@ -44,4 +44,8 @@ public interface EmployeeDAO {
             "where emp_id = #{emp_id}")
     void updateEmployeeById(Employee emp);
 
+    //修改密码
+    @Update("update employee set emp_passwd = #{emp_passwd} where emp_id = #{emp_id}")
+    void updatePasswordById(@Param("emp_id")Integer emp_id ,@Param("emp_passwd")String emp_passwd);
+
 }

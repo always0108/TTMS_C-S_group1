@@ -57,11 +57,11 @@ public class ScheduleModify extends GridPane {
 //            TextField sched_time= new TextField();
 
         Label time = new Label("演出时间：");
-        TextField sched_time= new TextField();
+        TextField sched_time= new TextField(DateFormat.timestampToString(schedule.getSched_time()));
         Label note = new Label("(yyyy-MM-dd HH:mm:ss)");
 
         Label ticket_price = new Label("票价：");
-        TextField sched_ticket_price = new TextField();
+        TextField sched_ticket_price = new TextField(schedule.getSched_ticket_price().toString());
 
         FunButton Confirm = new FunButton("确认");
         FunButton Return = new FunButton("返回");
@@ -72,54 +72,60 @@ public class ScheduleModify extends GridPane {
 
 
         Confirm.setOnAction(e->{
-            Confirm.setDisable(true);
-            //创建后台获取数据的线程
-            Task<JSONObject> task = new Task<JSONObject>() {
-                @Override
-                protected JSONObject call() throws Exception {
-                    String url = "/schedule/update";
-                    String str;
+            if(!sched_time.getText().isEmpty() &&
+                    !sched_ticket_price.getText().isEmpty()){
+                Confirm.setDisable(true);
+                //创建后台获取数据的线程
+                Task<JSONObject> task = new Task<JSONObject>() {
+                    @Override
+                    protected JSONObject call() throws Exception {
+                        String url = "/schedule/update";
+                        String str;
 
-                    Map<String, Object> newSchedule = new HashMap<>();
+                        Map<String, Object> newSchedule = new HashMap<>();
 
-                    newSchedule.put("sched_id",schedule.getSched_id());
-                    newSchedule.put("studio_id",studioComboBox.get(sched_studio_id.getValue()));
-                    newSchedule.put("play_id",schedule.getPlay_id());
-                    newSchedule.put("sched_time",DateFormat.stringToTimestamp(sched_time.getText()));
-                    newSchedule.put("sched_ticket_price",new BigDecimal(sched_ticket_price.getText()));
+                        newSchedule.put("sched_id",schedule.getSched_id());
+                        newSchedule.put("studio_id",studioComboBox.get(sched_studio_id.getValue()));
+                        newSchedule.put("play_id",schedule.getPlay_id());
+                        newSchedule.put("sched_time",DateFormat.stringToTimestamp(sched_time.getText()));
+                        newSchedule.put("sched_ticket_price",new BigDecimal(sched_ticket_price.getText()));
 
-                    String res = Httpclient.post(url, newSchedule);
-                    return JSON.parseObject(res);
-                }
-                @Override
-                protected void running() {
+                        String res = Httpclient.post(url, newSchedule);
+                        return JSON.parseObject(res);
+                    }
+                    @Override
+                    protected void running() {
 
-                }
+                    }
 
-                @Override
-                protected void succeeded() {
-                    super.succeeded();
-                    JSONObject jsonObject = getValue();
-                    MessageBar.showMessageBar(jsonObject.get("content").toString());
-                    new ScheduleList(schedule.getPlay_id());
-                    Confirm.setDisable(false);
-                    updateMessage("Done!");
-                }
+                    @Override
+                    protected void succeeded() {
+                        super.succeeded();
+                        JSONObject jsonObject = getValue();
+                        MessageBar.showMessageBar(jsonObject.get("content").toString());
+                        new ScheduleList(schedule.getPlay_id());
+                        Confirm.setDisable(false);
+                        updateMessage("Done!");
+                    }
 
-                @Override
-                protected void cancelled() {
-                    super.cancelled();
-                    updateMessage("Cancelled!");
-                }
+                    @Override
+                    protected void cancelled() {
+                        super.cancelled();
+                        updateMessage("Cancelled!");
+                    }
 
-                @Override
-                protected void failed() {
-                    super.failed();
-                    updateMessage("Failed!");
-                }
-            };
-            Thread thread = new Thread(task);
-            thread.start();
+                    @Override
+                    protected void failed() {
+                        super.failed();
+                        updateMessage("Failed!");
+                    }
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+            }else {
+                MessageBar.showMessageBar("请将信息填写完整");
+            }
+
         });
 
         Return.setOnAction(e->{

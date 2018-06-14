@@ -1,94 +1,84 @@
-package UI.Studio;
+package UI.Self;
 
+import UI.Layout.HomeUI;
+import UI.Layout.Main;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.Studio;
+import model.Employee;
 import node.FunButton;
 import node.MessageBar;
 import util.Httpclient;
+import util.MD5;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudioModify extends VBox {
-
+public class SelfUpdatePassword extends VBox {
     private HBox hBox;
     private GridPane gridPane;
 
-    public StudioModify() {}
-
-    public StudioModify(Studio studio){
-
+    public SelfUpdatePassword(Employee emp) {
         this.setAlignment(Pos.TOP_CENTER);
         this.setSpacing(20);
         this.setPadding(new Insets(20,20,20,20));
 
         //标题
         hBox = new HBox();
+        hBox.setPadding(new Insets(20, 20, 20, 20));
         hBox.setAlignment(Pos.CENTER_LEFT);
-        Text text = new Text("修改演出厅");
+        Text text = new Text("修改密码");
         text.getStyleClass().add("funText");
-        text.setFont(Font.font(20));
+        text.setFont(Font.font(24));
         hBox.getChildren().add(text);
 
         //表单
         gridPane = new GridPane();
-        gridPane.setHgap(20);
-        gridPane.setVgap(20);
-        gridPane.setPadding(new Insets(25, 25, 25, 25));
+        gridPane.setHgap(30);
+        gridPane.setVgap(30);
+        gridPane.setPadding(new Insets(20, 20, 20, 20));
 
-        Label name = new Label("名称:");
-        TextField studio_name = new TextField(studio.getStudio_name());
 
-        Label row = new Label("行数:");
-        TextField studio_row = new TextField(studio.getStudio_row_count().toString());
-        studio_row.setDisable(true);
-        Label col = new Label("列数:");
-        TextField studio_col = new TextField(studio.getStudio_col_count().toString());
-        studio_col.setDisable(true);
+        Label oldPassword = new Label("原密码:");
+        PasswordField oldPasswordField = new PasswordField();
 
-        Label introduction = new Label("简介:");
-        TextArea studio_introduction = new TextArea(studio.getStudio_seat_count().toString());
+        Label newPassword = new Label("新密码:");
+        PasswordField newPasswordField = new PasswordField();
 
-        Label flag = new Label("状态");
-        Label studio_flag = new Label(studio.getStudio_flag().toString());
-
-        gridPane.addColumn(0, name, row, col, introduction,flag);
-        gridPane.addColumn(1, studio_name,studio_row,studio_col,studio_introduction,studio_flag);
+        gridPane.addColumn(0,oldPassword,newPassword);
+        gridPane.addColumn(1,oldPasswordField,newPasswordField);
 
         FunButton btok = new FunButton("确定");
         FunButton btret = new FunButton("返回");
 
-        //确认添加
+        //确认修改
         btok.setOnAction(e -> {
-            if(!studio_name.getText().isEmpty() && !studio_introduction.getText().isEmpty()){
+            if(!oldPasswordField.getText().isEmpty() &&
+                    !newPasswordField.getText().isEmpty()){
                 btok.setDisable(true);
                 //创建后台获取数据的线程
                 Task<JSONObject> task = new Task<JSONObject>() {
                     @Override
                     protected JSONObject call() throws Exception {
-                        String url = "/studio/update";
-                        Map<String, Object> newStudio = new HashMap<>();
-                        newStudio.put("studio_id",studio.getStudio_id());
-                        newStudio.put("studio_name",studio_name.getText());
-                        newStudio.put("studio_row_count",Integer.valueOf(studio_row.getText()));
-                        newStudio.put("studio_col_count",Integer.valueOf(studio_col.getText()));
-                        newStudio.put("studio_seat_count",Integer.valueOf(studio_row.getText())*Integer.valueOf(studio_col.getText()));
-                        newStudio.put("studio_introduction",studio_introduction.getText());
-                        newStudio.put("studio_flag",studio.getStudio_flag());
-                        String res = Httpclient.post(url, newStudio);
+
+                        String url = "/employee/updatePassword";
+
+                        Map<String, Object> newEmp = new HashMap<>();
+                        newEmp.put("emp_id", emp.getEmp_id());
+                        newEmp.put("oldPassword", oldPasswordField.getText());
+                        newEmp.put("newPassword", newPasswordField.getText());
+
+                        String res = Httpclient.post(url, newEmp);
                         return JSON.parseObject(res);
                     }
 
@@ -103,7 +93,9 @@ public class StudioModify extends VBox {
                         JSONObject jsonObject = getValue();
                         if (jsonObject.get("flag").equals(true)) {
                             MessageBar.showMessageBar("修改成功！");
-                            new StudioList();
+                            emp.setEmp_passwd(MD5.codeByMD5(newPasswordField.getText()));
+                            Main.borderPane.setTop(new HomeUI().top(emp));
+                            HomeUI.setCenter(new SelfMenu(emp));
                         } else {
                             MessageBar.showMessageBar(jsonObject.get("content").toString());
                         }
@@ -126,18 +118,17 @@ public class StudioModify extends VBox {
                 Thread thread = new Thread(task);
                 thread.start();
             }else {
-                MessageBar.showMessageBar("请将信息补充完整");
-            }
+                MessageBar.showMessageBar("请将信息填写完整");
 
+            }
         });
 
         btret.setOnAction(e -> {
-            new StudioList();
+            HomeUI.setCenter(new SelfMenu(emp));
         });
 
-        gridPane.add(btok, 1, 5);
-        gridPane.add(btret, 2, 5);
-
+        gridPane.add(btok, 1, 6);
+        gridPane.add(btret, 2, 6);
         this.getChildren().addAll(hBox,gridPane);
     }
 }

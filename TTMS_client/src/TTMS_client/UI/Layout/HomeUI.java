@@ -1,5 +1,6 @@
 package UI.Layout;
 
+import UI.Self.SelfMenu;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -7,22 +8,25 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.Employee;
+import node.FunButton;
 import node.MessageBar;
 import util.Httpclient;
 
 public class HomeUI{
 
-    public HBox top(String name){
+    public HBox top(Employee employee){
         HBox toppane = new HBox();
         toppane.setStyle("-fx-background-color: darkgray;-fx-opacity: 0.75");
         toppane.setAlignment(Pos.CENTER_RIGHT);
         toppane.setSpacing(20);
         toppane.setPadding(new Insets(8,20,8,20));
-        Label username = new Label(name);
-        username.getStyleClass().add("label");
-        Button logout = new Button("注销");
-        logout.getStyleClass().add("funButton");
-        logout.setStyle("-fx-font-size: 16px");
+        Label username = new Label(employee.getEmp_name());
+        FunButton selfcenter = new FunButton("个人中心");
+        selfcenter.setOnAction(e->{
+            HomeUI.setCenter(new SelfMenu(employee));
+        });
+        FunButton logout = new FunButton("注销");
         logout.setOnAction(e->{
             String url = "/logout";
             Httpclient.get(url);
@@ -31,7 +35,7 @@ public class HomeUI{
             Main.borderPane.setBottom(null);
             Main.borderPane.setCenter(LoginUI.init());
         });
-        toppane.getChildren().addAll(username,logout);
+        toppane.getChildren().addAll(username,selfcenter,logout);
         return  toppane;
     }
 
@@ -52,20 +56,20 @@ public class HomeUI{
         return vBox;
     }
 
-    public void adminUI(String name){
-        Main.borderPane.setTop(top(name));
+    public void adminUI(Employee employee){
+        Main.borderPane.setTop(top(employee));
         Main.borderPane.setCenter(center());
         Main.borderPane.setLeft(NavigationBar.getAdminBar());
     }
 
-    public void sellManUI(String name){
-        Main.borderPane.setTop(top(name));
+    public void sellManUI(Employee employee){
+        Main.borderPane.setTop(top(employee));
         Main.borderPane.setCenter(center());
         Main.borderPane.setLeft(NavigationBar.getSellManBar());
     }
 
-    public void ManagerUI(String name){
-        Main.borderPane.setTop(top(name));
+    public void ManagerUI(Employee employee){
+        Main.borderPane.setTop(top(employee));
         Main.borderPane.setCenter(center());
         Main.borderPane.setLeft(NavigationBar.getManagerBar());
     }

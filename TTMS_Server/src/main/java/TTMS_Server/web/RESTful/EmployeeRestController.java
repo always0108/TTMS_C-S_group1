@@ -6,6 +6,8 @@ import TTMS_Server.model.ResponseResult;
 import TTMS_Server.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.security.util.Password;
+
 import java.util.List;
 
 @RestController
@@ -59,6 +61,18 @@ public class EmployeeRestController {
             return new ResponseResult(true,"修改成功");
         else{
             return new ResponseResult(false,"用户名已存在");
+        }
+    }
+
+    //修改用户
+    @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
+    public ResponseResult updatePassword(@RequestParam("emp_id")Integer emp_id,
+                                         @RequestParam("oldPassword")String oldPassword,
+                                         @RequestParam("newPassword")String newPassword){
+        if (employeeService.updatePasswordById(emp_id,oldPassword,newPassword))
+            return new ResponseResult(true,"修改成功");
+        else{
+            return new ResponseResult(false,"原密码输入错误");
         }
     }
 }

@@ -10,8 +10,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Play;
+import util.DateFormat;
 import util.ImageByte;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class PlayInfo extends GridPane {
@@ -20,7 +22,7 @@ public class PlayInfo extends GridPane {
 
     public PlayInfo() {}
 
-    public PlayInfo(List<Play> plays,Integer flag) {
+    public PlayInfo(List<Play> plays, Integer flag,Calendar date) {
         this.setHgap(20);
         this.setVgap(20);
         this.setAlignment(Pos.CENTER);
@@ -43,13 +45,19 @@ public class PlayInfo extends GridPane {
                 playPicture.setFitHeight(180);
                 Hyperlink link = new Hyperlink(play.getPlay_name(),new ImageView(ImageByte.bytesToImage(play.getPlay_image())));
                 link.setStyle("-fx-border-style: hidden;-fx-content-display: top;-fx-font-size: 18px");
-                this.add(link,j++,i%4);
+                this.add(link,j++,(i+1)/4);
                 if(j == 3){
                     j = 0;
                 }
                 link.setOnAction(e->{
-                    HomeUI.setCenter(new PlaySchedule(scheduleSrv.getTodayLeastSchedules(play.getPlay_id()),play,flag));
-                });
+                    Calendar calendar = Calendar.getInstance();
+                    if(calendar.get(Calendar.DAY_OF_MONTH) == date.get(Calendar.DAY_OF_MONTH)){
+                        HomeUI.setCenter(new PlaySchedule(scheduleSrv.getTodayLeastSchedules(play.getPlay_id()),play,flag));
+                    }else {
+                        String dateStr = DateFormat.dateToStr(date.getTime()).substring(0,10);
+                        HomeUI.setCenter(new PlaySchedule(scheduleSrv.searchScheduleByDate(play.getPlay_id(),dateStr),play,flag));
+                    }
+                    });
             }
         }
     }

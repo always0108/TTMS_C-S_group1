@@ -71,10 +71,6 @@ public class EmployeeModify extends VBox {
         Label name = new Label("姓名:");
         TextField emp_name = new TextField(emp.getEmp_name());
 
-//        Label password = new Label("密码:");
-//        PasswordField emp_password = new PasswordField();
-//        emp_password.getStyleClass().add("textField");
-
         Label tel = new Label("电话:");
         TextField emp_tel = new TextField(emp.getEmp_tel_num());
 
@@ -92,69 +88,79 @@ public class EmployeeModify extends VBox {
 
         //确认修改
         btok.setOnAction(e -> {
-            btok.setDisable(true);
-            //创建后台获取数据的线程
-            Task<JSONObject> task = new Task<JSONObject>() {
-                @Override
-                protected JSONObject call() throws Exception {
-                    int emp_type;
-                    if (rbt1.isSelected()) {
-                        emp_type = 1;
-                    } else if (rbt2.isSelected()) {
-                        emp_type = 2;
-                    } else if (rbt3.isSelected()) {
-                        emp_type = 3;
-                    } else {
-                        emp_type = 9;
+            if(!emp_no.getText().isEmpty() &&
+                    !emp_name.getText().isEmpty() &&
+                    !emp_tel.getText().isEmpty() &&
+                    !emp_addr.getText().isEmpty() &&
+                    !emp_email.getText().isEmpty() &&
+                    (rbt1.isSelected() || rbt2.isSelected() || rbt3.isSelected())){
+                btok.setDisable(true);
+                //创建后台获取数据的线程
+                Task<JSONObject> task = new Task<JSONObject>() {
+                    @Override
+                    protected JSONObject call() throws Exception {
+                        int emp_type;
+                        if (rbt1.isSelected()) {
+                            emp_type = 1;
+                        } else if (rbt2.isSelected()) {
+                            emp_type = 2;
+                        } else if (rbt3.isSelected()) {
+                            emp_type = 3;
+                        } else {
+                            emp_type = 9;
+                        }
+                        String url = "/employee/update";
+
+                        Map<String, Object> emp = new HashMap<>();
+                        emp.put("emp_id", emp_id);
+                        emp.put("emp_no", emp_no.getText());
+                        emp.put("emp_type", emp_type);
+                        emp.put("emp_name", emp_name.getText());
+                        emp.put("emp_tel_num", emp_tel.getText());
+                        emp.put("emp_addr", emp_addr.getText());
+                        emp.put("emp_email", emp_email.getText());
+
+                        String res = Httpclient.post(url, emp);
+                        return JSON.parseObject(res);
                     }
-                    String url = "/employee/update";
 
-                    Map<String, Object> emp = new HashMap<>();
-                    emp.put("emp_id", emp_id);
-                    emp.put("emp_no", emp_no.getText());
-                    emp.put("emp_type", emp_type);
-                    emp.put("emp_name", emp_name.getText());
-                    emp.put("emp_tel_num", emp_tel.getText());
-                    emp.put("emp_addr", emp_addr.getText());
-                    emp.put("emp_email", emp_email.getText());
+                    @Override
+                    protected void running() {
 
-                    String res = Httpclient.post(url, emp);
-                    return JSON.parseObject(res);
-                }
-
-                @Override
-                protected void running() {
-
-                }
-
-                @Override
-                protected void succeeded() {
-                    super.succeeded();
-                    JSONObject jsonObject = getValue();
-                    if (jsonObject.get("flag").equals(true)) {
-                        MessageBar.showMessageBar("修改成功！");
-                        new EmployeeList();
-                    } else {
-                        MessageBar.showMessageBar(jsonObject.get("content").toString());
                     }
-                    btok.setDisable(false);
-                    updateMessage("Done!");
-                }
 
-                @Override
-                protected void cancelled() {
-                    super.cancelled();
-                    updateMessage("Cancelled!");
-                }
+                    @Override
+                    protected void succeeded() {
+                        super.succeeded();
+                        JSONObject jsonObject = getValue();
+                        if (jsonObject.get("flag").equals(true)) {
+                            MessageBar.showMessageBar("修改成功！");
+                            new EmployeeList();
+                        } else {
+                            MessageBar.showMessageBar(jsonObject.get("content").toString());
+                        }
+                        btok.setDisable(false);
+                        updateMessage("Done!");
+                    }
 
-                @Override
-                protected void failed() {
-                    super.failed();
-                    updateMessage("Failed!");
-                }
-            };
-            Thread thread = new Thread(task);
-            thread.start();
+                    @Override
+                    protected void cancelled() {
+                        super.cancelled();
+                        updateMessage("Cancelled!");
+                    }
+
+                    @Override
+                    protected void failed() {
+                        super.failed();
+                        updateMessage("Failed!");
+                    }
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+            }else {
+                MessageBar.showMessageBar("请将信息填写完整");
+
+            }
         });
 
         btret.setOnAction(e -> {

@@ -1,5 +1,7 @@
-package UI.Employee;
+package UI.Self;
 
+import UI.Employee.EmployeeList;
+import UI.Layout.HomeUI;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -9,11 +11,9 @@ import javafx.scene.layout.VBox;
 import model.Employee;
 import node.FunButton;
 
-public class EmployeeDetail extends VBox {
+public class SelfMenu extends VBox {
 
-    public EmployeeDetail() {}
-
-    public EmployeeDetail(Employee emp){
+    public SelfMenu(Employee emp){
         this.setAlignment(Pos.TOP_CENTER);
         this.setPadding(new Insets(80,20,20,20));
 
@@ -30,8 +30,19 @@ public class EmployeeDetail extends VBox {
         Label emp_addr = new Label("家庭住址：");
         Label emp_email = new Label("Email：");
 
+        String type = null;
+        if(emp.getEmp_type() == 1){
+            type = "经理";
+        }else if(emp.getEmp_type() == 2){
+            type = "售票员";
+        }else if(emp.getEmp_type() == 3){
+            type = "管理员";
+        }else{
+            type = "匿名";
+        }
+
         Label noValue = new Label(emp.getEmp_no());
-        Label typeValue = new Label(String.valueOf(emp.getEmp_type()));
+        Label typeValue = new Label(type);
         Label nameValue = new Label(emp.getEmp_name());
         Label tel_numValue = new Label(emp.getEmp_tel_num());
         Label addrValue = new Label(emp.getEmp_addr());
@@ -44,16 +55,25 @@ public class EmployeeDetail extends VBox {
         footer.setAlignment(Pos.CENTER);
         footer.setPadding(new Insets(20,20,20,20));
         footer.setSpacing(40);
-        FunButton btRet = new FunButton("返回");
-        footer.getChildren().addAll(btRet);
 
-        //点击返回按钮
+        FunButton btModify = new FunButton("修改信息");
+        FunButton btUpdatePassword = new FunButton("修改密码");
+        FunButton btRet = new FunButton("返回");
+        footer.getChildren().addAll(btModify,btUpdatePassword,btRet);
+
+        btModify.setOnAction(e->{
+            HomeUI.setCenter(new SelfModify(emp));
+        });
+
+        btUpdatePassword.setOnAction(e->{
+            HomeUI.setCenter(new SelfUpdatePassword(emp));
+        });
+
         btRet.setOnAction(e->{
-            new EmployeeList();
+            HomeUI.showNote();
         });
 
         this.getChildren().addAll(table,footer);
     }
-
 
 }

@@ -30,8 +30,11 @@ public class ChoosePlay extends VBox {
         dateBox.setAlignment(Pos.CENTER_LEFT);
         dateBox.setSpacing(20);
         dateBox.setPadding(new Insets(10,10,10,10));
-        Button today = new Button((todayDate.get(Calendar.MONTH)+1) +"月"+todayDate.get(Calendar.DAY_OF_MONTH)+"日");
-        Button tomorrow = new Button((tomorrowDate.get(Calendar.MONTH)+1) +"月"+tomorrowDate.get(Calendar.DAY_OF_MONTH)+"日");
+//        Button today = new Button((todayDate.get(Calendar.MONTH)+1) +"月"+todayDate.get(Calendar.DAY_OF_MONTH)+"日");
+//        Button tomorrow = new Button((tomorrowDate.get(Calendar.MONTH)+1) +"月"+tomorrowDate.get(Calendar.DAY_OF_MONTH)+"日");
+        Button today = new Button("今天");
+        Button tomorrow = new Button("明天");
+
         dateBox.getChildren().addAll(today,tomorrow);
         today.setDisable(true);
 
@@ -43,19 +46,19 @@ public class ChoosePlay extends VBox {
 
         playsArea = new ScrollPane();
         playsArea.setStyle("-fx-padding: 0;-fx-opacity: 0.75;-fx-background-color: bisque");
-        playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString),flag));
+        playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString),flag,todayDate));
 
 
         today.setOnAction(e->{
             today.setDisable(true);
             tomorrow.setDisable(false);
-            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString),flag));
+            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(todayDateString),flag,todayDate));
         });
 
         tomorrow.setOnAction(e->{
             tomorrow.setDisable(true);
             today.setDisable(false);
-            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(tomorrowDateString),flag));
+            playsArea.setContent(new PlayInfo(playSrv.selectPlayByDate(tomorrowDateString),flag,tomorrowDate));
         });
 
         //功能按钮框

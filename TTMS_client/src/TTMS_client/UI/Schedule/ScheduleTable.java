@@ -27,13 +27,9 @@ public class ScheduleTable extends GridPane {
             Label sched_id = new Label("ID");
             Label studio_id = new Label("演播厅ID");
             Label play_id = new Label("剧目ID");
-
-            //新加一个sched_date 演出日期 sche_time 演出时间
-
-            Label sched_date = new Label("演出日期");
             Label sched_time = new Label("演出时间");
             Label sched_ticket_price = new Label("票价");
-            this.addRow(0, sched_id,studio_id,play_id,sched_date,sched_time,sched_ticket_price);
+            this.addRow(0, sched_id,studio_id,play_id,sched_time,sched_ticket_price);
 
             for (int i = 0; i < schedules.size(); i++) {
                 Schedule schedule = schedules.get(i);

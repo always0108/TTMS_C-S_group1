@@ -133,66 +133,76 @@ public class PlayModify extends GridPane {
         this.add(bottom_button,1,9,4,1);
 
         Confirm.setOnAction(e->{
-            Confirm.setDisable(true);
-            //创建后台获取数据的线程
-            Task<JSONObject> task = new Task<JSONObject>() {
-                @Override
-                protected JSONObject call() throws Exception {
-                    String url = "/play/update";
-                    String str;
-                    int play_id = play.getPlay_id();
-                    short status = 0;
-                    if(path != null){
-                        byte[] data = ImageByte.imageToBytes(path);
-                        str = Base64.encodeBase64String(data);
-                    }else{
-                        str = play.getBase64play_image();
+            if(!play_lang_id.getValue().equals("请选择") &&
+                    !play_type_id.getValue().equals("请选择") &&
+                    !play_introduction.getText().isEmpty() &&
+                    !play_name.getText().isEmpty() &&
+                    !play_price.getText().isEmpty() &&
+                    !play_length.getText().isEmpty() ){
+                Confirm.setDisable(true);
+                //创建后台获取数据的线程
+                Task<JSONObject> task = new Task<JSONObject>() {
+                    @Override
+                    protected JSONObject call() throws Exception {
+                        String url = "/play/update";
+                        String str;
+                        int play_id = play.getPlay_id();
+                        short status = 0;
+                        if(path != null){
+                            byte[] data = ImageByte.imageToBytes(path);
+                            str = Base64.encodeBase64String(data);
+                        }else{
+                            str = play.getBase64play_image();
+                        }
+
+                        Map<String, Object> play = new HashMap<>();
+                        play.put("play_id",play_id);
+                        play.put("play_type_id",DataCollection.playTypeComboBox.get(play_type_id.getValue()));
+                        play.put("play_lang_id",DataCollection.playLangComboBox.get(play_lang_id.getValue()));
+                        play.put("play_name",play_name.getText());
+                        play.put("play_introduction",play_introduction.getText());
+                        play.put("play_length",Integer.valueOf(play_length.getText()));
+                        play.put("play_ticket_price",new BigDecimal(play_price.getText()));
+                        play.put("Base64play_image",str);
+                        play.put("play_status",status);
+
+                        String res = Httpclient.post(url, play);
+                        return JSON.parseObject(res);
                     }
 
-                    Map<String, Object> play = new HashMap<>();
-                    play.put("play_id",play_id);
-                    play.put("play_type_id",DataCollection.playTypeComboBox.get(play_type_id.getValue()));
-                    play.put("play_lang_id",DataCollection.playLangComboBox.get(play_lang_id.getValue()));
-                    play.put("play_name",play_name.getText());
-                    play.put("play_introduction",play_introduction.getText());
-                    play.put("play_length",Integer.valueOf(play_length.getText()));
-                    play.put("play_ticket_price",new BigDecimal(play_price.getText()));
-                    play.put("Base64play_image",str);
-                    play.put("play_status",status);
+                    @Override
+                    protected void running() {
 
-                    String res = Httpclient.post(url, play);
-                    return JSON.parseObject(res);
-                }
+                    }
 
-                @Override
-                protected void running() {
+                    @Override
+                    protected void succeeded() {
+                        super.succeeded();
+                        JSONObject jsonObject = getValue();
+                        new PlayList();
+                        MessageBar.showMessageBar(jsonObject.get("content").toString());
+                        Confirm.setDisable(false);
+                        updateMessage("Done!");
+                    }
 
-                }
+                    @Override
+                    protected void cancelled() {
+                        super.cancelled();
+                        updateMessage("Cancelled!");
+                    }
 
-                @Override
-                protected void succeeded() {
-                    super.succeeded();
-                    JSONObject jsonObject = getValue();
-                    new PlayList();
-                    MessageBar.showMessageBar(jsonObject.get("content").toString());
-                    Confirm.setDisable(false);
-                    updateMessage("Done!");
-                }
+                    @Override
+                    protected void failed() {
+                        super.failed();
+                        updateMessage("Failed!");
+                    }
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+            }else {
+                MessageBar.showMessageBar("请将信息填写完成");
+            }
 
-                @Override
-                protected void cancelled() {
-                    super.cancelled();
-                    updateMessage("Cancelled!");
-                }
-
-                @Override
-                protected void failed() {
-                    super.failed();
-                    updateMessage("Failed!");
-                }
-            };
-            Thread thread = new Thread(task);
-            thread.start();
         });
 
         Return.setOnAction(e->{
