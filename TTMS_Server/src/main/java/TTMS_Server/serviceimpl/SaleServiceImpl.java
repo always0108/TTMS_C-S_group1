@@ -44,6 +44,12 @@ public class SaleServiceImpl implements SaleService{
         return saleDAO.selectSaleAmountByEmployeeId(id);
     }
 
+    //根据员工id获取未完成的订单
+    @Override
+    public List<Sale> selectCancelSaleByEmpoyeeId(Integer id){
+        return saleDAO.selectCancelSaleByEmpoyeeId(id);
+    }
+
     //根据员工name获取销售额
     @Override
     public List<EmployeeSale> selectSaleAmountsByEmployeeName(){
