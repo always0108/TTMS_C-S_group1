@@ -31,16 +31,6 @@ public class AnalysisMenu extends GridPane {
 
         this.addRow(0,playSaleAnalysis,emp_SaleAnalysis,play_SaleAnalysis);
 
-////        Label sale = new Label();
-////        Label label = new Label("输入员工id查询：");
-////        TextField textField = new TextField();
-////        FunButton funButton = new FunButton("查询");
-//        this.add(label,0,1);
-//        this.add(textField,1,1);
-//        this.add(funButton,2,1);
-//        this.add(sale,1,2);
-
-
         playSaleAnalysis.setOnAction(e->{
             HomeUI.setCenter(new PlayAnalysis(saleSrv.getPlayTicketAmount()));
         });
@@ -52,11 +42,5 @@ public class AnalysisMenu extends GridPane {
         play_SaleAnalysis.setOnAction(e->{
             new PlayPercentList();
         });
-
-//        funButton.setOnAction(e->{
-//            sale.setText(saleSrv.getEmployeeAnalysisByEmployeeId(Integer.valueOf(textField.getText())).toString());
-//        });
-
-
     }
 }

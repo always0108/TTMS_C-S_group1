@@ -22,6 +22,9 @@ public interface SaleService {
     //根据员工id查询纯销售额
     BigDecimal selectSaleAmountByEmployeeId(Integer id);
 
+    //根据员工id获取未完成的订单
+    List<Sale> selectCancelSaleByEmpoyeeId(Integer id);
+
     //根据员工name获取销售额
     List<EmployeeSale> selectSaleAmountsByEmployeeName();
 

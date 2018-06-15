@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import model.EmployeeSale;
 import model.PlayPercent;
 import model.PlaySale;
+import model.Sale;
 import util.Httpclient;
 
 import java.math.BigDecimal;
@@ -82,6 +83,18 @@ public class SaleSrv {
         if(jsonObject.get("flag").equals(true)) {
             List<PlayPercent> playPercents = JSONArray.parseArray(jsonObject.getString("content"), PlayPercent.class);
             return playPercents;
+        }else{
+            return null;
+        }
+    }
+
+    public List<Sale> selectCancelSaleByEmpoyeeId(Integer id){
+        String url = "/analysis/selectCancelSaleByEmpoyeeId?id="+id;
+        String res = Httpclient.get(url);
+        JSONObject jsonObject = JSON.parseObject(res);
+        if(jsonObject.get("flag").equals(true)) {
+            List<Sale> sales = JSONArray.parseArray(jsonObject.getString("content"), Sale.class);
+            return sales;
         }else{
             return null;
         }

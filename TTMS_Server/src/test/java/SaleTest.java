@@ -38,7 +38,7 @@ public class SaleTest {
     private SaleService saleService;
 
     @Test
-    public void Test(){
+    public void Test() {
 //        //增加
 //        Sale sale = new Sale(1,new Date(),new BigDecimal(100),new BigDecimal(100),new Short("-1"),new Short("-1"));
 //        if(saleService.addSale(sale)){
@@ -64,11 +64,13 @@ public class SaleTest {
 //        else{
 //            System.out.println("已存在");
 //        }
-        List<EmployeeSale> employeeSales = saleService.selectSaleAmountsByEmployeeName();
-        for(EmployeeSale employeeSale:employeeSales){
-            System.out.println(employeeSale.getEmp_name());
-            System.out.println(employeeSale.getSaleAmount());
-        }
+        List<Sale> sales = saleService.selectCancelSaleByEmpoyeeId(2);
+        for(Sale sale:sales){
+            System.out.println(sale.getSale_ID());
+            System.out.println(sale.getEmp_id());
+            System.out.println(sale.getSale_change());
+            System.out.println(sale.getSale_status());
         }
     }
+}
 

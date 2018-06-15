@@ -1,9 +1,6 @@
 package TTMS_Server.web.RESTful;
 
-import TTMS_Server.model.EmployeeSale;
-import TTMS_Server.model.PlayPercent;
-import TTMS_Server.model.PlaySale;
-import TTMS_Server.model.ResponseResult;
+import TTMS_Server.model.*;
 import TTMS_Server.service.PlayService;
 import TTMS_Server.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +86,17 @@ public class AnalysisRestController {
             return new ResponseResult(false,"没有任何数据");
         }else{
             return new ResponseResult(true,playPercents);
+        }
+    }
+
+    //根据员工id获取未完成的订单
+    @RequestMapping(value = "/selectCancelSaleByEmpoyeeId",method = RequestMethod.GET)
+    public ResponseResult selectCancelSaleByEmpoyeeId(@RequestParam("id") Integer id){
+        List<Sale> sales = saleService.selectCancelSaleByEmpoyeeId(id);
+        if(sales == null){
+            return new ResponseResult(false,"没有任何数据");
+        }else{
+            return new ResponseResult(true,sales);
         }
     }
 }

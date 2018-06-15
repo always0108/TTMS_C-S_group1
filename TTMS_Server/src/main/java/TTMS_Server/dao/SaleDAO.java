@@ -37,6 +37,10 @@ public interface SaleDAO {
             " from sale where sale_status=1 and emp_id = #{emp_id}")
     BigDecimal selectSaleAmountByEmployeeId(Integer id);
 
+    //根据员工id获取未完成的订单
+    @Select("select * from sale where sale_status = -1 and emp_id = #{emp_id}")
+    List<Sale> selectCancelSaleByEmpoyeeId(Integer id);
+
     //根据员工name获取销售额
     @Select("select emp_name,SaleAmount from (select emp_id,sum(sale_payment*sale_type) " +
             "as SaleAmount from sale where sale_status=1 and sale_type =1 group by emp_id)" +
