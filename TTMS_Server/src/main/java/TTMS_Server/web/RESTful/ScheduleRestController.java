@@ -78,7 +78,7 @@ public class ScheduleRestController {
             return new ResponseResult(true,"删除成功");
         }
         else{
-            return new ResponseResult(false,"演出计划不存在");
+            return new ResponseResult(false,"该演出计划不存在或者已出票");
         }
     }
 

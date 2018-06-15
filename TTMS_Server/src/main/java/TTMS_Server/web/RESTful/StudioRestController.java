@@ -41,6 +41,7 @@ public class StudioRestController {
     //添加演出厅
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseResult add(@ModelAttribute Studio studio){
+        System.out.println("ok");
         if (studioService.addStudio(studio))
             return new ResponseResult(true,"添加成功");
         else{

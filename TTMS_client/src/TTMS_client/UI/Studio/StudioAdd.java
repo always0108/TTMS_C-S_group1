@@ -88,13 +88,15 @@ public class StudioAdd extends VBox {
 
                         Map<String, Object> studio = new HashMap<>();
                         studio.put("studio_name",studio_name.getText());
-                        studio.put("studio_row_count",Integer.valueOf(studio_row.getEditor().getText()));
-                        studio.put("studio_col_count",Integer.valueOf(studio_col.getEditor().getText()));
-                        studio.put("studio_seat_count",Integer.valueOf(studio_row.getEditor().getText())*Integer.valueOf(studio_col.getEditor().getText()));
+                        studio.put("studio_row_count",Integer.valueOf(studio_row.getValue()));
+                        studio.put("studio_col_count",Integer.valueOf(studio_col.getValue()));
+                        studio.put("studio_seat_count",Integer.valueOf(studio_row.getValue())*Integer.valueOf(studio_col.getValue()));
                         studio.put("studio_introduction",studio_introduction.getText());
                         studio.put("studio_flag",0);
 
+                        System.out.println(url);
                         String res = Httpclient.post(url, studio);
+                        System.out.println(res);
                         return JSON.parseObject(res);
                     }
 
