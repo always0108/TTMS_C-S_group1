@@ -1,4 +1,4 @@
-package UI.Analyze;
+package UI.Analysis;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

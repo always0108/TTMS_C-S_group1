@@ -22,10 +22,12 @@ public class LoginUI {
 
     public static Pane init(){
         VBox pane = new VBox();
+        pane.setSpacing(20);
         pane.setAlignment(Pos.TOP_CENTER);
         pane.setPadding(new Insets(40,20,20,20));
         //标题
-        ImageView logo = new ImageView("/image/companyLogo.png");
+        ImageView logo = new ImageView("/image/Login/logo.png");
+        ImageView name = new ImageView("/image/Login/TTMSName.png");
 
         //表单
         GridPane gridPane = new GridPane();
@@ -51,7 +53,7 @@ public class LoginUI {
         bt1.setStyle("-fx-min-width: 200px;-fx-min-height: 40px;-fx-background-color: #ca8269;-fx-font-size: 18px");
         gridPane.add(bt1,1,4);
 
-        pane.getChildren().addAll(logo,gridPane);
+        pane.getChildren().addAll(logo,name,gridPane);
 
         bt1.setOnAction(e->{
             bt1.setDisable(true);

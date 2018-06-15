@@ -1,6 +1,6 @@
 package UI.Layout;
 
-import UI.Analyze.AnalysisMenu;
+import UI.Analysis.AnalysisMenu;
 import UI.DataDictionary.DataDictList;
 import UI.Employee.EmployeeList;
 import UI.Play.PlayList;
