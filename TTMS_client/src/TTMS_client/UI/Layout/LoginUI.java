@@ -22,10 +22,12 @@ public class LoginUI {
 
     public static Pane init(){
         VBox pane = new VBox();
+        pane.setSpacing(20);
         pane.setAlignment(Pos.TOP_CENTER);
         pane.setPadding(new Insets(40,20,20,20));
         //标题
-        ImageView logo = new ImageView("/image/companyLogo.png");
+        ImageView logo = new ImageView("/image/Login/logo.png");
+        ImageView name = new ImageView("/image/Login/TTMSName.png");
 
         //表单
         GridPane gridPane = new GridPane();
@@ -51,7 +53,7 @@ public class LoginUI {
         bt1.setStyle("-fx-min-width: 200px;-fx-min-height: 40px;-fx-background-color: #ca8269;-fx-font-size: 18px");
         gridPane.add(bt1,1,4);
 
-        pane.getChildren().addAll(logo,gridPane);
+        pane.getChildren().addAll(logo,name,gridPane);
 
         bt1.setOnAction(e->{
             bt1.setDisable(true);
@@ -81,11 +83,11 @@ public class LoginUI {
                         new DataCollection();
                         Employee emp = jsonObject.getObject("content",Employee.class);
                         if(emp.getEmp_type() == 1){//经理
-                            new HomeUI().ManagerUI(emp);
+                            new HomeUI(emp).ManagerUI();
                         }else if(emp.getEmp_type() == 2){//售票员
-                            new HomeUI().sellManUI(emp);
+                            new HomeUI(emp).sellManUI();
                         }else if(emp.getEmp_type() == 3){//管理员
-                            new HomeUI().adminUI(emp);
+                            new HomeUI(emp).adminUI();
                         }
                         MessageBar.showMessageBar("欢迎登录！");
                     }else {

@@ -1,4 +1,4 @@
-package UI.Analyze;
+package UI.Analysis;
 
 import javafx.geometry.Insets;
 import javafx.scene.chart.BarChart;
@@ -7,14 +7,15 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.StackPane;
 import model.EmployeeSale;
+
 import java.util.List;
 
-public class EmployAnalysis extends StackPane{
+public class Employee_Analysis extends StackPane {
 
-    public EmployAnalysis(List<EmployeeSale> employeeSales){
+    public Employee_Analysis(List<EmployeeSale> employeeSales){
         CategoryAxis x = new CategoryAxis();
         NumberAxis y = new NumberAxis();
-        BarChart<String,Number> barChart = new BarChart<String,Number>(x,y);
+        BarChart<String,Number> barChart = new BarChart<String, Number>(x,y);
         barChart.setTitle("员工销售额分析");
         x.setLabel("员工");
         y.setLabel("销售额");

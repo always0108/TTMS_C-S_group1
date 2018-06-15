@@ -38,8 +38,8 @@ public class Pay extends VBox {
         Text alipaynote = new Text("支付宝");
         wechatnote.setFont(Font.font(20));
         alipaynote.setFont(Font.font(20));
-        ImageView wechat = new ImageView(new Image("/image/wechat.jpg"));
-        ImageView alipay = new ImageView(new Image("/image/alipay.jpg"));
+        ImageView wechat = new ImageView(new Image("/image/Pay/wechat.jpg"));
+        ImageView alipay = new ImageView(new Image("/image/Pay/alipay.jpg"));
         wechat.setFitHeight(300);
         wechat.setFitWidth(300);
         alipay.setFitWidth(300);

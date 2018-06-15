@@ -67,7 +67,7 @@ public class SeatTable extends VBox {
             Task<JSONObject> task = new Task<JSONObject>() {
                 @Override
                 protected JSONObject call() throws Exception {
-                    String url = "/seat/updateByStudioId";
+                    String url = "/Seat/updateByStudioId";
                     Map<String, Object> data = new HashMap<>();
 
                     JSONObject jsonObject = new JSONObject();

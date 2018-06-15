@@ -37,6 +37,15 @@
     -fx-text-fill: #eaf4fc;
 }
 
+.dateButton{
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 20px;
+    -fx-border-style: hidden;
+    -fx-background-color:#b9d08b;
+    -fx-text-fill: #eaf4fc;
+}
+
 .tableButton{
     -fx-background-color: #bed3ca;
     -fx-border-radius: 10px;
@@ -65,8 +74,7 @@
 .text-area{
     -fx-font-size: 16px;
     -fx-background-color: #edd3a1;
-    -fx-color-label-visible: true;
-    -fx-border-style: none;
+    -fx-border-style: hidden;
 }
 
 .combo-box{
@@ -75,7 +83,8 @@
 }
 
 .scroll-pane{
-    -fx-opacity: 0.7;
+    -fx-opacity: 0.75;
+    -fx-background-color: #f8f4e6;
     -fx-border-style: none;
 }
 

@@ -13,7 +13,7 @@ public class SeatSrv {
     public SeatSrv() {}
 
     public List<Seat> getAllSeatByStudioID(Integer studio_id) {
-        String url = "/seat/getStudioSeats?id="+studio_id;
+        String url = "/Seat/getStudioSeats?id="+studio_id;
         String res = Httpclient.get(url);
         JSONObject jsonObject = JSON.parseObject(res);
         if(jsonObject.get("flag").equals(true)) {
@@ -25,7 +25,7 @@ public class SeatSrv {
     }
 
     public boolean initSeatsByStudioID(Integer studio_id){
-        String url = "/seat/init?id="+studio_id;
+        String url = "/Seat/init?id="+studio_id;
         String res = Httpclient.get(url);
         JSONObject jsonObject = JSON.parseObject(res);
         if(jsonObject.get("flag").equals(true)) {

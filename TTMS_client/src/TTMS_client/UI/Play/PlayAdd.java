@@ -70,7 +70,7 @@ public class PlayAdd extends GridPane {
         this.add(select_button,2,3);
 
         Label introduction = new Label("剧目简介:");
-        TextArea play_introduction = new TextArea("这是一条剧目简介......");
+        TextArea play_introduction = new TextArea();
         play_introduction.setPrefColumnCount(16);
         play_introduction.setPrefRowCount(4);
         play_introduction.setWrapText(true);

@@ -94,7 +94,8 @@ public class SelfUpdatePassword extends VBox {
                         if (jsonObject.get("flag").equals(true)) {
                             MessageBar.showMessageBar("修改成功！");
                             emp.setEmp_passwd(MD5.codeByMD5(newPasswordField.getText()));
-                            Main.borderPane.setTop(new HomeUI().top(emp));
+                            HomeUI.employee = emp;
+                            Main.borderPane.setTop(HomeUI.top());
                             HomeUI.setCenter(new SelfMenu(emp));
                         } else {
                             MessageBar.showMessageBar(jsonObject.get("content").toString());

@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import node.DateButton;
 import node.FunButton;
 
 import java.util.Calendar;
@@ -28,12 +29,10 @@ public class ChoosePlay extends VBox {
         Calendar tomorrowDate = Calendar.getInstance();
         tomorrowDate.add(Calendar.DATE,1);
         dateBox.setAlignment(Pos.CENTER_LEFT);
-        dateBox.setSpacing(20);
+        dateBox.setSpacing(10);
         dateBox.setPadding(new Insets(10,10,10,10));
-//        Button today = new Button((todayDate.get(Calendar.MONTH)+1) +"月"+todayDate.get(Calendar.DAY_OF_MONTH)+"日");
-//        Button tomorrow = new Button((tomorrowDate.get(Calendar.MONTH)+1) +"月"+tomorrowDate.get(Calendar.DAY_OF_MONTH)+"日");
-        Button today = new Button("今天");
-        Button tomorrow = new Button("明天");
+        DateButton today = new DateButton("今天");
+        DateButton tomorrow = new DateButton("明天");
 
         dateBox.getChildren().addAll(today,tomorrow);
         today.setDisable(true);

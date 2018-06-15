@@ -1,4 +1,4 @@
-package UI.Analyze;
+package UI.Analysis;
 
 import javafx.geometry.Insets;
 import javafx.scene.chart.BarChart;

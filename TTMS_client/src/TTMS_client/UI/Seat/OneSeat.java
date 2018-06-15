@@ -26,19 +26,19 @@ public class OneSeat extends Button {
         this.setPrefHeight(48);
         this.setStyle("-fx-border-style: none;");
         if (seat.getSeat_status() == 1) {          //完好的座位
-            this.setStyle("-fx-background-image: url('/image/seat/Optional.png'); -fx-background-color: none");
+            this.setStyle("-fx-background-image: url('/image/Seat/Optional.png'); -fx-background-color: none");
         } else if (seat.getSeat_status() == -1) {   //损坏
-            this.setStyle("-fx-background-image: url('/image/seat/NotOptional.png'); -fx-background-color: none");
+            this.setStyle("-fx-background-image: url('/image/Seat/NotOptional.png'); -fx-background-color: none");
         } else if (seat.getSeat_status() == 0) {   //未设置
             this.setStyle("-fx-background-image: none;");
         }
 
         this.setOnAction(e -> {
             if (getStatus() == 0) {
-                this.setStyle("-fx-background-image: url('/image/seat/Optional.png');-fx-background-color: none");
+                this.setStyle("-fx-background-image: url('/image/Seat/Optional.png');-fx-background-color: none");
                 setStatus(1);                      //好的
             }else if (getStatus() == 1) {
-                this.setStyle("-fx-background-image: url('/image/seat/NotOptional.png'); -fx-background-color: none");
+                this.setStyle("-fx-background-image: url('/image/Seat/NotOptional.png'); -fx-background-color: none");
                 setStatus(-1);                     //坏的
             } else if (getStatus() == -1) {
                 this.setStyle("-fx-background-image: none; -fx-background-color: none");

@@ -29,7 +29,7 @@ public class PlayInfo extends GridPane {
         this.setPadding(new Insets(20,20,20,20));
 
         if(plays == null || plays.size() == 0){
-            Label note = new Label("今天打烊啦!");
+            Label note = new Label("今天没有剧目放映哦～");
             note.setStyle("-fx-font-size: 20px");
             this.add(note,0,0);
         }else {
