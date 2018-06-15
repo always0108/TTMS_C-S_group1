@@ -5,6 +5,7 @@ import UI.Layout.HomeUI;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,7 +21,7 @@ public class ChoosePlay extends VBox {
     private ScrollPane playsArea;
 
     public ChoosePlay(Integer flag){
-        this.setAlignment(Pos.TOP_CENTER);
+        this.setAlignment(Pos.TOP_LEFT);
         this.setSpacing(10);
         this.setPadding(new Insets(20,20,20,20));
 
@@ -33,8 +34,15 @@ public class ChoosePlay extends VBox {
         dateBox.setPadding(new Insets(10,10,10,10));
         DateButton today = new DateButton("今天");
         DateButton tomorrow = new DateButton("明天");
-
-        dateBox.getChildren().addAll(today,tomorrow);
+        Label note = new Label();
+        note.setStyle("-fx-font-size: 24px");
+        note.setPadding(new Insets(0,200,0,0));
+        if(flag == 1){
+            note.setText("售票");
+        }else{
+            note.setText("退票");
+        }
+        dateBox.getChildren().addAll(note,today,tomorrow);
         today.setDisable(true);
 
         String todayDateString = todayDate.get(Calendar.YEAR)+"-"+(todayDate.get(Calendar.MONTH)+1)

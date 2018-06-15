@@ -1,4 +1,4 @@
-package UI.Analyze;
+package UI.Analysis;
 
 import Service.SaleSrv;
 import UI.Layout.HomeUI;

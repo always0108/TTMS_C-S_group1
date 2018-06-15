@@ -1,6 +1,7 @@
 package UI.Layout;
 
 import UI.Analysis.AnalysisMenu;
+import UI.Analysis.UnhandleList;
 import UI.DataDictionary.DataDictList;
 import UI.Employee.EmployeeList;
 import UI.Play.PlayList;
@@ -54,7 +55,12 @@ public class NavigationBar{
             Main.borderPane.setCenter(new ChoosePlay(-1));
         });
 
-        sellMan.getChildren().addAll(sellTicket,returnTicket);
+        NavigationButton unhandleSale = new NavigationButton("未处理订单");
+        unhandleSale.setOnAction(e->{
+            Main.borderPane.setCenter(new UnhandleList(HomeUI.employee.getEmp_id()));
+        });
+
+        sellMan.getChildren().addAll(sellTicket,returnTicket,unhandleSale);
         return sellMan;
     }
 

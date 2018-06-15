@@ -1,4 +1,4 @@
-package UI.Analyze;
+package UI.Analysis;
 
 import UI.Layout.HomeUI;
 import UI.Ticket.Pay;

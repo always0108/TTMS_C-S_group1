@@ -24,7 +24,7 @@ public class LoginUI {
         VBox pane = new VBox();
         pane.setSpacing(20);
         pane.setAlignment(Pos.TOP_CENTER);
-        pane.setPadding(new Insets(40,20,20,20));
+        pane.setPadding(new Insets(60,20,20,20));
         //标题
         ImageView logo = new ImageView("/image/Login/logo.png");
         ImageView name = new ImageView("/image/Login/TTMSName.png");
@@ -34,7 +34,7 @@ public class LoginUI {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(20);
         gridPane.setVgap(25);
-        gridPane.setPadding(new Insets(20,20,20,20));
+        gridPane.setPadding(new Insets(0,20,20,20));
         Label note = new Label();
         note.setStyle("-fx-alignment: center");
         gridPane.add(note,1,0);
