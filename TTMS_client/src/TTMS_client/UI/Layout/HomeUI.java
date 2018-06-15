@@ -14,7 +14,13 @@ import util.Httpclient;
 
 public class HomeUI{
 
-    public HBox top(Employee employee){
+    public static Employee employee;
+
+    public HomeUI(Employee employee){
+        this.employee = employee;
+    }
+
+    public static HBox top(){
         HBox toppane = new HBox();
         toppane.setAlignment(Pos.CENTER_RIGHT);
         toppane.setSpacing(20);
@@ -25,7 +31,6 @@ public class HomeUI{
         selfcenter.setStyle("-fx-border-style: hidden;-fx-content-display: graphic-only;-fx-font-size: 18px");
         Hyperlink logout = new Hyperlink("注销",new ImageView("/image/User/logout.png"));
         logout.setStyle("-fx-border-style: hidden;-fx-content-display: graphic-only;-fx-font-size: 18px");
-
 
         selfcenter.setOnAction(e->{
             HomeUI.setCenter(new SelfMenu(employee));
@@ -41,7 +46,25 @@ public class HomeUI{
         return  toppane;
     }
 
-    public Pane center(){
+    public void adminUI(){
+        Main.borderPane.setTop(top());
+        Main.borderPane.setCenter(center());
+        Main.borderPane.setLeft(NavigationBar.getAdminBar());
+    }
+
+    public void sellManUI(){
+        Main.borderPane.setTop(top());
+        Main.borderPane.setCenter(center());
+        Main.borderPane.setLeft(NavigationBar.getSellManBar());
+    }
+
+    public void ManagerUI(){
+        Main.borderPane.setTop(top());
+        Main.borderPane.setCenter(center());
+        Main.borderPane.setLeft(NavigationBar.getManagerBar());
+    }
+
+    public static Pane center(){
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.TOP_LEFT);
         vBox.setSpacing(40);
@@ -62,29 +85,11 @@ public class HomeUI{
         return vBox;
     }
 
-    public void adminUI(Employee employee){
-        Main.borderPane.setTop(top(employee));
-        Main.borderPane.setCenter(center());
-        Main.borderPane.setLeft(NavigationBar.getAdminBar());
-    }
-
-    public void sellManUI(Employee employee){
-        Main.borderPane.setTop(top(employee));
-        Main.borderPane.setCenter(center());
-        Main.borderPane.setLeft(NavigationBar.getSellManBar());
-    }
-
-    public void ManagerUI(Employee employee){
-        Main.borderPane.setTop(top(employee));
-        Main.borderPane.setCenter(center());
-        Main.borderPane.setLeft(NavigationBar.getManagerBar());
-    }
-
     public static void setCenter(Pane pane){
         Main.borderPane.setCenter(pane);
     }
 
     public static void showNote(){
-        Main.borderPane.setCenter(new HomeUI().center());
+        Main.borderPane.setCenter(HomeUI.center());
     }
 }

@@ -106,7 +106,8 @@ public class SelfModify extends VBox {
                             emp.setEmp_tel_num(emp_tel.getText());
                             emp.setEmp_addr(emp_addr.getText());
                             emp.setEmp_email(emp_email.getText());
-                            Main.borderPane.setTop(new HomeUI().top(emp));
+                            HomeUI.employee = emp;
+                            Main.borderPane.setTop(new HomeUI(emp).top());
                             HomeUI.setCenter(new SelfMenu(emp));
                         } else {
                             MessageBar.showMessageBar(jsonObject.get("content").toString());

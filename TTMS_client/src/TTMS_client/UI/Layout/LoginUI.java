@@ -83,11 +83,11 @@ public class LoginUI {
                         new DataCollection();
                         Employee emp = jsonObject.getObject("content",Employee.class);
                         if(emp.getEmp_type() == 1){//经理
-                            new HomeUI().ManagerUI(emp);
+                            new HomeUI(emp).ManagerUI();
                         }else if(emp.getEmp_type() == 2){//售票员
-                            new HomeUI().sellManUI(emp);
+                            new HomeUI(emp).sellManUI();
                         }else if(emp.getEmp_type() == 3){//管理员
-                            new HomeUI().adminUI(emp);
+                            new HomeUI(emp).adminUI();
                         }
                         MessageBar.showMessageBar("欢迎登录！");
                     }else {
