@@ -3,6 +3,7 @@ package TTMS_Server.web.RESTful;
 
 import TTMS_Server.model.Employee;
 import TTMS_Server.model.ResponseResult;
+import TTMS_Server.model.ResultPagination;
 import TTMS_Server.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,11 @@ public class EmployeeRestController {
 
     //列出所有用户
     @RequestMapping(value = "/getAllEmp",method = RequestMethod.GET)
-    public ResponseResult getAllEmp(){
-        return new ResponseResult(true,employeeService.getAllEmployeeByName());
+    public Object getAllEmp(@ModelAttribute Employee emp){
+//        return new ResponseResult(true,employeeService.getAllEmployeeByName());
+        int total = employeeService.getAllEmployeeByPartName("").size();
+        List<Employee> employees = employeeService.getAllEmployee(emp);
+        return new ResultPagination(total,employees,null);
     }
 
     //根据关键字查询用户

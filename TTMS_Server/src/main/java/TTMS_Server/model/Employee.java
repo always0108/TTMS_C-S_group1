@@ -2,7 +2,7 @@ package TTMS_Server.model;
 
 import TTMS_Server.utils.MD5;
 
-public class Employee {
+public class Employee extends Page{
     private Integer emp_id;
 
     private String emp_no;

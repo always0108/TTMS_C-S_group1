@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("rest/dataDict")
+@RequestMapping(value = "rest/dataDict",method = RequestMethod.GET)
 public class DataDictionaryRestController{
     @Autowired
     private DataDictionaryService dataDictionaryService;
