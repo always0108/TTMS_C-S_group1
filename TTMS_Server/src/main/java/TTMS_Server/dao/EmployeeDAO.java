@@ -1,6 +1,5 @@
 package TTMS_Server.dao;
 
-import TTMS_Server.dao.sqlprovider.EmployeeDynaSqlProvider;
 import TTMS_Server.model.Employee;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -23,8 +22,7 @@ public interface EmployeeDAO {
     Employee selectByName(String name);
 
     //获取所有员工的信息
-    //@Select("select * from employee")
-    @SelectProvider(type = EmployeeDynaSqlProvider.class, method = "selectSuitable")
+    @Select("select * from employee")
     List<Employee> getAllEmployeeByName(Employee emp);
 
     //根据关键字获取匹配多有员工的信息

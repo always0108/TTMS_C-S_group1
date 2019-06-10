@@ -20,11 +20,8 @@ public class EmployeeRestController {
 
     //列出所有用户
     @RequestMapping(value = "/getAllEmp",method = RequestMethod.GET)
-    public Object getAllEmp(@ModelAttribute Employee emp){
-//        return new ResponseResult(true,employeeService.getAllEmployeeByName());
-        int total = employeeService.getAllEmployeeByPartName("").size();
-        List<Employee> employees = employeeService.getAllEmployee(emp);
-        return new ResultPagination(total,employees,null);
+    public ResponseResult getAllEmp(@ModelAttribute Employee emp){
+        return new ResponseResult(true,employeeService.getAllEmployee(emp));
     }
 
     //根据关键字查询用户
